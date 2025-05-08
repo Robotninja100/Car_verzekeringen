@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uitgebreid Offerteformulier Tijdelijke CAR-Verzekering (Multi-Step) | [Uw Bedrijfsnaam]</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+        :root {
+            /* Variabelen van car_site.html (gebruikt door header) */
+            --primary-color: #0A2463; /* Diep Blauw */
+            --secondary-color: #3E92CC; /* Medium Blauw */
+            --accent-color: #FFC947; /* Geel/Goud */
+            --light-accent-color: #FFEEB8; /* Licht Geel */
+            --text-color: #333333;
+            --light-text-color: #FFFFFF;
+            --background-color: #FFFFFF; /* Gebruikt door header achtergrond */
+            --light-gray-color: #F4F4F8;
+            --border-color: #DDDDDD;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --box-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.12);
+            --box-shadow-strong: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --border-radius: 10px; 
+            --transition-speed: 0.3s;
+            --transition-speed-fast: 0.2s;
+
+            /* Variabelen specifiek voor Offerte.html formulier */
+            --form-bg-color: #ffffff;
+            --form-border-color: #d1d5db;
+            --form-focus-border-color: #3b82f6;
+            --form-text-color: #1f2937;
+            --form-label-color: #374151;
+            --form-section-bg-color: #f9fafb;
+            --form-button-bg-color: #2563eb;
+            --form-button-hover-bg-color: #1d4ed8;
+            --form-button-secondary-bg-color: #6b7280;
+            --form-button-secondary-hover-bg-color: #4b5563;
+            --form-button-text-color: #ffffff;
+            --danger-color: #dc2626;
+            --progress-bar-bg: #e5e7eb;
+            --progress-bar-fill: #3b82f6;
+            --progress-step-active-bg: #3b82f6;
+            --progress-step-inactive-bg: #9ca3af;
+            --progress-step-text-color: #ffffff;
+            --conditional-bg-color: rgba(59, 130, 246, 0.03);
+            --conditional-border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif; /* Default font for form page */
+            background-color: #e5e7eb; /* Page background for form area */
+            color: var(--form-text-color); /* Default text color for form elements */
+            line-height: 1.6;
+            /* padding: 20px; */ /* Verwijderd voor full-width header */
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            min-height: 100vh;
+            overflow-x: hidden; /* Voorkom horizontale scrollbars */
+        }
+
+        /* Header Styles (from car_site.html) */
+        header#mainHeader { /* Specific selector for offerte page header */
+            font-family: 'Poppins', sans-serif; /* Ensure header uses Poppins */
+            background-color: var(--background-color);
+            padding: 1rem 0;
+            border-bottom: 1px solid transparent;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%; /* Ensure full width */
+            transition: box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+
+        header#mainHeader.scrolled {
+            box-shadow: var(--box-shadow);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Container for header content */
+        header#mainHeader .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none; 
+            letter-spacing: -1px;
+        }
+
+        header#mainHeader nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header#mainHeader nav ul li {
+            margin-left: 30px;
+        }
+
+        header#mainHeader nav ul li a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 8px 0px;
+            position: relative;
+            transition: color var(--transition-speed-fast) ease;
+        }
+
+        header#mainHeader nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width var(--transition-speed) ease;
+        }
+
+        header#mainHeader nav ul li a:hover,
+        header#mainHeader nav ul li a.active { 
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        header#mainHeader nav ul li a:hover::after,
+        header#mainHeader nav ul li a.active::after {
+            width: 100%;
+        }
+        /* End of Header Styles */
+
+
+        .form-container {
+            background-color: var(--form-bg-color);
+            padding: 20px 30px 30px 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px; 
+            /* margin-top: 20px; */ /* Wordt nu geregeld door progress-bar-container margin */
+        }
+
+        .form-container h1 {
+            text-align: center; color: var(--form-text-color);
+            margin-bottom: 10px; font-size: 1.7rem;
+        }
+        .form-container .form-intro {
+            text-align: center; color: var(--form-label-color);
+            margin-bottom: 25px; font-size: 0.9rem;
+        }
+
+        /* Progress Bar Styling */
+        .progress-bar-container {
+            width: 100%; max-width: 900px; margin-bottom: 20px;
+            background-color: var(--form-bg-color); padding: 15px 20px;
+            border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: 20px; /* Added margin to clear sticky header, adjust if header height changes */
+        }
+        .progress-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            position: relative; height: 30px;
+        }
+        .progress-bar::before {
+            content: ''; position: absolute; top: 50%; left: 0;
+            transform: translateY(-50%); height: 4px; width: 100%;
+            background-color: var(--progress-bar-bg); z-index: 1;
+        }
+        .progress-line {
+            position: absolute; top: 50%; left: 0; transform: translateY(-50%);
+            height: 4px; background-color: var(--progress-bar-fill); z-index: 2;
+            width: 0%; transition: width 0.4s ease;
+        }
+        .progress-step {
+            width: 30px; height: 30px; background-color: var(--progress-step-inactive-bg);
+            color: var(--progress-step-text-color); border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-weight: bold; font-size: 0.9rem; z-index: 3; position: relative;
+            border: 3px solid var(--form-bg-color); transition: background-color 0.4s ease, transform 0.3s ease;
+        }
+        .progress-step.active {
+            background-color: var(--progress-step-active-bg); transform: scale(1.15);
+        }
+        .progress-step.completed { 
+             background-color: var(--progress-bar-fill);
+             border-color: var(--progress-bar-fill);
+        }
+        .progress-step.completed::after { 
+            content: '\2713'; 
+            font-size: 1.1rem;
+            color: white;
+        }
+        
+        .progress-step span.tooltip-text {
+            visibility: hidden; width: 140px; background-color: #333; color: #fff;
+            text-align: center; border-radius: 6px; padding: 6px 0;
+            position: absolute; z-index: 4; bottom: 130%; left: 50%;
+            margin-left: -70px; opacity: 0; transition: opacity 0.3s; font-size: 0.8rem;
+        }
+        .progress-step:hover span.tooltip-text { visibility: visible; opacity: 1; }
+        .progress-step .step-number { 
+             display: inline-block;
+        }
+        .progress-step.completed .step-number {
+            display: none;
+        }
+
+
+        fieldset.form-step {
+            border: none; 
+            padding: 15px 5px 5px 5px; 
+            margin-bottom: 0;
+            background-color: var(--form-bg-color); 
+            display: none;
+        }
+        fieldset.form-step.active { display: block; animation: fadeInStep 0.5s ease-in-out; }
+        @keyframes fadeInStep {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        legend {
+            font-size: 1.4rem; font-weight: 700; color: var(--form-text-color);
+            padding: 0; margin-bottom: 20px; width: 100%;
+            border-bottom: 2px solid var(--form-focus-border-color); padding-bottom: 8px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block; font-weight: 600; color: var(--form-label-color);
+            margin-bottom: 8px; font-size: 0.9rem;
+        }
+        .form-group label.radio-label, .form-group label.checkbox-label {
+            display: inline-block; font-weight: normal; margin-right: 12px;
+            margin-bottom: 0; margin-left: 4px; font-size: 0.95rem;
+        }
+        .input-group { display: flex; align-items: center; }
+        .input-group .currency-symbol, .input-group .unit-symbol {
+            padding: 10px 12px; background-color: #e9ecef; 
+            border: 1px solid var(--form-border-color); border-right: none;
+            border-radius: 4px 0 0 4px; color: var(--form-label-color); font-size:0.9rem;
+        }
+        .input-group input[type="text"], .input-group input[type="number"] {
+            border-radius: 0 4px 4px 0 !important;
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"],
+        input[type="date"], input[type="number"], select, textarea {
+            width: 100%; padding: 10px 12px;
+            border: 1px solid var(--form-border-color); border-radius: 5px; 
+            font-size: 0.95rem; color: var(--form-text-color);
+            background-color: #fff; 
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none; border-color: var(--form-focus-border-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); 
+        }
+        textarea { min-height: 75px; resize: vertical; }
+        .radio-group, .checkbox-group { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+        .radio-group div, .checkbox-group div { display: flex; align-items: center; }
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 6px; accent-color: var(--form-focus-border-color);
+            width: 16px; height: 16px; 
+        }
+        .conditional-section {
+            display: none; padding: 15px; margin-top: 15px; margin-bottom:15px;
+            border-left: 4px solid var(--conditional-border-color);
+            background-color: var(--conditional-bg-color);
+            border-radius: 0 6px 6px 0;
+        }
+        .conditional-section .form-group:last-child { margin-bottom: 0; }
+
+        .form-navigation-buttons {
+            display: flex; justify-content: space-between; margin-top: 30px;
+            padding-top:20px; border-top: 1px solid #eee;
+        }
+        .nav-button {
+            padding: 11px 22px; border: none; border-radius: 6px; font-size: 1rem;
+            font-weight: 600; cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+            color: var(--form-button-text-color);
+        }
+        .nav-button:active { transform: scale(0.98); }
+        .next-button { background-color: var(--form-button-bg-color); }
+        .next-button:hover { background-color: var(--form-button-hover-bg-color); }
+        .prev-button { background-color: var(--form-button-secondary-bg-color); }
+        .prev-button:hover { background-color: var(--form-button-secondary-hover-bg-color); }
+        .submit-button { background-color: var(--form-button-bg-color); width: 100%; }
+        .submit-button:hover { background-color: var(--form-button-hover-bg-color); }
+
+        .form-row { display: flex; gap: 20px; }
+        .form-row .form-group { flex: 1; }
+        .asterisk { color: var(--danger-color); font-weight: bold; margin-left: 2px;}
+        small.help-text { display: block; font-size: 0.8rem; color: #6c757d; margin-top: 4px; }
+        .inline-text-input { display:none; width: auto !important; margin-left:8px; flex-grow:1; }
+
+
+        @media (max-width: 768px) {
+            /* Responsive Header Styles */
+            header#mainHeader .container { flex-direction: column; text-align: center; }
+            .logo { margin-bottom: 15px; }
+            header#mainHeader nav ul { flex-direction: column; margin-top: 10px; width: 100%; }
+            header#mainHeader nav ul li { margin: 10px 0; margin-left: 0; } /* Aangepast: margin-left verwijderd voor verticale lijst */
+            header#mainHeader nav ul li a { display: block; padding: 10px; }
+            header#mainHeader nav ul li a::after { left: 50%; transform: translateX(-50%); }
+
+            /* Responsive Form Styles */
+            .form-container, .progress-bar-container { padding: 20px 15px; }
+            .form-row { flex-direction: column; gap: 0; }
+            legend { font-size: 1.25rem; }
+            .progress-step span.tooltip-text { display: none; }
+            .nav-button { padding: 10px 18px; font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <header id="mainHeader">
+        <div class="container">
+            <a href="car_site.html#hero" class="logo">[Uw Bedrijfsnaam]</a>
+            <nav>
+                <ul>
+                    <li><a href="car_site.html#hero">Home</a></li>
+                    <li><a href="car_site.html#informatie">Informatie</a></li>
+                    <li><a href="car_site.html#diensten">Diensten</a></li>
+                    <li><a href="car_site.html#offerte-cta" class="active">Offerte</a></li> <!-- Actief gezet -->
+                    <li><a href="car_site.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar">
+            <div class="progress-line" id="progressLine"></div>
+            <!-- Steps dynamically inserted here -->
+        </div>
+    </div>
+
+    <div class="form-container">
+        <h1>Offerte Tijdelijke CAR-Verzekering</h1>
+        <p class="form-intro">Volg de stappen om uw offerte aan te vragen. Velden met een <span class="asterisk">*</span> zijn verplicht.</p>
+
+        <form id="carOfferteForm" action="#" method="POST">
+
+            <!-- Stap 1: Bedrijfsgegevens -->
+            <fieldset class="form-step active" data-step-name="Bedrijf">
+                <legend>1. Bedrijfsgegevens</legend>
+                <!-- ... (inhoud van stap 1 blijft hetzelfde) ... -->
+                 <div class="form-group">
+                    <label for="kvkNummer">KVK-nummer<span class="asterisk">*</span></label>
+                    <input type="text" id="kvkNummer" name="kvkNummer" required>
+                </div>
+                <div class="form-group">
+                    <label for="rechtsvorm">Rechtsvorm<span class="asterisk">*</span></label>
+                    <input type="text" id="rechtsvorm" name="rechtsvorm" required>
+                </div>
+                <div class="form-group">
+                    <label for="naamVoorletters">Naam en voorletter(s)<span class="asterisk">*</span></label>
+                    <input type="text" id="naamVoorletters" name="naamVoorletters" required>
+                </div>
+                <div class="form-group">
+                    <label>Geslacht<span class="asterisk">*</span></label>
+                    <div class="radio-group">
+                        <div><input type="radio" id="geslachtMan" name="geslacht" value="man" required><label for="geslachtMan" class="radio-label">Man</label></div>
+                        <div><input type="radio" id="geslachtVrouw" name="geslacht" value="vrouw"><label for="geslachtVrouw" class="radio-label">Vrouw</label></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="geboortedatum">Geboortedatum<span class="asterisk">*</span></label>
+                    <input type="date" id="geboortedatum" name="geboortedatum" required>
+                </div>
+                <div class="form-group">
+                    <label for="bedrijfsnaam">Bedrijfsnaam<span class="asterisk">*</span></label>
+                    <input type="text" id="bedrijfsnaam" name="bedrijfsnaam" required>
+                </div>
+                <div class="form-group">
+                    <label for="handelsnaam">Handelsnaam</label>
+                    <input type="text" id="handelsnaam" name="handelsnaam">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefoonnummer">Telefoonnummer<span class="asterisk">*</span></label>
+                        <input type="tel" id="telefoonnummer" name="telefoonnummer" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailadres">E-mailadres<span class="asterisk">*</span></label>
+                        <input type="email" id="emailadres" name="emailadres" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="postadres">Postadres<span class="asterisk">*</span></label>
+                    <input type="text" id="postadres" name="postadres" placeholder="Straatnaam Huisnr, Postcode Plaats" required>
+                </div>
+                <div class="form-navigation-buttons">
+                    <span></span> 
+                    <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
+                </div>
+            </fieldset>
+
+            <!-- Stap 2: Werkdetails -->
+            <fieldset class="form-step" data-step-name="Werk">
+                <legend>2. Werkdetails</legend>
+                <!-- ... (inhoud van stap 2 blijft hetzelfde) ... -->
+                 <div class="form-group">
+                    <label for="startWerkzaamheden">Wanneer beginnen de werkzaamheden of per welke datum zijn de werkzaamheden begonnen?<span class="asterisk">*</span></label>
+                    <input type="date" id="startWerkzaamheden" name="startWerkzaamheden" required>
+                </div>
+                 <div class="form-group">
+                    <label for="ingangsdatumVerzekering">Ingangsdatum verzekering<span class="asterisk">*</span></label>
+                    <input type="date" id="ingangsdatumVerzekering" name="ingangsdatumVerzekering" required>
+                </div>
+                <div class="form-group">
+                    <label for="redenLateStart">Als de werkzaamheden al zijn begonnen voor de ingangsdatum, wat is de reden?</label>
+                    <textarea id="redenLateStart" name="redenLateStart"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="omschrijvingWerk">Omschrijving van het werk<span class="asterisk">*</span></label>
+                    <textarea id="omschrijvingWerk" name="omschrijvingWerk" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="duurBouwMaanden">Geschatte duur bouw (maanden)?<span class="asterisk">*</span></label>
+                    <input type="number" id="duurBouwMaanden" name="duurBouwMaanden" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Onderhoudstermijn overeengekomen?<span class="asterisk">*</span></label>
+                    <div class="radio-group">
+                        <div><input type="radio" id="onderhoudstermijnOvereen_ja" name="onderhoudstermijnOvereen" value="ja" required onclick="toggleConditional('onderhoudstermijnOvereenDetails', true)"><label for="onderhoudstermijnOvereen_ja" class="radio-label">Ja</label></div>
+                        <div><input type="radio" id="onderhoudstermijnOvereen_nee" name="onderhoudstermijnOvereen" value="nee" onclick="toggleConditional('onderhoudstermijnOvereenDetails', false)"><label for="onderhoudstermijnOvereen_nee" class="radio-label">Nee</label></div>
+                    </div>
+                </div>
+                <div id="onderhoudstermijnOvereenDetails" class="conditional-section">
+                    <div class="form-group">
+                        <label>Onderhoudstermijn meeverzekeren?<span class="asterisk">*</span></label>
+                         <div class="radio-group">
+                            <div><input type="radio" id="onderhoudstermijnMeeVerzekeren_ja" name="onderhoudstermijnMeeVerzekeren" value="ja" onclick="toggleConditional('onderhoudstermijnDuurDetails', true)"><label for="onderhoudstermijnMeeVerzekeren_ja" class="radio-label">Ja</label></div>
+                            <div><input type="radio" id="onderhoudstermijnMeeVerzekeren_nee" name="onderhoudstermijnMeeVerzekeren" value="nee" onclick="toggleConditional('onderhoudstermijnDuurDetails', false)"><label for="onderhoudstermijnMeeVerzekeren_nee" class="radio-label">Nee</label></div>
+                        </div>
+                    </div>
+                    <div id="onderhoudstermijnDuurDetails" class="conditional-section">
+                         <div class="form-group">
+                            <label>Duur onderhoudstermijn?<span class="asterisk">*</span></label>
+                            <div class="radio-group">
+                                <div><input type="radio" id="duurOnderhoud_3" name="duurOnderhoud" value="3"><label for="duurOnderhoud_3" class="radio-label">3 maanden</label></div>
+                                <div><input type="radio" id="duurOnderhoud_6" name="duurOnderhoud" value="6"><label for="duurOnderhoud_6" class="radio-label">6 maanden</label></div>
+                                <div><input type="radio" id="duurOnderhoud_12" name="duurOnderhoud" value="12"><label for="duurOnderhoud_12" class="radio-label">12 maanden</label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="aanneemsom">Aanneemsom van het werk?<span class="asterisk">*</span></label>
+                    <div class="input-group">
+                        <span class="currency-symbol">€</span>
+                        <input type="number" id="aanneemsom" name="aanneemsom" step="0.01" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>BTW<span class="asterisk">*</span></label>
+                    <div class="radio-group">
+                        <div><input type="radio" id="btw_inclusief" name="btw" value="inclusief" required><label for="btw_inclusief" class="radio-label">Inclusief btw</label></div>
+                        <div><input type="radio" id="btw_exclusief" name="btw" value="exclusief"><label for="btw_exclusief" class="radio-label">Exclusief btw</label></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Aanneemsom inclusief:</label>
+                    <div class="checkbox-group">
+                        <div><input type="checkbox" id="inc_honoraria" name="aanneemsomInclusief[]" value="honoraria"><label for="inc_honoraria" class="checkbox-label">Honoraria</label></div>
+                        <div><input type="checkbox" id="inc_toezicht" name="aanneemsomInclusief[]" value="toezicht"><label for="inc_toezicht" class="checkbox-label">Toezicht/controle</label></div>
+                        <div><input type="checkbox" id="inc_buitenbestek" name="aanneemsomInclusief[]" value="buitenbestek"><label for="inc_buitenbestek" class="checkbox-label">Buiten bestek</label></div>
+                        <div><input type="checkbox" id="inc_opdrachtgeverWerk" name="aanneemsomInclusief[]" value="opdrachtgeverWerk"><label for="inc_opdrachtgeverWerk" class="checkbox-label">Werk opdrachtgever</label></div>
+                        <div><input type="checkbox" id="inc_opdrachtgeverBouwcomp" name="aanneemsomInclusief[]" value="opdrachtgeverBouwcomp"><label for="inc_opdrachtgeverBouwcomp" class="checkbox-label">Componenten opdrachtgever</label></div>
+                        <div><input type="checkbox" id="inc_geen" name="aanneemsomInclusief[]" value="geen"><label for="inc_geen" class="checkbox-label">Geen van deze</label></div>
+                    </div>
+                </div>
+                <div class="form-navigation-buttons">
+                    <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
+                    <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
+                </div>
+            </fieldset>
+
+            <!-- Stap 3: Verzekerde Sommen & Risico's -->
+            <fieldset class="form-step" data-step-name="Sommen">
+                <legend>3. Verzekerde Sommen & Risico's</legend>
+                <!-- ... (inhoud van stap 3 blijft hetzelfde) ... -->
+                 <div class="form-group">
+                    <label>Aansprakelijkheid (secundaire dekking)</label>
+                    <select name="aansprakelijkheid_som">
+                        <option value="">Kies een bedrag</option>
+                        <option value="500000">€ 500.000,-</option>
+                        <option value="1250000">€ 1.250.000,-</option>
+                        <option value="2500000">€ 2.500.000,-</option>
+                        <option value="niet_meeverzekeren">Niet meeverzekeren</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Bestaande eigendommen opdrachtgever</label>
+                    <select name="bestaande_eigendommen_som" id="bestaande_eigendommen_som" onchange="toonAndersVeld(this, 'anders_bestaand_eigendommen_input')">
+                        <option value="">Kies een bedrag</option>
+                        <option value="50000">€ 50.000,-</option>
+                        <option value="125000">€ 125.000,-</option>
+                        <option value="250000">€ 250.000,-</option>
+                        <option value="niet_meeverzekeren">Niet meeverzekeren</option>
+                        <option value="Anders">Anders</option>
+                    </select>
+                    <div class="input-group" id="anders_bestaand_eigendommen_input" style="display: none; margin-top: 8px;">
+                        <span class="currency-symbol">€</span>
+                        <input type="number" name="bestaande_eigendommen_som_anders_val" placeholder="Anders, namelijk..."> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Hulpmateriaal</label>
+                    <select name="Hulpmateriaal" id="Hulpmateriaal" onchange="toonAndersVeld(this, 'anders_Hulpmateriaal_input')">
+                        <option value="">Kies een bedrag</option>
+                        <option value="50000">€ 50.000,-</option>
+                        <option value="125000">€ 125.000,-</option>
+                        <option value="250000">€ 250.000,-</option>
+                        <option value="niet_meeverzekeren">Niet meeverzekeren</option>
+                        <option value="Anders">Anders</option>
+                    </select>
+                    <div class="input-group" id="anders_Hulpmateriaal_input" style="display: none; margin-top: 8px;">
+                        <span class="currency-symbol">€</span>
+                        <input type="number" name="anders_Hulpmateriaal_val" placeholder="Anders, namelijk..."> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Eigen risico</label>
+                    <select name="Eigen_risico_select" id="Eigen_risico" onchange="toonAndersVeld(this, 'anders_Eigen_risico_input')"> <!-- Changed name to avoid conflict -->
+                        <option value="">Kies een bedrag</option>
+                        <option value="500">€ 500,-</option>
+                        <option value="1000">€ 1.000,-</option>
+                        <option value="2500">€ 2.500,-</option>
+                        <option value="5000">€ 5.000,-</option>
+                        <option value="niet_meeverzekeren">Niet meeverzekeren</option>
+                        <option value="Anders">Anders</option>
+                    </select>
+                    <div class="input-group" id="anders_Eigen_risico_input" style="display: none; margin-top: 8px;">
+                        <span class="currency-symbol">€</span>
+                        <input type="number" name="anders_Eigen_risico_val" placeholder="Anders, namelijk..."> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Wil je bedrijfsschade meeverzekeren?</label>
+                     <div class="radio-group">
+                        <div><input type="radio" id="bedrijfsschade_ja" name="bedrijfsschade_meeverzekeren" value="ja" onclick="toggleConditional('bedrijfsschadeDetails', true)"><label for="bedrijfsschade_ja" class="radio-label">Ja</label></div>
+                        <div><input type="radio" id="bedrijfsschade_nee" name="bedrijfsschade_meeverzekeren" value="nee" checked onclick="toggleConditional('bedrijfsschadeDetails', false)"><label for="bedrijfsschade_nee" class="radio-label">Nee</label></div>
+                    </div>
+                </div>
+                <div id="bedrijfsschadeDetails" class="conditional-section">
+                    <div class="form-group">
+                        <label for="bedrijfsschade_belang">Verzekerd belang bedrijfsschade</label>
+                        <div class="input-group">
+                            <span class="currency-symbol">€</span>
+                            <input type="number" id="bedrijfsschade_belang" name="bedrijfsschade_belang">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bedrijfsschade_uitkeringstermijn">Uitkeringstermijn (weken)</label>
+                        <input type="number" id="bedrijfsschade_uitkeringstermijn" name="bedrijfsschade_uitkeringstermijn">
+                    </div>
+                </div>
+                <div class="form-navigation-buttons">
+                    <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
+                    <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
+                </div>
+            </fieldset>
+
+            <!-- Stap 4: Constructiedetails -->
+            <fieldset class="form-step" data-step-name="Constructie">
+                <legend>4. Constructiedetails & Specifieke Risico's</legend>
+                <!-- ... (inhoud van stap 4 blijft hetzelfde) ... -->
+                <div class="form-group">
+                    <label for="locatieWerk">Waar wordt het werk gerealiseerd?<span class="asterisk">*</span></label>
+                    <input type="text" id="locatieWerk" name="locatieWerk" required>
+                </div>
+                <div class="form-group">
+                    <label>Aard van gebouw/bouwwerk<span class="asterisk">*</span></label>
+                    <div class="radio-group">
+                        <div><input type="radio" id="aardGebouw_steen" name="aardGebouw" value="steenhard" required onclick="hideLinkedText('aardGebouwAndersText')"><label for="aardGebouw_steen" class="radio-label">Steen/hard</label></div>
+                        <div><input type="radio" id="aardGebouw_metaal" name="aardGebouw" value="metaalhard" onclick="hideLinkedText('aardGebouwAndersText')"><label for="aardGebouw_metaal" class="radio-label">Metaal/hard</label></div>
+                        <div style="display:flex; align-items:center;">
+                            <input type="radio" id="aardGebouw_andersRadio" name="aardGebouw" value="anders" onclick="showLinkedText('aardGebouwAndersText')">
+                            <label for="aardGebouw_andersRadio" class="radio-label">Anders, namelijk:</label>
+                            <input type="text" id="aardGebouwAndersText" name="aardGebouwAndersText" class="inline-text-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Worden er sloopwerkzaamheden verricht aan dragende constructies?</label>
+                     <div class="radio-group">
+                        <div><input type="radio" id="sloopwerk_ja" name="sloopwerk" value="ja" onclick="toggleConditional('sloopwerkDetails', true)"><label for="sloopwerk_ja" class="radio-label">Ja</label></div>
+                        <div><input type="radio" id="sloopwerk_nee" name="sloopwerk" value="nee" checked onclick="toggleConditional('sloopwerkDetails', false)"><label for="sloopwerk_nee" class="radio-label">Nee</label></div>
+                    </div>
+                </div>
+                <div id="sloopwerkDetails" class="conditional-section">
+                    <div class="form-group">
+                        <label for="sloopwerk_constructies">Welke dragende constructies worden gesloopt?</label>
+                        <textarea id="sloopwerk_constructies" name="sloopwerk_constructies" placeholder="Bijv. muren, kolommen, vloeren..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Is hiervoor door een gekwalificeerd constructeur een schriftelijk sloopadvies opgesteld dat gericht is op het voorkomen van schade aan te behouden zaken?</label>
+                         <div class="radio-group">
+                            <div><input type="radio" id="sloopadvies_ja" name="sloopadvies" value="ja"><label for="sloopadvies_ja" class="radio-label">Ja</label></div>
+                            <div><input type="radio" id="sloopadvies_nee" name="sloopadvies" value="nee"><label for="sloopadvies_nee" class="radio-label">Nee</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Vindt er bemaling plaats?</label>
+                     <div class="radio-group">
+                        <div><input type="radio" id="bemaling_ja" name="bemaling" value="ja" onclick="toggleConditional('bemalingDetails', true)"><label for="bemaling_ja" class="radio-label">Ja</label></div>
+                        <div><input type="radio" id="bemaling_nee" name="bemaling" value="nee" checked onclick="toggleConditional('bemalingDetails', false)"><label for="bemaling_nee" class="radio-label">Nee</label></div>
+                    </div>
+                </div>
+                <div id="bemalingDetails" class="conditional-section">
+                    <div class="form-group">
+                        <label>Is hiervoor door een geotechnisch adviseur een schriftelijk bemalingsadvies opgesteld waaruit blijkt dat de omgeving de benodigde grondwaterstandverlaging kan doorstaan met een verwaarloosbare kans op schade?</label>
+                         <div class="radio-group">
+                            <div><input type="radio" id="bemalingsadvies_ja" name="bemalingsadvies" value="ja"><label for="bemalingsadvies_ja" class="radio-label">Ja</label></div>
+                            <div><input type="radio" id="bemalingsadvies_nee" name="bemalingsadvies" value="nee"><label for="bemalingsadvies_nee" class="radio-label">Nee</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Wordt er binnen vijf meter langs een bestaande fundering gegraven tot dieper dan die bestaande fundering?</label>
+                     <div class="radio-group">
+                        <div><input type="radio" id="gravenNabijFundering_ja" name="gravenNabijFundering" value="ja" onclick="toggleConditional('gravenNabijFunderingDetails', true)"><label for="gravenNabijFundering_ja" class="radio-label">Ja</label></div>
+                        <div><input type="radio" id="gravenNabijFundering_nee" name="gravenNabijFundering" value="nee" checked onclick="toggleConditional('gravenNabijFunderingDetails', false)"><label for="gravenNabijFundering_nee" class="radio-label">Nee</label></div>
+                    </div>
+                </div>
+                <div id="gravenNabijFunderingDetails" class="conditional-section">
+                    <div class="form-group">
+                        <label>Is hiervoor door een geotechnisch adviseur een schriftelijk uitvoeringsplan opgesteld waaruit blijkt dat deze fundering de ontgraving kan verdragen met een verwaarloosbare kans op schade?</label>
+                         <div class="radio-group">
+                            <div><input type="radio" id="uitvoeringsplanGraven_ja" name="uitvoeringsplanGraven" value="ja"><label for="uitvoeringsplanGraven_ja" class="radio-label">Ja</label></div>
+                            <div><input type="radio" id="uitvoeringsplanGraven_nee" name="uitvoeringsplanGraven" value="nee"><label for="uitvoeringsplanGraven_nee" class="radio-label">Nee</label></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label>Is er sprake van de bouw van een kelder of zwembad?</label>
+                     <div class="radio-group">
+                        <div><input type="radio" id="kelderZwembad_ja" name="kelderZwembad" value="ja"><label for="kelderZwembad_ja" class="radio-label">Ja</label></div>
+                        <div><input type="radio" id="kelderZwembad_nee" name="kelderZwembad" value="nee" checked><label for="kelderZwembad_nee" class="radio-label">Nee</label></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Wordt er een paalfundering aangebracht?</label>
+                     <div class="radio-group">
+                        <div><input type="radio" id="paalfundering_ja" name="paalfundering" value="ja" onclick="toggleConditional('paalfunderingDetails', true)"><label for="paalfundering_ja" class="radio-label">Ja</label></div>
+                        <div><input type="radio" id="paalfundering_nee" name="paalfundering" value="nee" checked onclick="toggleConditional('paalfunderingDetails', false)"><label for="paalfundering_nee" class="radio-label">Nee</label></div>
+                    </div>
+                </div>
+                <div id="paalfunderingDetails" class="conditional-section">
+                    <div class="form-group">
+                        <label>Is hiervoor door een geotechnisch adviseur een schriftelijk funderingsadvies opgesteld waaruit blijkt dat de omgeving deze werkzaamheden kan doorstaan met een verwaarloosbare kans op schade?</label>
+                        <div class="radio-group">
+                            <div><input type="radio" id="funderingsadviesPaal_ja" name="funderingsadviesPaal" value="ja"><label for="funderingsadviesPaal_ja" class="radio-label">Ja</label></div>
+                            <div><input type="radio" id="funderingsadviesPaal_nee" name="funderingsadviesPaal" value="nee"><label for="funderingsadviesPaal_nee" class="radio-label">Nee</label></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Welk paalsysteem wordt er toegepast?</label>
+                        <div class="radio-group">
+                            <div><input type="radio" id="paalsysteem_geslagen" name="paalsysteem" value="geslagen_getrild"><label for="paalsysteem_geslagen" class="radio-label">Geslagen/getrild</label></div>
+                            <div><input type="radio" id="paalsysteem_gedrukt" name="paalsysteem" value="gedrukt"><label for="paalsysteem_gedrukt" class="radio-label">Gedrukt</label></div>
+                            <div><input type="radio" id="paalsysteem_geboord" name="paalsysteem" value="geboord"><label for="paalsysteem_geboord" class="radio-label">Geboord</label></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Staan er bouwwerken binnen een afstand van 15 meter van de aan te brengen paalfundering?</label>
+                        <div class="radio-group">
+                            <div><input type="radio" id="bouwwerkenBinnen15m_ja" name="bouwwerkenBinnen15m" value="ja" onclick="toggleConditional('bouwwerkenBinnen15mDetails', true)"><label for="bouwwerkenBinnen15m_ja" class="radio-label">Ja</label></div>
+                            <div><input type="radio" id="bouwwerkenBinnen15m_nee" name="bouwwerkenBinnen15m" value="nee" onclick="toggleConditional('bouwwerkenBinnen15mDetails', false)"><label for="bouwwerkenBinnen15m_nee" class="radio-label">Nee</label></div>
+                        </div>
+                    </div>
+                    <div id="bouwwerkenBinnen15mDetails" class="conditional-section">
+                        <div class="form-group">
+                            <label>Van wie zijn de bouwwerken?</label>
+                            <div class="radio-group">
+                                <div><input type="radio" id="eigenaarBouwwerk_opdrachtgever" name="eigenaarBouwwerk" value="opdrachtgever"><label for="eigenaarBouwwerk_opdrachtgever" class="radio-label">Van opdrachtgever</label></div>
+                                <div><input type="radio" id="eigenaarBouwwerk_anderen" name="eigenaarBouwwerk" value="anderen"><label for="eigenaarBouwwerk_anderen" class="radio-label">Van anderen</label></div>
+                                <div><input type="radio" id="eigenaarBouwwerk_beide" name="eigenaarBouwwerk" value="beide"><label for="eigenaarBouwwerk_beide" class="radio-label">Beide</label></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="afstandDichtstbijzijndeBouwwerk">Op hoeveel meter afstand staat het dichtstbijzijnde bouwwerk?</label>
+                            <div class="input-group">
+                                <input type="number" id="afstandDichtstbijzijndeBouwwerk" name="afstandDichtstbijzijndeBouwwerk" min="0" step="0.1">
+                                <span class="unit-symbol">meter</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Zijn de bouwwerken binnen een afstand van 15 meter ook op palen gefundeerd?</label>
+                            <div class="radio-group">
+                                <div><input type="radio" id="ookOpPalen_ja" name="ookOpPalen" value="ja" onclick="toggleConditional('andereFunderingswijzeDetails', false)"><label for="ookOpPalen_ja" class="radio-label">Ja</label></div>
+                                <div><input type="radio" id="ookOpPalen_nee" name="ookOpPalen" value="nee" onclick="toggleConditional('andereFunderingswijzeDetails', true)"><label for="ookOpPalen_nee" class="radio-label">Nee</label></div>
+                            </div>
+                        </div>
+                        <div id="andereFunderingswijzeDetails" class="conditional-section">
+                             <div class="form-group">
+                                <label for="andereFunderingswijze">Zo nee, welke funderingswijze is er dan toegepast?</label>
+                                <input type="text" id="andereFunderingswijze" name="andereFunderingswijze" placeholder="Bijv. op staal, strokenfundering...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Worden er grondkerende constructies (zoals een damwand of berlinerwand) aangebracht?</label>
+                     <div class="radio-group">
+                        <div><input type="radio" id="grondkering_ja" name="grondkering" value="ja" onclick="toggleConditional('grondkeringDetails', true)"><label for="grondkering_ja" class="radio-label">Ja</label></div>
+                        <div><input type="radio" id="grondkering_nee" name="grondkering" value="nee" checked onclick="toggleConditional('grondkeringDetails', false)"><label for="grondkering_nee" class="radio-label">Nee</label></div>
+                    </div>
+                </div>
+                <div id="grondkeringDetails" class="conditional-section">
+                     <div class="form-group">
+                        <label>Is hiervoor door een geotechnisch adviseur een schriftelijk advies opgesteld waaruit blijkt dat de omgeving deze werkzaamheden kan doorstaan met een verwaarloosbare kans op schade?</label>
+                         <div class="radio-group">
+                            <div><input type="radio" id="adviesGrondkering_ja" name="adviesGrondkering" value="ja"><label for="adviesGrondkering_ja" class="radio-label">Ja</label></div>
+                            <div><input type="radio" id="adviesGrondkering_nee" name="adviesGrondkering" value="nee"><label for="adviesGrondkering_nee" class="radio-label">Nee</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Is er sprake van funderingsherstel of verbetering van de fundering?</label>
+                     <div class="radio-group">
+                        <div><input type="radio" id="funderingsherstel_ja" name="funderingsherstel" value="ja"><label for="funderingsherstel_ja" class="radio-label">Ja</label></div>
+                        <div><input type="radio" id="funderingsherstel_nee" name="funderingsherstel" value="nee" checked><label for="funderingsherstel_nee" class="radio-label">Nee</label></div>
+                    </div>
+                </div>
+
+                <div class="form-navigation-buttons">
+                    <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
+                    <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
+                </div>
+            </fieldset>
+
+            <!-- Stap 5: Uitvoering & Aannemer -->
+             <fieldset class="form-step" data-step-name="Uitvoering">
+                <legend>5. Uitvoering & Aannemer</legend>
+                <!-- ... (inhoud van stap 5 blijft hetzelfde) ... -->
+                 <div class="form-group">
+                    <label>Wordt het werk door de opdrachtgever zelf uitgevoerd?</label>
+                    <div class="radio-group">
+                        <div><input type="radio" id="werkDoorOpdrachtgever_nee" name="werkDoorOpdrachtgever" value="nee" checked><label for="werkDoorOpdrachtgever_nee" class="radio-label">Nee</label></div>
+                        <div><input type="radio" id="werkDoorOpdrachtgever_geheel" name="werkDoorOpdrachtgever" value="geheel"><label for="werkDoorOpdrachtgever_geheel" class="radio-label">Geheel</label></div>
+                        <div><input type="radio" id="werkDoorOpdrachtgever_gedeeltelijk" name="werkDoorOpdrachtgever" value="gedeeltelijk"><label for="werkDoorOpdrachtgever_gedeeltelijk" class="radio-label">Gedeeltelijk</label></div>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label>Dient er een bedrag voor arbeidsloon meeverzekerd te worden?</label>
+                     <div class="radio-group">
+                        <div><input type="radio" id="arbeidsloon_ja" name="arbeidsloon_meeverzekeren" value="ja" onclick="toggleConditional('arbeidsloonDetails', true)"><label for="arbeidsloon_ja" class="radio-label">Ja</label></div>
+                        <div><input type="radio" id="arbeidsloon_nee" name="arbeidsloon_meeverzekeren" value="nee" checked onclick="toggleConditional('arbeidsloonDetails', false)"><label for="arbeidsloon_nee" class="radio-label">Nee</label></div>
+                    </div>
+                </div>
+                <div id="arbeidsloonDetails" class="conditional-section">
+                    <div class="form-group">
+                        <label for="arbeidsloon_som">Verzekerde som arbeidsloon</label>
+                        <div class="input-group">
+                            <span class="currency-symbol">€</span>
+                            <input type="number" id="arbeidsloon_som" name="arbeidsloon_som">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Wordt het werk door een aannemer uitgevoerd?</label>
+                    <div class="radio-group">
+                        <div><input type="radio" id="werkDoorAannemer_nee" name="werkDoorAannemer" value="nee" onclick="toggleConditional('aannemerDetails', false)"><label for="werkDoorAannemer_nee" class="radio-label">Nee</label></div>
+                        <div><input type="radio" id="werkDoorAannemer_geheel" name="werkDoorAannemer" value="geheel" checked onclick="toggleConditional('aannemerDetails', true)"><label for="werkDoorAannemer_geheel" class="radio-label">Geheel</label></div>
+                        <div><input type="radio" id="werkDoorAannemer_gedeeltelijk" name="werkDoorAannemer" value="gedeeltelijk" onclick="toggleConditional('aannemerDetails', true)"><label for="werkDoorAannemer_gedeeltelijk" class="radio-label">Gedeeltelijk</label></div>
+                    </div>
+                </div>
+                <div id="aannemerDetails" class="conditional-section">
+                    <div class="form-group">
+                        <label for="aannemer_naam">Naam van de aannemer</label>
+                        <input type="text" id="aannemer_naam" name="aannemer_naam">
+                    </div>
+                    <div class="form-group">
+                        <label for="aannemer_adres">Adresgegevens aannemer</label>
+                        <input type="text" id="aannemer_adres" name="aannemer_adres">
+                    </div>
+                    <div class="form-group">
+                        <label for="aannemer_telefoon">Telefoonnummer aannemer</label>
+                        <input type="tel" id="aannemer_telefoon" name="aannemer_telefoon">
+                    </div>
+                    <div class="form-group">
+                        <label>Heeft deze aannemer een AVB?</label>
+                        <div class="radio-group">
+                            <div><input type="radio" id="aannemerAvb_ja" name="aannemer_avb" value="ja" onclick="toggleConditional('aannemerAvbDetails', true)"><label for="aannemerAvb_ja" class="radio-label">Ja</label></div>
+                            <div><input type="radio" id="aannemerAvb_nee" name="aannemer_avb" value="nee" onclick="toggleConditional('aannemerAvbDetails', false)"><label for="aannemerAvb_nee" class="radio-label">Nee</label></div>
+                        </div>
+                    </div>
+                    <div id="aannemerAvbDetails" class="conditional-section">
+                        <div class="form-group">
+                            <label for="aannemer_avb_maatschappij">Bij welke maatschappij?</label>
+                            <input type="text" id="aannemer_avb_maatschappij" name="aannemer_avb_maatschappij">
+                        </div>
+                        <div class="form-group">
+                            <label for="aannemer_avb_polisnr">Polisnummer</label>
+                            <input type="text" id="aannemer_avb_polisnr" name="aannemer_avb_polisnr">
+                        </div>
+                         <div class="form-row">
+                            <div class="form-group">
+                                <label for="aannemer_avb_bedrag">Verzekerd bedrag</label>
+                                <div class="input-group"><span class="currency-symbol">€</span><input type="number" id="aannemer_avb_bedrag" name="aannemer_avb_bedrag"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="aannemer_avb_eigenrisico">Eigen risico p.g.</label>
+                                <div class="input-group"><span class="currency-symbol">€</span><input type="number" id="aannemer_avb_eigenrisico" name="aannemer_avb_eigenrisico"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label for="overige_opmerkingen_beoordeling">Overige opmerkingen voor beoordeling</label>
+                    <textarea id="overige_opmerkingen_beoordeling" name="overige_opmerkingen_beoordeling"></textarea>
+                </div>
+                <div class="form-navigation-buttons">
+                    <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
+                    <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
+                </div>
+            </fieldset>
+
+            <!-- Stap 6: UBO & Afronding -->
+            <fieldset class="form-step" data-step-name="UBO & Slot">
+                <legend>6. UBO Gegevens & Afronding</legend>
+                <!-- ... (inhoud van stap 6 blijft hetzelfde) ... -->
+                <div class="ubo-section"> 
+                    <h4>UBO 1 / Statutair Bestuurder 1</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="ubo1_voornamen">Volledige voornamen<span class="asterisk">*</span></label>
+                            <input type="text" id="ubo1_voornamen" name="ubo1_voornamen" >
+                        </div>
+                        <div class="form-group" style="flex: 0.5;">
+                            <label for="ubo1_tussenvoegsel">Tussenvoegsel(s)</label>
+                            <input type="text" id="ubo1_tussenvoegsel" name="ubo1_tussenvoegsel">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ubo1_achternaam">Eigen achternaam<span class="asterisk">*</span></label>
+                        <input type="text" id="ubo1_achternaam" name="ubo1_achternaam" >
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="ubo1_geboortedatum">Geboortedatum<span class="asterisk">*</span></label>
+                            <input type="date" id="ubo1_geboortedatum" name="ubo1_geboortedatum" >
+                        </div>
+                        <div class="form-group">
+                            <label for="ubo1_woonland">Woonland<span class="asterisk">*</span></label>
+                            <input type="text" id="ubo1_woonland" name="ubo1_woonland" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Type UBO<span class="asterisk">*</span></label>
+                        <div class="radio-group">
+                            <div><input type="radio" id="ubo1_type_eigendom" name="ubo1_type" value="eigendom" ><label for="ubo1_type_eigendom" class="radio-label">Op basis van eigendom</label></div>
+                            <div><input type="radio" id="ubo1_type_zeggenschap" name="ubo1_type" value="zeggenschap"><label for="ubo1_type_zeggenschap" class="radio-label">Op basis van zeggenschap</label></div>
+                            <div><input type="radio" id="ubo1_type_statutair" name="ubo1_type" value="statutair"><label for="ubo1_type_statutair" class="radio-label">Op basis van (statutair) bestuur</label></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ubo1_adres">Volledige adres<span class="asterisk">*</span></label>
+                        <input type="text" id="ubo1_adres" name="ubo1_adres" placeholder="Straatnaam Huisnr, Postcode Plaats" >
+                    </div>
+                </div>
+                <hr style="margin: 25px 0; border-color: #eee;">
+                 <div class="form-group">
+                    <label>Is deze verzekering momenteel elders ondergebracht?</label>
+                     <div class="radio-group">
+                        <div><input type="radio" id="elders_ondergebracht_ja" name="elders_ondergebracht" value="ja" onclick="toggleConditional('eldersOndergebrachtDetails', true)"><label for="elders_ondergebracht_ja" class="radio-label">Ja</label></div>
+                        <div><input type="radio" id="elders_ondergebracht_nee" name="elders_ondergebracht" value="nee" checked onclick="toggleConditional('eldersOndergebrachtDetails', false)"><label for="elders_ondergebracht_nee" class="radio-label">Nee</label></div>
+                    </div>
+                </div>
+                <div id="eldersOndergebrachtDetails" class="conditional-section">
+                    <div class="form-group">
+                        <label for="vorige_maatschappij">Maatschappij</label>
+                        <input type="text" id="vorige_maatschappij" name="vorige_maatschappij">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="vorige_polisnummer">Polisnummer</label>
+                            <input type="text" id="vorige_polisnummer" name="vorige_polisnummer">
+                        </div>
+                        <div class="form-group">
+                            <label for="vorige_afloopdatum">Afloopdatum</label>
+                            <input type="date" id="vorige_afloopdatum" name="vorige_afloopdatum">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 25px;">
+                    <label>
+                        <input type="checkbox" name="verklaring_waarheid" required>
+                        Ik verklaar alle gegevens naar waarheid te hebben ingevuld.<span class="asterisk">*</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="verklaring_wijziging_ubo" required>
+                        Ik verklaar wijzigingen ten aanzien van de UBO's direct te melden.<span class="asterisk">*</span>
+                    </label>
+                </div>
+                <div class="form-navigation-buttons">
+                    <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
+                    <button type="submit" class="nav-button submit-button">Offerte Aanvragen</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <script>
+        // Header schaduw bij scrollen
+        const mainHeader = document.getElementById('mainHeader'); // Renamed to avoid conflict with 'header' variable in form logic
+        if (mainHeader) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) { 
+                    mainHeader.classList.add('scrolled');
+                } else {
+                    mainHeader.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // JavaScript voor het multi-step formulier (bestaande code)
+        let currentStep = 0;
+        const steps = Array.from(document.querySelectorAll('.form-step'));
+        const progressBar = document.getElementById('progressBar');
+        const progressLine = document.getElementById('progressLine');
+        const stepIndicators = [];
+
+        function initializeProgressBar() {
+            steps.forEach((step, index) => {
+                const stepIndicator = document.createElement('div');
+                stepIndicator.classList.add('progress-step');
+                
+                const stepNumberSpan = document.createElement('span');
+                stepNumberSpan.classList.add('step-number');
+                stepNumberSpan.textContent = index + 1;
+                stepIndicator.appendChild(stepNumberSpan);
+                
+                const stepName = step.dataset.stepName || `Stap ${index + 1}`;
+                const tooltip = document.createElement('span');
+                tooltip.classList.add('tooltip-text');
+                tooltip.textContent = stepName;
+                stepIndicator.appendChild(tooltip);
+
+                progressBar.appendChild(stepIndicator);
+                stepIndicators.push(stepIndicator);
+            });
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            stepIndicators.forEach((indicator, index) => {
+                indicator.classList.remove('active', 'completed');
+                indicator.querySelector('.step-number').style.display = 'inline-block'; 
+                indicator.style.backgroundColor = 'var(--progress-step-inactive-bg)';
+
+                if (index === currentStep) {
+                    indicator.classList.add('active');
+                    indicator.style.backgroundColor = 'var(--progress-step-active-bg)';
+                }
+                if (index < currentStep) {
+                    indicator.classList.add('completed');
+                    indicator.querySelector('.step-number').style.display = 'none'; 
+                }
+            });
+            const progressPercentage = (currentStep / (steps.length - 1)) * 100;
+            progressLine.style.width = `${progressPercentage}%`;
+        }
+
+        function showStep(stepIndex) {
+            steps.forEach((step, index) => {
+                step.classList.toggle('active', index === stepIndex);
+            });
+            if (progressBar) { // Ensure progressBar exists
+                 window.scrollTo({ top: progressBar.offsetTop - 20, behavior: 'smooth' }); 
+            }
+            updateProgressBar();
+        }
+
+        function validateCurrentStep() {
+            const currentStepFields = steps[currentStep].querySelectorAll('[required]:not(:disabled)');
+            let allValid = true;
+            currentStepFields.forEach(field => {
+                let parent = field.parentElement;
+                let isVisible = true;
+                while (parent) {
+                    if (parent.classList && parent.classList.contains('conditional-section') && parent.style.display === 'none') {
+                        isVisible = false;
+                        break;
+                    }
+                    if (parent.classList && parent.classList.contains('form-step') && !parent.classList.contains('active')) {
+                         isVisible = false; 
+                         break;
+                    }
+                    parent = parent.parentElement;
+                }
+
+                if (!isVisible) return; 
+
+                if ((field.type === 'radio' || field.type === 'checkbox')) {
+                    const name = field.name;
+                    const groupElement = field.closest('.radio-group') || field.closest('.checkbox-group') || field.closest('.form-group'); // Target form-group for border
+                    if (!document.querySelector(`input[name="${name}"]:checked`)) {
+                        allValid = false;
+                        if (groupElement) {
+                            groupElement.style.setProperty('border', '1px solid var(--danger-color)', 'important'); // Use important if needed
+                            groupElement.style.padding = '5px';
+                            groupElement.style.borderRadius = '4px';
+                        }
+                    } else {
+                        if (groupElement) {
+                            groupElement.style.border = 'none';
+                            groupElement.style.padding = '0';
+                        }
+                    }
+                } else if (!field.value.trim()) {
+                    allValid = false;
+                    field.style.borderColor = 'var(--danger-color)';
+                    field.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.25)';
+                } else {
+                     field.style.borderColor = 'var(--form-border-color)';
+                     // field.style.boxShadow = 'none'; // Clear error shadow
+                     // Keep focus style if field is focused and valid:
+                     if (document.activeElement === field) {
+                        field.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.25)';
+                     } else {
+                        field.style.boxShadow = 'none';
+                     }
+                }
+            });
+            return allValid;
+        }
+
+
+        function nextStep() {
+            if (!validateCurrentStep()) {
+                 alert('Vul alstublieft alle verplichte velden (*) correct in om door te gaan.');
+                const firstInvalid = steps[currentStep].querySelector('[required]:invalid, [style*="border-color: var(--danger-color)"]');
+                if (firstInvalid) {
+                    firstInvalid.focus();
+                    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                // Clear validation styles from current step before moving back
+                const currentStepErrorFields = steps[currentStep].querySelectorAll('[style*="border-color: var(--danger-color)"]');
+                currentStepErrorFields.forEach(field => {
+                    field.style.borderColor = 'var(--form-border-color)';
+                    field.style.boxShadow = 'none';
+                });
+                const currentStepErrorGroups = steps[currentStep].querySelectorAll('.form-group[style*="border: 1px solid var(--danger-color)"]');
+                 currentStepErrorGroups.forEach(group => {
+                    group.style.border = 'none';
+                    group.style.padding = '0';
+                });
+
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+        
+        function showLinkedText(elementId) {
+            const element = document.getElementById(elementId);
+            if(element) {
+                element.style.display = 'inline-block';
+                element.focus();
+            }
+        }
+        function hideLinkedText(elementId) {
+             const element = document.getElementById(elementId);
+            if(element) {
+                element.style.display = 'none';
+                element.value = ''; 
+            }
+        }
+
+        function toggleConditional(elementId, show) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.style.display = show ? 'block' : 'none';
+                const childInputs = element.querySelectorAll('input, select, textarea');
+                
+                childInputs.forEach(input => {
+                    if (!show) { 
+                        if (input.type === 'radio' || input.type === 'checkbox') {
+                            input.checked = false;
+                        } else if (input.tagName === 'SELECT') {
+                            input.selectedIndex = 0; 
+                        } else {
+                            input.value = ''; 
+                        }
+                         // Remove 'required' and disable if hidden
+                        if (input.hasAttribute('required')) {
+                           input.dataset.wasRequired = 'true'; // Mark it was required
+                           input.removeAttribute('required');
+                        }
+                        input.disabled = true; 
+
+                        const onclickAttr = input.getAttribute('onclick');
+                        if (onclickAttr && onclickAttr.includes('toggleConditional')) {
+                            const match = onclickAttr.match(/toggleConditional\s*\(\s*['"]([^'"]+)['"]/);
+                            if (match && match[1]) {
+                                toggleConditional(match[1], false); 
+                            }
+                        }
+                        if (onclickAttr && onclickAttr.includes('showLinkedText')) {
+                             const match = onclickAttr.match(/showLinkedText\s*\(\s*['"]([^'"]+)['"]/);
+                             if(match && match[1]) hideLinkedText(match[1]);
+                        }
+
+                    } else { 
+                        input.disabled = false;
+                        if (input.dataset.wasRequired === 'true') {
+                            input.setAttribute('required', '');
+                        }
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeProgressBar(); // This was called too early before, now it's correct.
+            showStep(currentStep);
+
+            function setupInitialConditionals(radioGroupName, detailsId, subDetailsIdCondRadioName, subDetailsId) {
+                const mainRadios = document.getElementsByName(radioGroupName);
+                let mainCheckedValue = null;
+                mainRadios.forEach(radio => { if(radio.checked) mainCheckedValue = radio.value; });
+
+                if (mainRadios.length > 0) { // Ensure radios exist
+                    if (mainCheckedValue === 'ja' || (radioGroupName === 'werkDoorAannemer' && (mainCheckedValue === 'geheel' || mainCheckedValue === 'gedeeltelijk'))) {
+                        toggleConditional(detailsId, true);
+                        if (subDetailsIdCondRadioName && subDetailsId) {
+                            const subRadios = document.getElementsByName(subDetailsIdCondRadioName);
+                            let subCheckedValue = null;
+                            subRadios.forEach(radio => { if(radio.checked) subCheckedValue = radio.value; });
+                            toggleConditional(subDetailsId, subCheckedValue === 'ja');
+                        }
+                    } else {
+                        toggleConditional(detailsId, false);
+                        if (subDetailsId) toggleConditional(subDetailsId, false);
+                    }
+                } else { // If no radio group, might be a single checkbox or other logic. For now, assume if not found, hide.
+                     toggleConditional(detailsId, false);
+                     if (subDetailsId) toggleConditional(subDetailsId, false);
+                }
+            }
+            
+            setupInitialConditionals('onderhoudstermijnOvereen', 'onderhoudstermijnOvereenDetails', 'onderhoudstermijnMeeVerzekeren', 'onderhoudstermijnDuurDetails');
+            setupInitialConditionals('bedrijfsschade_meeverzekeren', 'bedrijfsschadeDetails');
+            setupInitialConditionals('sloopwerk', 'sloopwerkDetails');
+            setupInitialConditionals('bemaling', 'bemalingDetails');
+            setupInitialConditionals('gravenNabijFundering', 'gravenNabijFunderingDetails');
+            setupInitialConditionals('paalfundering', 'paalfunderingDetails', 'bouwwerkenBinnen15m', 'bouwwerkenBinnen15mDetails');
+            
+            const paalfunderingDetailsVisible = document.getElementById('paalfunderingDetails') && document.getElementById('paalfunderingDetails').style.display === 'block';
+            const bouwwerkenBinnen15mDetailsVisible = document.getElementById('bouwwerkenBinnen15mDetails') && document.getElementById('bouwwerkenBinnen15mDetails').style.display === 'block';
+
+            if (paalfunderingDetailsVisible && bouwwerkenBinnen15mDetailsVisible) {
+                 const ookOpPalenNee = document.getElementById('ookOpPalen_nee');
+                 if (ookOpPalenNee && ookOpPalenNee.checked) {
+                    toggleConditional('andereFunderingswijzeDetails', true);
+                 } else {
+                    toggleConditional('andereFunderingswijzeDetails', false);
+                 }
+            } else {
+                toggleConditional('andereFunderingswijzeDetails', false);
+            }
+
+            setupInitialConditionals('grondkering', 'grondkeringDetails');
+            setupInitialConditionals('arbeidsloon_meeverzekeren', 'arbeidsloonDetails');
+            // Special handling for werkDoorAannemer
+            const werkDoorAannemerChecked = document.querySelector('input[name="werkDoorAannemer"]:checked');
+            if(werkDoorAannemerChecked){
+                const showAannemerDetails = werkDoorAannemerChecked.value === 'geheel' || werkDoorAannemerChecked.value === 'gedeeltelijk';
+                toggleConditional('aannemerDetails', showAannemerDetails);
+                if(showAannemerDetails){
+                    const aannemerAvbJaChecked = document.querySelector('input[name="aannemer_avb"][value="ja"]:checked');
+                    toggleConditional('aannemerAvbDetails', !!aannemerAvbJaChecked); // !! converts to boolean
+                } else {
+                    toggleConditional('aannemerAvbDetails', false);
+                }
+            } else {
+                toggleConditional('aannemerDetails', false);
+                toggleConditional('aannemerAvbDetails', false);
+            }
+
+            setupInitialConditionals('elders_ondergebracht', 'eldersOndergebrachtDetails');
+
+            document.querySelectorAll('.inline-text-input').forEach(textField => {
+                const radioId = textField.id.replace('Text', 'Radio'); 
+                const linkedRadio = document.getElementById(radioId);
+                if (linkedRadio && !linkedRadio.checked) {
+                    textField.style.display = 'none';
+                } else if (linkedRadio && linkedRadio.checked) {
+                     textField.style.display = 'inline-block';
+                } else { // Default to hidden if no linked radio or radio not found
+                     textField.style.display = 'none';
+                }
+            });
+            
+            // Initial state for "Anders, namelijk..." selects
+            document.querySelectorAll('select[onchange*="toonAndersVeld"]').forEach(selectElement => {
+                const targetIdMatch = selectElement.getAttribute('onchange').match(/toonAndersVeld\s*\(\s*this\s*,\s*['"]([^'"]+)['"]\s*\)/);
+                if (targetIdMatch && targetIdMatch[1]) {
+                    toonAndersVeld(selectElement, targetIdMatch[1]);
+                }
+            });
+        });
+
+        function toonAndersVeld(selectElement, targetElementId) {
+            var selectedValue = selectElement.value;
+            var targetElement = document.getElementById(targetElementId);
+
+            if (targetElement) {
+                const inputInside = targetElement.querySelector('input[type="number"], input[type="text"]');
+                if (selectedValue.toLowerCase() === 'anders') {
+                    targetElement.style.display = 'flex'; 
+                    if (inputInside) {
+                        inputInside.disabled = false;
+                        // inputInside.focus(); // Can be annoying on page load
+                    }
+                } else {
+                    targetElement.style.display = 'none';
+                    if (inputInside) {
+                        inputInside.value = '';
+                        inputInside.disabled = true;
+                    }
+                }
+            }
+        }
+        // document.getElementById('carOfferteForm').addEventListener('submit', function(event) { ... });
+    </script>
+</body>
+</html>
