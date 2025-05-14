@@ -22,7 +22,7 @@
             --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             --box-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.12);
             --box-shadow-strong: 0 8px 25px rgba(0, 0, 0, 0.15);
-            --border-radius: 10px; 
+            --border-radius: 10px;
             --transition-speed: 0.3s;
             --transition-speed-fast: 0.2s;
 
@@ -62,7 +62,7 @@
             /* padding: 20px; */ /* Verwijderd voor full-width header */
             display: flex;
             flex-direction: column;
-            align-items: center; 
+            align-items: center;
             min-height: 100vh;
             overflow-x: hidden; /* Voorkom horizontale scrollbars */
         }
@@ -100,7 +100,7 @@
             font-size: 1.9rem;
             font-weight: 700;
             color: var(--primary-color);
-            text-decoration: none; 
+            text-decoration: none;
             letter-spacing: -1px;
         }
 
@@ -134,7 +134,7 @@
         }
 
         header#mainHeader nav ul li a:hover,
-        header#mainHeader nav ul li a.active { 
+        header#mainHeader nav ul li a.active {
             color: var(--secondary-color);
             font-weight: 600;
         }
@@ -151,7 +151,7 @@
             border-radius: 8px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 900px; 
+            max-width: 900px;
             /* margin-top: 20px; */ /* Wordt nu geregeld door progress-bar-container margin */
         }
 
@@ -195,16 +195,16 @@
         .progress-step.active {
             background-color: var(--progress-step-active-bg); transform: scale(1.15);
         }
-        .progress-step.completed { 
+        .progress-step.completed {
              background-color: var(--progress-bar-fill);
              border-color: var(--progress-bar-fill);
         }
-        .progress-step.completed::after { 
-            content: '\2713'; 
+        .progress-step.completed::after {
+            content: '\2713';
             font-size: 1.1rem;
             color: white;
         }
-        
+
         .progress-step span.tooltip-text {
             visibility: hidden; width: 140px; background-color: #333; color: #fff;
             text-align: center; border-radius: 6px; padding: 6px 0;
@@ -212,7 +212,7 @@
             margin-left: -70px; opacity: 0; transition: opacity 0.3s; font-size: 0.8rem;
         }
         .progress-step:hover span.tooltip-text { visibility: visible; opacity: 1; }
-        .progress-step .step-number { 
+        .progress-step .step-number {
              display: inline-block;
         }
         .progress-step.completed .step-number {
@@ -221,11 +221,12 @@
 
 
         fieldset.form-step {
-            border: none; 
-            padding: 15px 5px 5px 5px; 
+            border: none;
+            padding: 15px 5px 5px 5px;
             margin-bottom: 0;
-            background-color: var(--form-bg-color); 
+            background-color: var(--form-bg-color);
             display: none;
+            position: relative; /* Kan blijven, schaadt niet als help-tips inline zijn */
         }
         fieldset.form-step.active { display: block; animation: fadeInStep 0.5s ease-in-out; }
         @keyframes fadeInStep {
@@ -250,7 +251,7 @@
         }
         .input-group { display: flex; align-items: center; }
         .input-group .currency-symbol, .input-group .unit-symbol {
-            padding: 10px 12px; background-color: #e9ecef; 
+            padding: 10px 12px; background-color: #e9ecef;
             border: 1px solid var(--form-border-color); border-right: none;
             border-radius: 4px 0 0 4px; color: var(--form-label-color); font-size:0.9rem;
         }
@@ -261,21 +262,21 @@
         input[type="text"], input[type="email"], input[type="tel"],
         input[type="date"], input[type="number"], select, textarea {
             width: 100%; padding: 10px 12px;
-            border: 1px solid var(--form-border-color); border-radius: 5px; 
+            border: 1px solid var(--form-border-color); border-radius: 5px;
             font-size: 0.95rem; color: var(--form-text-color);
-            background-color: #fff; 
+            background-color: #fff;
             transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
         input:focus, select:focus, textarea:focus {
             outline: none; border-color: var(--form-focus-border-color);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25); 
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
         }
         textarea { min-height: 75px; resize: vertical; }
         .radio-group, .checkbox-group { display: flex; flex-wrap: wrap; gap: 8px 18px; }
         .radio-group div, .checkbox-group div { display: flex; align-items: center; }
         input[type="radio"], input[type="checkbox"] {
             margin-right: 6px; accent-color: var(--form-focus-border-color);
-            width: 16px; height: 16px; 
+            width: 16px; height: 16px;
         }
         .conditional-section {
             display: none; padding: 15px; margin-top: 15px; margin-bottom:15px;
@@ -303,17 +304,209 @@
         .submit-button { background-color: var(--form-button-bg-color); width: 100%; }
         .submit-button:hover { background-color: var(--form-button-hover-bg-color); }
 
+        .ubo-section {
+            padding-bottom: 10px; /* Space before buttons or hr */
+        }
+        .ubo-section h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--form-text-color);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--form-border-color);
+        }
+        .remove-ubo-button {
+            background-color: #db1919;
+            color: whitesmoke; padding: 8px 16px; border-radius: 5px;
+            font-size: 0.9rem; font-weight: 600; cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+            border: none; /* Ensure no default border */
+            margin-top: 10px; /* Add some space if multiple buttons appear */
+        }
+
+        .remove-ubo-button:active { transform: scale(0.98); }
+        .remove-ubo-button:hover { background-color: #b01010; } /* Darker red on hover */
+
+
         .form-row { display: flex; gap: 20px; }
         .form-row .form-group { flex: 1; }
         .asterisk { color: var(--danger-color); font-weight: bold; margin-left: 2px;}
         small.help-text { display: block; font-size: 0.8rem; color: #6c757d; margin-top: 4px; }
-        .inline-text-input { display:none; width: auto !important; margin-left:8px; flex-grow:1; }
+
+        /* Styles for "Anders, namelijk" text input */
+        .inline-text-input {
+            display: none; /* Default hidden, JS will add 'visible' class */
+            width: auto; /* Desktop: allow it to take space based on flex-grow */
+            margin-left: 8px;
+            flex-grow: 1;
+        }
+        .inline-text-input.visible { /* JS adds this class to show the input */
+            display: inline-block; /* Desktop visible style */
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 16px 38px; /* Iets groter */
+            text-decoration: none;
+            font-size: 1.15rem;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            box-shadow: var(--box-shadow);
+            animation: fadeInUpCustom 1s ease-out 0.8s;
+            animation-fill-mode: backwards;
+            position: relative;
+            overflow: hidden;
+            border: none; /* Ensure no default border */
+        }
+        .cta-button::before { /* Shine effect */
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .cta-button:hover {
+            background-color: #e6b840;
+            transform: translateY(-4px) scale(1.02); /* Meer beweging */
+            box-shadow: var(--box-shadow-hover);
+        }
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* --- START AANGEPASTE CSS VOOR INLINE HELP TIP --- */
+        .help-tip {
+            /* Verwijder absolute positionering t.o.v. fieldset */
+            /* position: absolute; */ /* UITGECOMMENTARIEERD */
+            /* top: 18px; */        /* UITGECOMMENTARIEERD */
+            /* right: 18px; */       /* UITGECOMMENTARIEERD */
+
+            display: inline-block;  /* NIEUW: Maakt het mogelijk om naast tekst te staan */
+            vertical-align: middle; /* NIEUW: Lijn het icoontje verticaal uit met de tekst.
+                                       Kies een andere waarde als 'text-bottom', 'super', 'top' beter past. */
+            margin-left: 5px;       /* NIEUW: Kleine ruimte tussen de labeltekst en het ?-icoon */
+
+            position: relative;     /* BLIJFT: Essentieel voor de positionering van de tooltip-paragraaf 'p' */
+            
+            /* Optioneel: Iets kleinere afmetingen voor inline gebruik */
+            width: 20px;
+            height: 20px;
+            line-height: 20px; /* Aanpassen aan nieuwe hoogte voor verticale centrering '?' */
+            font-size: 12px;   /* Lettergrootte van het '?' */
+
+            background-color: #BCDBEA; /* Uw bestaande kleur */
+            border-radius: 50%;
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
+            cursor: default;
+            z-index: 90; /* Zorgt dat het icoon boven normale content staat, maar onder de tooltip-tekst */
+        }
+
+        .help-tip:before { /* Het vraagteken zelf */
+            content: '?';
+        }
+
+        .help-tip p { /* De tooltip paragraaf (tekstbox) */
+            display: none; 
+            position: absolute; 
+            width: 280px; /* Breedte van de tooltip-tekstbox, pas aan indien nodig */
+            padding: 15px;
+            background-color: #1E2021;
+            color: #FFF;
+            text-align: left;
+            font-size: 12px; /* Lettergrootte van de tooltip-tekst */
+            line-height: 1.4;
+            border-radius: 3px;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+            z-index: 100; /* Zorgt dat de tooltip-tekst boven alles (incl. ?-icoon) komt */
+
+            /* Positionering ONDER het .help-tip icoon, horizontaal gecentreerd */
+            top: calc(100% + 8px); /* 100% (hoogte van .help-tip icoon) + 8px ruimte (incl. pijl) */
+            left: 50%;
+            transform: translateX(-50%); /* Centreert de tooltip horizontaal */
+        }
+
+        .help-tip p:before { /* De pijl van de tooltip */
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 6px 6px 6px; /* Creëert een driehoek die naar boven wijst */
+            border-color: transparent transparent #1E2021 transparent; /* Alleen de onderste border is gekleurd */
+            top: -6px; /* Plaatst de basis van de pijl (6px hoog) precies boven de tooltip-tekstbox */
+            left: 50%;
+            transform: translateX(-50%); /* Centreert de pijl horizontaal */
+        }
+
+        .help-tip:hover p {
+            display: block;
+            transform-origin: 50% 0; /* Animatie vanuit midden-boven */
+            animation: fadeInTooltipAnimation 0.3s ease-in-out;
+            -webkit-animation: fadeInTooltipAnimation 0.3s ease-in-out;
+        }
+
+        .help-tip p:after { /* Hover extender */
+            content: '';
+            position: absolute;
+            width: 100%;
+            /* Hoogte = hoogte .help-tip icoon (nu 20px) + marge tot tooltip (8px) = 28px */
+            height: 28px; 
+            top: -28px; /* Plaats boven de tooltip-tekstbox om het gat te overbruggen */
+            left: 0;
+            /* background-color: rgba(0,255,0,0.1); */ /* Voor debuggen */
+        }
+
+        /* CSS animatie voor de tooltip (naam is al uniek) */
+        @keyframes fadeInTooltipAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateX(-50%); 
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateX(-50%); 
+            }
+        }
+        @-webkit-keyframes fadeInTooltipAnimation { /* Voor oudere Safari */
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateX(-50%);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateX(-50%);
+            }
+        }
+        /* --- EINDE AANGEPASTE CSS VOOR INLINE HELP TIP --- */
+
+
+        @keyframes fadeInDownCustom {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUpCustom {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
 
         @media (max-width: 768px) {
             /* Responsive Header Styles */
             header#mainHeader .container { flex-direction: column; text-align: center; }
-            .logo { margin-bottom: 15px; }
+            .logo {
+                font-size: 1.6rem; /* Adjusted from 1.9rem */
+                margin-bottom: 15px;
+            }
             header#mainHeader nav ul { flex-direction: column; margin-top: 10px; width: 100%; }
             header#mainHeader nav ul li { margin: 10px 0; margin-left: 0; } /* Aangepast: margin-left verwijderd voor verticale lijst */
             header#mainHeader nav ul li a { display: block; padding: 10px; }
@@ -321,10 +514,79 @@
 
             /* Responsive Form Styles */
             .form-container, .progress-bar-container { padding: 20px 15px; }
+
+            .form-container h1 {
+                font-size: 1.5rem; /* Adjusted from 1.7rem */
+                margin-bottom: 8px;
+            }
+            .form-container .form-intro {
+                font-size: 0.85rem; /* Adjusted from 0.9rem */
+                margin-bottom: 20px;
+            }
+
             .form-row { flex-direction: column; gap: 0; }
+            /* .form-row .form-group { margin-bottom: 15px; } /* Optional: reduce bottom margin if 20px is too much */
+
             legend { font-size: 1.25rem; }
-            .progress-step span.tooltip-text { display: none; }
-            .nav-button { padding: 10px 18px; font-size: 0.95rem; }
+            .form-group label.radio-label, .form-group label.checkbox-label {
+                font-size: 0.9rem; /* Adjusted from 0.95rem */
+            }
+
+            .progress-step span.tooltip-text { display: none; } /* Tooltips op progress bar verbergen op mobiel */
+            
+            /* Help-tip op mobiel, de tooltip kan nu ook breder zijn */
+            .help-tip p {
+                width: calc(100vw - 60px); /* Maak het bijna schermbreed, met wat marge */
+                max-width: 280px; /* Maar niet breder dan de desktopversie */
+                left: 50%;
+                transform: translateX(-50%);
+                /* Als de help-tip zelf heel dicht bij de rand van het scherm komt,
+                   kan de tooltip naar links of rechts verschuiven. Dit is complexer
+                   en vereist JS of meer geavanceerde CSS. Voor nu, de bovenstaande
+                   zal in de meeste gevallen werken. */
+            }
+
+
+            .nav-button { padding: 12px 20px; font-size: 0.95rem; } /* Standardized padding */
+
+            /* "Anders, namelijk" text input on mobile */
+            .inline-text-input.visible {
+                display: block; /* Mobile visible style: full width below label */
+                width: 100% !important; /* Override JS style for width */
+                margin-left: 0;
+                margin-top: 8px; /* Space from radio/label */
+            }
+             .radio-group div, .checkbox-group div { /* Ensure items in radio/checkbox groups can wrap if text is long */
+                flex-basis: 100%; /* Makes each item take full width if needed, helps with stacking if label + inline-input */
+            }
+            .radio-group div > input[type="radio"] + label + .inline-text-input.visible,
+            .checkbox-group div > input[type="checkbox"] + label + .inline-text-input.visible {
+                margin-top: 8px; /* Space between label and block input */
+            }
+
+
+            /* UBO section responsive styles */
+            .ubo-section h4 {
+                font-size: 1.1rem; /* Reduced for mobile */
+            }
+            .ubo-section .cta-button, /* UBO toevoegen button */
+            .remove-ubo-button {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 12px 20px; /* Standardized padding */
+                font-size: 1rem;
+                margin-top: 15px;
+            }
+            /* Maintain specific UBO button colors if .cta-button styles are too generic */
+            .ubo-section .cta-button {
+                 background-color: var(--accent-color);
+                 color: var(--primary-color);
+            }
+             .remove-ubo-button {
+                background-color: #db1919; /* var(--danger-color) might be better if defined universally */
+                color: var(--form-button-text-color);
+            }
         }
     </style>
 </head>
@@ -361,10 +623,18 @@
             <fieldset class="form-step active" data-step-name="Bedrijf">
                 <legend>1. Bedrijfsgegevens</legend>
                 <!-- ... (inhoud van stap 1 blijft hetzelfde) ... -->
-                 <div class="form-group">
-                    <label for="kvkNummer">KVK-nummer<span class="asterisk">*</span></label>
+
+                <div class="form-group">
+                    <div class="form-row">
+                        <label for="kvkNummer">KVK-nummer<span class="asterisk">*</span></label>
+                        <div class="help-tip">
+                            <p>This is the inline help tip! It can contain all kinds of HTML. Style it as you please.</p>
+                        </div>
+                    </div>
                     <input type="text" id="kvkNummer" name="kvkNummer" required>
                 </div>
+
+
                 <div class="form-group">
                     <label for="rechtsvorm">Rechtsvorm<span class="asterisk">*</span></label>
                     <input type="text" id="rechtsvorm" name="rechtsvorm" required>
@@ -407,7 +677,7 @@
                     <input type="text" id="postadres" name="postadres" placeholder="Straatnaam Huisnr, Postcode Plaats" required>
                 </div>
                 <div class="form-navigation-buttons">
-                    <span></span> 
+                    <span></span>
                     <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
                 </div>
             </fieldset>
@@ -521,7 +791,7 @@
                     </select>
                     <div class="input-group" id="anders_bestaand_eigendommen_input" style="display: none; margin-top: 8px;">
                         <span class="currency-symbol">€</span>
-                        <input type="number" name="bestaande_eigendommen_som_anders_val" placeholder="Anders, namelijk..."> 
+                        <input type="number" name="bestaande_eigendommen_som_anders_val" placeholder="Anders, namelijk...">
                     </div>
                 </div>
                 <div class="form-group">
@@ -536,7 +806,7 @@
                     </select>
                     <div class="input-group" id="anders_Hulpmateriaal_input" style="display: none; margin-top: 8px;">
                         <span class="currency-symbol">€</span>
-                        <input type="number" name="anders_Hulpmateriaal_val" placeholder="Anders, namelijk..."> 
+                        <input type="number" name="anders_Hulpmateriaal_val" placeholder="Anders, namelijk...">
                     </div>
                 </div>
                 <div class="form-group">
@@ -552,7 +822,7 @@
                     </select>
                     <div class="input-group" id="anders_Eigen_risico_input" style="display: none; margin-top: 8px;">
                         <span class="currency-symbol">€</span>
-                        <input type="number" name="anders_Eigen_risico_val" placeholder="Anders, namelijk..."> 
+                        <input type="number" name="anders_Eigen_risico_val" placeholder="Anders, namelijk...">
                     </div>
                 </div>
                 <div class="form-group">
@@ -584,7 +854,6 @@
             <!-- Stap 4: Constructiedetails -->
             <fieldset class="form-step" data-step-name="Constructie">
                 <legend>4. Constructiedetails & Specifieke Risico's</legend>
-                <!-- ... (inhoud van stap 4 blijft hetzelfde) ... -->
                 <div class="form-group">
                     <label for="locatieWerk">Waar wordt het werk gerealiseerd?<span class="asterisk">*</span></label>
                     <input type="text" id="locatieWerk" name="locatieWerk" required>
@@ -594,7 +863,7 @@
                     <div class="radio-group">
                         <div><input type="radio" id="aardGebouw_steen" name="aardGebouw" value="steenhard" required onclick="hideLinkedText('aardGebouwAndersText')"><label for="aardGebouw_steen" class="radio-label">Steen/hard</label></div>
                         <div><input type="radio" id="aardGebouw_metaal" name="aardGebouw" value="metaalhard" onclick="hideLinkedText('aardGebouwAndersText')"><label for="aardGebouw_metaal" class="radio-label">Metaal/hard</label></div>
-                        <div style="display:flex; align-items:center;">
+                        <div> <!-- Container for radio, label, and inline text -->
                             <input type="radio" id="aardGebouw_andersRadio" name="aardGebouw" value="anders" onclick="showLinkedText('aardGebouwAndersText')">
                             <label for="aardGebouw_andersRadio" class="radio-label">Anders, namelijk:</label>
                             <input type="text" id="aardGebouwAndersText" name="aardGebouwAndersText" class="inline-text-input">
@@ -709,14 +978,17 @@
                         <div class="form-group">
                             <label>Zijn de bouwwerken binnen een afstand van 15 meter ook op palen gefundeerd?</label>
                             <div class="radio-group">
-                                <div><input type="radio" id="ookOpPalen_ja" name="ookOpPalen" value="ja" onclick="toggleConditional('andereFunderingswijzeDetails', false)"><label for="ookOpPalen_ja" class="radio-label">Ja</label></div>
-                                <div><input type="radio" id="ookOpPalen_nee" name="ookOpPalen" value="nee" onclick="toggleConditional('andereFunderingswijzeDetails', true)"><label for="ookOpPalen_nee" class="radio-label">Nee</label></div>
+                                <div><input type="radio" id="ookOpPalen_ja" name="ookOpPalen" value="ja" onclick="toggleConditional('andereFunderingswijzeDetails', false); hideLinkedText('andereFunderingswijze');"><label for="ookOpPalen_ja" class="radio-label">Ja</label></div>
+                                <div> <!-- Modified this radio's onclick to also control the text field directly -->
+                                    <input type="radio" id="ookOpPalen_nee" name="ookOpPalen" value="nee" onclick="toggleConditional('andereFunderingswijzeDetails', true); showLinkedText('andereFunderingswijze');">
+                                    <label for="ookOpPalen_nee" class="radio-label">Nee</label>
+                                </div>
                             </div>
                         </div>
                         <div id="andereFunderingswijzeDetails" class="conditional-section">
-                             <div class="form-group">
+                             <div class="form-group"> <!-- This form-group wraps the text input for "andere funderingswijze" -->
                                 <label for="andereFunderingswijze">Zo nee, welke funderingswijze is er dan toegepast?</label>
-                                <input type="text" id="andereFunderingswijze" name="andereFunderingswijze" placeholder="Bijv. op staal, strokenfundering...">
+                                <input type="text" id="andereFunderingswijze" name="andereFunderingswijze" placeholder="Bijv. op staal, strokenfundering..." class="inline-text-input"> <!-- Applied class here too -->
                             </div>
                         </div>
                     </div>
@@ -842,46 +1114,58 @@
             <fieldset class="form-step" data-step-name="UBO & Slot">
                 <legend>6. UBO Gegevens & Afronding</legend>
                 <!-- ... (inhoud van stap 6 blijft hetzelfde) ... -->
-                <div class="ubo-section"> 
-                    <h4>UBO 1 / Statutair Bestuurder 1</h4>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="ubo1_voornamen">Volledige voornamen<span class="asterisk">*</span></label>
-                            <input type="text" id="ubo1_voornamen" name="ubo1_voornamen" >
-                        </div>
-                        <div class="form-group" style="flex: 0.5;">
-                            <label for="ubo1_tussenvoegsel">Tussenvoegsel(s)</label>
-                            <input type="text" id="ubo1_tussenvoegsel" name="ubo1_tussenvoegsel">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="ubo1_achternaam">Eigen achternaam<span class="asterisk">*</span></label>
-                        <input type="text" id="ubo1_achternaam" name="ubo1_achternaam" >
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="ubo1_geboortedatum">Geboortedatum<span class="asterisk">*</span></label>
-                            <input type="date" id="ubo1_geboortedatum" name="ubo1_geboortedatum" >
+                <div id="ubo-forms-container">
+                    <!-- De eerste UBO-sectie staat hier al als de pagina laadt -->
+                    <div class="ubo-section">
+                        <h4>UBO 1 / Statutair Bestuurder 1</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ubo1_voornamen">Volledige voornamen<span class="asterisk"></span></label>
+                                <input type="text" id="ubo1_voornamen" name="ubo1_voornamen" required>
+                            </div>
+                            <div class="form-group" style="flex: 0.5;">
+                                <label for="ubo1_tussenvoegsel">Tussenvoegsel(s)</label>
+                                <input type="text" id="ubo1_tussenvoegsel" name="ubo1_tussenvoegsel">
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="ubo1_woonland">Woonland<span class="asterisk">*</span></label>
-                            <input type="text" id="ubo1_woonland" name="ubo1_woonland" >
+                            <label for="ubo1_achternaam">Eigen achternaam<span class="asterisk"></span></label>
+                            <input type="text" id="ubo1_achternaam" name="ubo1_achternaam" required>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Type UBO<span class="asterisk">*</span></label>
-                        <div class="radio-group">
-                            <div><input type="radio" id="ubo1_type_eigendom" name="ubo1_type" value="eigendom" ><label for="ubo1_type_eigendom" class="radio-label">Op basis van eigendom</label></div>
-                            <div><input type="radio" id="ubo1_type_zeggenschap" name="ubo1_type" value="zeggenschap"><label for="ubo1_type_zeggenschap" class="radio-label">Op basis van zeggenschap</label></div>
-                            <div><input type="radio" id="ubo1_type_statutair" name="ubo1_type" value="statutair"><label for="ubo1_type_statutair" class="radio-label">Op basis van (statutair) bestuur</label></div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ubo1_geboortedatum">Geboortedatum<span class="asterisk"></span></label>
+                                <input type="date" id="ubo1_geboortedatum" name="ubo1_geboortedatum" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ubo1_woonland">Woonland<span class="asterisk"></span></label>
+                                <input type="text" id="ubo1_woonland" name="ubo1_woonland" required>
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <label>Type UBO<span class="asterisk">*</span></label>
+                            <div class="radio-group">
+                                <div><input type="radio" id="ubo1_type_eigendom" name="ubo1_type" value="eigendom" required><label for="ubo1_type_eigendom" class="radio-label">Op basis van eigendom</label></div>
+                                <div><input type="radio" id="ubo1_type_zeggenschap" name="ubo1_type" value="zeggenschap"><label for="ubo1_type_zeggenschap" class="radio-label">Op basis van zeggenschap</label></div>
+                                <div><input type="radio" id="ubo1_type_statutair" name="ubo1_type" value="statutair"><label for="ubo1_type_statutair" class="radio-label">Op basis van (statutair) bestuur</label></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ubo1_adres">Volledige adres<span class="asterisk">*</span></label>
+                            <input type="text" id="ubo1_adres" name="ubo1_adres" placeholder="Straatnaam Huisnr, Postcode Plaats" required>
+                        </div>
+
+                        <!-- De knop om een NIEUWE UBO toe te voegen -->
+                        <button type="button" onclick="UBOtoevoegen()" class="cta-button">UBO toevoegen</button>
+
+                        <!-- De eerste UBO heeft geen "verwijder" knop direct hier, die wordt dynamisch toegevoegd -->
+                        <hr style="margin: 25px 0; border-color: #eee;" class="ubo-separator"> <!-- Added class for consistency -->
                     </div>
-                    <div class="form-group">
-                        <label for="ubo1_adres">Volledige adres<span class="asterisk">*</span></label>
-                        <input type="text" id="ubo1_adres" name="ubo1_adres" placeholder="Straatnaam Huisnr, Postcode Plaats" >
-                    </div>
+
+                    <!-- Nieuwe UBO-secties worden hier dynamisch toegevoegd -->
+
                 </div>
-                <hr style="margin: 25px 0; border-color: #eee;">
+
                  <div class="form-group">
                     <label>Is deze verzekering momenteel elders ondergebracht?</label>
                      <div class="radio-group">
@@ -906,13 +1190,13 @@
                     </div>
                 </div>
                 <div class="form-group" style="margin-top: 25px;">
-                    <label>
+                    <label class="checkbox-label">
                         <input type="checkbox" name="verklaring_waarheid" required>
                         Ik verklaar alle gegevens naar waarheid te hebben ingevuld.<span class="asterisk">*</span>
                     </label>
                 </div>
                 <div class="form-group">
-                    <label>
+                    <label class="checkbox-label">
                         <input type="checkbox" name="verklaring_wijziging_ubo" required>
                         Ik verklaar wijzigingen ten aanzien van de UBO's direct te melden.<span class="asterisk">*</span>
                     </label>
@@ -926,337 +1210,669 @@
     </div>
 
     <script>
-        // Header schaduw bij scrollen
-        const mainHeader = document.getElementById('mainHeader'); // Renamed to avoid conflict with 'header' variable in form logic
-        if (mainHeader) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) { 
-                    mainHeader.classList.add('scrolled');
-                } else {
-                    mainHeader.classList.remove('scrolled');
-                }
-            });
+    // UBO Functions (no change needed in UBOtoevoegen, verwijderUBO, hernummerUbos logic from previous state)
+    function UBOtoevoegen() {
+        const uboContainer = document.getElementById('ubo-forms-container');
+        if (!uboContainer) {
+            console.error('Container element met id "ubo-forms-container" niet gevonden!');
+            return;
+        }
+        const existingUbos = uboContainer.querySelectorAll('.ubo-section');
+        const nextUboNumber = existingUbos.length + 1;
+
+        if (nextUboNumber > 10) {
+            alert("Je kunt maximaal 10 UBO-secties toevoegen.");
+            return;
         }
 
-        // JavaScript voor het multi-step formulier (bestaande code)
-        let currentStep = 0;
-        const steps = Array.from(document.querySelectorAll('.form-step'));
-        const progressBar = document.getElementById('progressBar');
-        const progressLine = document.getElementById('progressLine');
-        const stepIndicators = [];
+        const templateHtml = `
+            <div class="ubo-section">
+                <h4>UBO 1 / Statutair Bestuurder 1</h4>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ubo1_voornamen">Volledige voornamen<span class="asterisk"></span></label>
+                        <input type="text" id="ubo1_voornamen" name="ubo1_voornamen" required>
+                    </div>
+                    <div class="form-group" style="flex: 0.5;">
+                        <label for="ubo1_tussenvoegsel">Tussenvoegsel(s)</label>
+                        <input type="text" id="ubo1_tussenvoegsel" name="ubo1_tussenvoegsel">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ubo1_achternaam">Eigen achternaam<span class="asterisk"></span></label>
+                    <input type="text" id="ubo1_achternaam" name="ubo1_achternaam" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ubo1_geboortedatum">Geboortedatum<span class="asterisk"></span></label>
+                        <input type="date" id="ubo1_geboortedatum" name="ubo1_geboortedatum" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ubo1_woonland">Woonland<span class="asterisk"></span></label>
+                        <input type="text" id="ubo1_woonland" name="ubo1_woonland" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Type UBO<span class="asterisk">*</span></label>
+                    <div class="radio-group">
+                        <div><input type="radio" id="ubo1_type_eigendom" name="ubo1_type" value="eigendom" required><label for="ubo1_type_eigendom" class="radio-label">Op basis van eigendom</label></div>
+                        <div><input type="radio" id="ubo1_type_zeggenschap" name="ubo1_type" value="zeggenschap"><label for="ubo1_type_zeggenschap" class="radio-label">Op basis van zeggenschap</label></div>
+                        <div><input type="radio" id="ubo1_type_statutair" name="ubo1_type" value="statutair"><label for="ubo1_type_statutair" class="radio-label">Op basis van (statutair) bestuur</label></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ubo1_adres">Volledige adres<span class="asterisk">*</span></label>
+                    <input type="text" id="ubo1_adres" name="ubo1_adres" placeholder="Straatnaam Huisnr, Postcode Plaats" required>
+                </div>
+                <button type="button" onclick="verwijderUBO(this)" class="remove-ubo-button">Verwijder UBO ${nextUboNumber}</button>
+            </div>
+        `;
 
-        function initializeProgressBar() {
-            steps.forEach((step, index) => {
-                const stepIndicator = document.createElement('div');
-                stepIndicator.classList.add('progress-step');
-                
-                const stepNumberSpan = document.createElement('span');
-                stepNumberSpan.classList.add('step-number');
-                stepNumberSpan.textContent = index + 1;
-                stepIndicator.appendChild(stepNumberSpan);
-                
-                const stepName = step.dataset.stepName || `Stap ${index + 1}`;
-                const tooltip = document.createElement('span');
-                tooltip.classList.add('tooltip-text');
-                tooltip.textContent = stepName;
-                stepIndicator.appendChild(tooltip);
+        let newUboHtml = templateHtml.replace(/ubo1_/g, `ubo${nextUboNumber}_`);
+        newUboHtml = newUboHtml.replace(/UBO 1/g, `UBO ${nextUboNumber}`);
+        newUboHtml = newUboHtml.replace(/Statutair Bestuurder 1/g, `Statutair Bestuurder ${nextUboNumber}`);
+        // The "Verwijder UBO ${nextUboNumber}" in the template is already correct due to template literal
 
-                progressBar.appendChild(stepIndicator);
-                stepIndicators.push(stepIndicator);
-            });
-            updateProgressBar();
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = newUboHtml.trim();
+        const newUboElement = tempDiv.firstElementChild;
+
+        const hrSeparator = document.createElement('hr');
+        hrSeparator.style.margin = '25px 0';
+        hrSeparator.style.borderColor = '#eee';
+        hrSeparator.classList.add('ubo-separator');
+
+        uboContainer.appendChild(newUboElement);
+        uboContainer.appendChild(hrSeparator);
+
+        newUboElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const firstInput = newUboElement.querySelector('input[type="text"], input[type="date"]');
+        if (firstInput) {
+             firstInput.focus();
         }
+    }
 
-        function updateProgressBar() {
-            stepIndicators.forEach((indicator, index) => {
-                indicator.classList.remove('active', 'completed');
-                indicator.querySelector('.step-number').style.display = 'inline-block'; 
-                indicator.style.backgroundColor = 'var(--progress-step-inactive-bg)';
-
-                if (index === currentStep) {
-                    indicator.classList.add('active');
-                    indicator.style.backgroundColor = 'var(--progress-step-active-bg)';
+    function verwijderUBO(buttonElement) {
+        const uboSection = buttonElement.closest('.ubo-section');
+        if (uboSection) {
+            if (confirm('Weet je zeker dat je deze UBO wilt verwijderen?')) {
+                const nextElement = uboSection.nextElementSibling;
+                uboSection.remove();
+                if (nextElement && nextElement.tagName === 'HR' && nextElement.classList.contains('ubo-separator')) {
+                    nextElement.remove();
                 }
-                if (index < currentStep) {
-                    indicator.classList.add('completed');
-                    indicator.querySelector('.step-number').style.display = 'none'; 
-                }
-            });
-            const progressPercentage = (currentStep / (steps.length - 1)) * 100;
-            progressLine.style.width = `${progressPercentage}%`;
-        }
-
-        function showStep(stepIndex) {
-            steps.forEach((step, index) => {
-                step.classList.toggle('active', index === stepIndex);
-            });
-            if (progressBar) { // Ensure progressBar exists
-                 window.scrollTo({ top: progressBar.offsetTop - 20, behavior: 'smooth' }); 
+                hernummerUbos();
             }
-            updateProgressBar();
         }
+    }
 
-        function validateCurrentStep() {
-            const currentStepFields = steps[currentStep].querySelectorAll('[required]:not(:disabled)');
-            let allValid = true;
-            currentStepFields.forEach(field => {
-                let parent = field.parentElement;
-                let isVisible = true;
-                while (parent) {
-                    if (parent.classList && parent.classList.contains('conditional-section') && parent.style.display === 'none') {
-                        isVisible = false;
-                        break;
-                    }
-                    if (parent.classList && parent.classList.contains('form-step') && !parent.classList.contains('active')) {
-                         isVisible = false; 
-                         break;
-                    }
-                    parent = parent.parentElement;
+    function hernummerUbos() {
+        const uboContainer = document.getElementById('ubo-forms-container');
+        if (!uboContainer) return;
+        const existingUbos = uboContainer.querySelectorAll('.ubo-section');
+        existingUbos.forEach((uboElement, index) => {
+            const currentNumber = index + 1;
+            const h4 = uboElement.querySelector('h4');
+            if (h4) {
+                h4.textContent = `UBO ${currentNumber} / Statutair Bestuurder ${currentNumber}`;
+            }
+            const fields = uboElement.querySelectorAll('[id^="ubo"], [name^="ubo"], [for^="ubo"]');
+            fields.forEach(field => {
+                if (field.id && field.id.startsWith('ubo')) {
+                    field.id = field.id.replace(/^ubo\d+(_|$)/, `ubo${currentNumber}$1`);
                 }
+                if (field.name && field.name.startsWith('ubo')) {
+                    field.name = field.name.replace(/^ubo\d+(_|$)/, `ubo${currentNumber}$1`);
+                }
+                if (field.tagName === 'LABEL' && field.htmlFor && field.htmlFor.startsWith('ubo')) {
+                     field.htmlFor = field.htmlFor.replace(/^ubo\d+(_|$)/, `ubo${currentNumber}$1`);
+                }
+            });
+            const removeButton = uboElement.querySelector('.remove-ubo-button');
+            if (removeButton) {
+                 removeButton.textContent = `Verwijder UBO ${currentNumber}`;
+            }
+        });
+    }
 
-                if (!isVisible) return; 
 
-                if ((field.type === 'radio' || field.type === 'checkbox')) {
-                    const name = field.name;
-                    const groupElement = field.closest('.radio-group') || field.closest('.checkbox-group') || field.closest('.form-group'); // Target form-group for border
-                    if (!document.querySelector(`input[name="${name}"]:checked`)) {
-                        allValid = false;
-                        if (groupElement) {
-                            groupElement.style.setProperty('border', '1px solid var(--danger-color)', 'important'); // Use important if needed
-                            groupElement.style.padding = '5px';
-                            groupElement.style.borderRadius = '4px';
-                        }
-                    } else {
-                        if (groupElement) {
-                            groupElement.style.border = 'none';
-                            groupElement.style.padding = '0';
-                        }
-                    }
-                } else if (!field.value.trim()) {
+    // Header schaduw bij scrollen
+    const mainHeader = document.getElementById('mainHeader');
+    if (mainHeader) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
+        });
+    }
+
+    // JavaScript voor het multi-step formulier
+    let currentStep = 0;
+    const steps = Array.from(document.querySelectorAll('.form-step'));
+    const progressBar = document.getElementById('progressBar');
+    const progressLine = document.getElementById('progressLine');
+    const stepIndicators = [];
+
+    function initializeProgressBar() {
+        steps.forEach((step, index) => {
+            const stepIndicator = document.createElement('div');
+            stepIndicator.classList.add('progress-step');
+
+            const stepNumberSpan = document.createElement('span');
+            stepNumberSpan.classList.add('step-number');
+            stepNumberSpan.textContent = index + 1;
+            stepIndicator.appendChild(stepNumberSpan);
+
+            const stepName = step.dataset.stepName || `Stap ${index + 1}`;
+            const tooltip = document.createElement('span');
+            tooltip.classList.add('tooltip-text');
+            tooltip.textContent = stepName;
+            stepIndicator.appendChild(tooltip);
+
+            progressBar.appendChild(stepIndicator);
+            stepIndicators.push(stepIndicator);
+        });
+        updateProgressBar();
+    }
+
+    function updateProgressBar() {
+        stepIndicators.forEach((indicator, index) => {
+            indicator.classList.remove('active', 'completed');
+            const stepNumberElement = indicator.querySelector('.step-number');
+            if (stepNumberElement) stepNumberElement.style.display = 'inline-block';
+            indicator.style.backgroundColor = 'var(--progress-step-inactive-bg)';
+
+            if (index === currentStep) {
+                indicator.classList.add('active');
+                indicator.style.backgroundColor = 'var(--progress-step-active-bg)';
+            }
+            if (index < currentStep) {
+                indicator.classList.add('completed');
+                if (stepNumberElement) stepNumberElement.style.display = 'none';
+            }
+        });
+        const progressPercentage = (steps.length > 1) ? (currentStep / (steps.length - 1)) * 100 : 0;
+        progressLine.style.width = `${progressPercentage}%`;
+    }
+
+    function showStep(stepIndex) {
+        steps.forEach((step, index) => {
+            step.classList.toggle('active', index === stepIndex);
+        });
+        if (progressBar) {
+             window.scrollTo({ top: progressBar.offsetTop - 20, behavior: 'smooth' });
+        }
+        updateProgressBar();
+    }
+
+    function validateCurrentStep() {
+        const currentStepFields = steps[currentStep].querySelectorAll('[required]:not(:disabled)');
+        let allValid = true;
+        currentStepFields.forEach(field => {
+            let parent = field.parentElement;
+            let isVisible = true;
+            while (parent) {
+                if (parent.classList && parent.classList.contains('conditional-section') && parent.style.display === 'none') {
+                    isVisible = false;
+                    break;
+                }
+                if (parent.classList && parent.classList.contains('form-step') && !parent.classList.contains('active')) {
+                     isVisible = false;
+                     break;
+                }
+                parent = parent.parentElement;
+            }
+
+            if (!isVisible) return;
+
+            if ((field.type === 'radio' || field.type === 'checkbox')) {
+                const name = field.name;
+                const groupElement = field.closest('.radio-group') || field.closest('.checkbox-group') || field.closest('.form-group');
+                if (!document.querySelector(`input[name="${name}"]:checked`)) {
                     allValid = false;
-                    field.style.borderColor = 'var(--danger-color)';
-                    field.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.25)';
+                    if (groupElement) {
+                        groupElement.style.setProperty('border', '1px solid var(--danger-color)', 'important');
+                        groupElement.style.padding = '5px';
+                        groupElement.style.borderRadius = '4px';
+                    }
                 } else {
-                     field.style.borderColor = 'var(--form-border-color)';
-                     // field.style.boxShadow = 'none'; // Clear error shadow
-                     // Keep focus style if field is focused and valid:
-                     if (document.activeElement === field) {
-                        field.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.25)';
-                     } else {
-                        field.style.boxShadow = 'none';
-                     }
+                    if (groupElement) {
+                        groupElement.style.border = 'none';
+                        groupElement.style.padding = '0';
+                    }
                 }
-            });
-            return allValid;
-        }
-
-
-        function nextStep() {
-            if (!validateCurrentStep()) {
-                 alert('Vul alstublieft alle verplichte velden (*) correct in om door te gaan.');
-                const firstInvalid = steps[currentStep].querySelector('[required]:invalid, [style*="border-color: var(--danger-color)"]');
-                if (firstInvalid) {
-                    firstInvalid.focus();
-                    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                return;
-            }
-            if (currentStep < steps.length - 1) {
-                currentStep++;
-                showStep(currentStep);
-            }
-        }
-
-        function prevStep() {
-            if (currentStep > 0) {
-                // Clear validation styles from current step before moving back
-                const currentStepErrorFields = steps[currentStep].querySelectorAll('[style*="border-color: var(--danger-color)"]');
-                currentStepErrorFields.forEach(field => {
-                    field.style.borderColor = 'var(--form-border-color)';
+            } else if (!field.value.trim()) {
+                allValid = false;
+                field.style.borderColor = 'var(--danger-color)';
+                field.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.25)';
+            } else {
+                 field.style.borderColor = 'var(--form-border-color)';
+                 if (document.activeElement === field) {
+                    field.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.25)';
+                 } else {
                     field.style.boxShadow = 'none';
-                });
-                const currentStepErrorGroups = steps[currentStep].querySelectorAll('.form-group[style*="border: 1px solid var(--danger-color)"]');
-                 currentStepErrorGroups.forEach(group => {
-                    group.style.border = 'none';
-                    group.style.padding = '0';
-                });
-
-                currentStep--;
-                showStep(currentStep);
+                 }
             }
-        }
-        
-        function showLinkedText(elementId) {
-            const element = document.getElementById(elementId);
-            if(element) {
-                element.style.display = 'inline-block';
-                element.focus();
-            }
-        }
-        function hideLinkedText(elementId) {
-             const element = document.getElementById(elementId);
-            if(element) {
-                element.style.display = 'none';
-                element.value = ''; 
-            }
-        }
+        });
+        return allValid;
+    }
 
-        function toggleConditional(elementId, show) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.style.display = show ? 'block' : 'none';
-                const childInputs = element.querySelectorAll('input, select, textarea');
-                
-                childInputs.forEach(input => {
-                    if (!show) { 
-                        if (input.type === 'radio' || input.type === 'checkbox') {
-                            input.checked = false;
-                        } else if (input.tagName === 'SELECT') {
-                            input.selectedIndex = 0; 
-                        } else {
-                            input.value = ''; 
-                        }
-                         // Remove 'required' and disable if hidden
-                        if (input.hasAttribute('required')) {
-                           input.dataset.wasRequired = 'true'; // Mark it was required
-                           input.removeAttribute('required');
-                        }
-                        input.disabled = true; 
 
-                        const onclickAttr = input.getAttribute('onclick');
-                        if (onclickAttr && onclickAttr.includes('toggleConditional')) {
-                            const match = onclickAttr.match(/toggleConditional\s*\(\s*['"]([^'"]+)['"]/);
-                            if (match && match[1]) {
-                                toggleConditional(match[1], false); 
+    function nextStep() {
+        if (!validateCurrentStep()) {
+             alert('Vul alstublieft alle verplichte velden (*) correct in om door te gaan.');
+            const firstInvalid = steps[currentStep].querySelector('[required]:invalid, [style*="border-color: var(--danger-color)"]');
+            if (firstInvalid) {
+                firstInvalid.focus();
+                firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return;
+        }
+        if (currentStep < steps.length - 1) {
+            currentStep++;
+            showStep(currentStep);
+        }
+    }
+
+    function prevStep() {
+        if (currentStep > 0) {
+            const currentStepErrorFields = steps[currentStep].querySelectorAll('[style*="border-color: var(--danger-color)"]');
+            currentStepErrorFields.forEach(field => {
+                field.style.borderColor = 'var(--form-border-color)';
+                field.style.boxShadow = 'none';
+            });
+            const currentStepErrorGroups = steps[currentStep].querySelectorAll('.form-group[style*="border: 1px solid var(--danger-color)"], .radio-group[style*="border: 1px solid var(--danger-color)"], .checkbox-group[style*="border: 1px solid var(--danger-color)"]');
+             currentStepErrorGroups.forEach(group => {
+                group.style.border = 'none';
+                group.style.padding = '0';
+            });
+
+            currentStep--;
+            showStep(currentStep);
+        }
+    }
+
+    function showLinkedText(elementId) {
+        const element = document.getElementById(elementId);
+        if(element) {
+            element.classList.add('visible');
+            element.focus();
+        }
+    }
+    function hideLinkedText(elementId) {
+         const element = document.getElementById(elementId);
+        if(element) {
+            element.classList.remove('visible');
+            element.value = '';
+        }
+    }
+
+    function toggleConditional(elementId, show) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.style.display = show ? 'block' : 'none';
+            const childInputs = element.querySelectorAll('input, select, textarea, button'); // include button
+
+            childInputs.forEach(input => {
+                if (!show) {
+                    if (input.type === 'radio' || input.type === 'checkbox') {
+                        input.checked = false;
+                    } else if (input.tagName === 'SELECT') {
+                        input.selectedIndex = 0;
+                        // If this select controls another "Anders" field, hide it
+                        if (input.getAttribute('onchange') && input.getAttribute('onchange').includes('toonAndersVeld')) {
+                            const targetIdMatch = input.getAttribute('onchange').match(/toonAndersVeld\s*\(\s*this\s*,\s*['"]([^'"]+)['"]\s*\)/);
+                            if (targetIdMatch && targetIdMatch[1]) {
+                                const andersVeld = document.getElementById(targetIdMatch[1]);
+                                if (andersVeld) {
+                                    andersVeld.style.display = 'none';
+                                    const andersInput = andersVeld.querySelector('input');
+                                    if (andersInput) {
+                                      andersInput.value = '';
+                                      andersInput.disabled = true;
+                                    }
+                                }
                             }
                         }
-                        if (onclickAttr && onclickAttr.includes('showLinkedText')) {
-                             const match = onclickAttr.match(/showLinkedText\s*\(\s*['"]([^'"]+)['"]/);
-                             if(match && match[1]) hideLinkedText(match[1]);
-                        }
+                    } else if (input.tagName.toLowerCase() !== 'button') { // Don't clear button text
+                        input.value = '';
+                    }
+                     // Remove 'required' and disable if hidden
+                    if (input.hasAttribute('required')) {
+                       input.dataset.wasRequired = 'true';
+                       input.removeAttribute('required');
+                    }
+                    input.disabled = true;
 
-                    } else { 
-                        input.disabled = false;
-                        if (input.dataset.wasRequired === 'true') {
-                            input.setAttribute('required', '');
+                    // Recursively hide/disable for nested conditionals
+                    const onclickAttr = input.getAttribute('onclick');
+                    if (onclickAttr) {
+                        if (onclickAttr.includes('toggleConditional')) {
+                            const match = onclickAttr.match(/toggleConditional\s*\(\s*['"]([^'"]+)['"]/);
+                            if (match && match[1]) {
+                                toggleConditional(match[1], false);
+                            }
+                        }
+                        if (onclickAttr.includes('showLinkedText')) {
+                             const match = onclickAttr.match(/showLinkedText\s*\(\s*['"]([^'"]+)['"]/);
+                             if(match && match[1]) hideLinkedText(match[1]); // Hide linked text field
+                        }
+                        // Special handling for 'ookOpPalen_nee' which shows 'andereFunderingswijzeDetails' via toggleConditional
+                        // AND 'andereFunderingswijze' text input via showLinkedText
+                        if (input.id === 'ookOpPalen_nee' && onclickAttr.includes("showLinkedText('andereFunderingswijze')")) {
+                            hideLinkedText('andereFunderingswijze');
                         }
                     }
-                });
+
+
+                } else {
+                    input.disabled = false;
+                    if (input.dataset.wasRequired === 'true') {
+                        input.setAttribute('required', '');
+                    }
+                }
+            });
+        }
+    }
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if(progressBar) { // Check if progressBar exists before initializing
+          initializeProgressBar();
+        }
+        showStep(currentStep);
+
+        function setupInitialConditionals(radioGroupName, detailsId, subDetailsIdCondRadioName, subDetailsId) {
+            const mainRadios = document.getElementsByName(radioGroupName);
+            let mainCheckedValue = null;
+            mainRadios.forEach(radio => { if(radio.checked) mainCheckedValue = radio.value; });
+
+            if (mainRadios.length > 0) {
+                const showMainDetails = mainCheckedValue === 'ja' || (radioGroupName === 'werkDoorAannemer' && (mainCheckedValue === 'geheel' || mainCheckedValue === 'gedeeltelijk'));
+                toggleConditional(detailsId, showMainDetails);
+
+                if (showMainDetails && subDetailsIdCondRadioName && subDetailsId) {
+                    const subRadios = document.getElementsByName(subDetailsIdCondRadioName);
+                    let subCheckedValue = null;
+                    subRadios.forEach(radio => { if(radio.checked) subCheckedValue = radio.value; });
+                    toggleConditional(subDetailsId, subCheckedValue === 'ja');
+                } else if (subDetailsId) {
+                    toggleConditional(subDetailsId, false);
+                }
+            } else {
+                 toggleConditional(detailsId, false);
+                 if (subDetailsId) toggleConditional(subDetailsId, false);
             }
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeProgressBar(); // This was called too early before, now it's correct.
-            showStep(currentStep);
+        setupInitialConditionals('onderhoudstermijnOvereen', 'onderhoudstermijnOvereenDetails', 'onderhoudstermijnMeeVerzekeren', 'onderhoudstermijnDuurDetails');
+        setupInitialConditionals('bedrijfsschade_meeverzekeren', 'bedrijfsschadeDetails');
+        setupInitialConditionals('sloopwerk', 'sloopwerkDetails');
+        setupInitialConditionals('bemaling', 'bemalingDetails');
+        setupInitialConditionals('gravenNabijFundering', 'gravenNabijFunderingDetails');
+        setupInitialConditionals('paalfundering', 'paalfunderingDetails'); // Main conditional for paalfundering
 
-            function setupInitialConditionals(radioGroupName, detailsId, subDetailsIdCondRadioName, subDetailsId) {
-                const mainRadios = document.getElementsByName(radioGroupName);
-                let mainCheckedValue = null;
-                mainRadios.forEach(radio => { if(radio.checked) mainCheckedValue = radio.value; });
+        // Nested conditional for paalfundering: bouwwerkenBinnen15mDetails
+        const paalfunderingDetails = document.getElementById('paalfunderingDetails');
+        if (paalfunderingDetails && paalfunderingDetails.style.display === 'block') {
+            const bouwwerkenRadios = document.getElementsByName('bouwwerkenBinnen15m');
+            let bouwwerkenCheckedValue = null;
+            bouwwerkenRadios.forEach(r => { if(r.checked) bouwwerkenCheckedValue = r.value; });
+            toggleConditional('bouwwerkenBinnen15mDetails', bouwwerkenCheckedValue === 'ja');
 
-                if (mainRadios.length > 0) { // Ensure radios exist
-                    if (mainCheckedValue === 'ja' || (radioGroupName === 'werkDoorAannemer' && (mainCheckedValue === 'geheel' || mainCheckedValue === 'gedeeltelijk'))) {
-                        toggleConditional(detailsId, true);
-                        if (subDetailsIdCondRadioName && subDetailsId) {
-                            const subRadios = document.getElementsByName(subDetailsIdCondRadioName);
-                            let subCheckedValue = null;
-                            subRadios.forEach(radio => { if(radio.checked) subCheckedValue = radio.value; });
-                            toggleConditional(subDetailsId, subCheckedValue === 'ja');
-                        }
-                    } else {
-                        toggleConditional(detailsId, false);
-                        if (subDetailsId) toggleConditional(subDetailsId, false);
-                    }
-                } else { // If no radio group, might be a single checkbox or other logic. For now, assume if not found, hide.
-                     toggleConditional(detailsId, false);
-                     if (subDetailsId) toggleConditional(subDetailsId, false);
-                }
-            }
-            
-            setupInitialConditionals('onderhoudstermijnOvereen', 'onderhoudstermijnOvereenDetails', 'onderhoudstermijnMeeVerzekeren', 'onderhoudstermijnDuurDetails');
-            setupInitialConditionals('bedrijfsschade_meeverzekeren', 'bedrijfsschadeDetails');
-            setupInitialConditionals('sloopwerk', 'sloopwerkDetails');
-            setupInitialConditionals('bemaling', 'bemalingDetails');
-            setupInitialConditionals('gravenNabijFundering', 'gravenNabijFunderingDetails');
-            setupInitialConditionals('paalfundering', 'paalfunderingDetails', 'bouwwerkenBinnen15m', 'bouwwerkenBinnen15mDetails');
-            
-            const paalfunderingDetailsVisible = document.getElementById('paalfunderingDetails') && document.getElementById('paalfunderingDetails').style.display === 'block';
-            const bouwwerkenBinnen15mDetailsVisible = document.getElementById('bouwwerkenBinnen15mDetails') && document.getElementById('bouwwerkenBinnen15mDetails').style.display === 'block';
-
-            if (paalfunderingDetailsVisible && bouwwerkenBinnen15mDetailsVisible) {
-                 const ookOpPalenNee = document.getElementById('ookOpPalen_nee');
-                 if (ookOpPalenNee && ookOpPalenNee.checked) {
-                    toggleConditional('andereFunderingswijzeDetails', true);
-                 } else {
-                    toggleConditional('andereFunderingswijzeDetails', false);
-                 }
-            } else {
-                toggleConditional('andereFunderingswijzeDetails', false);
-            }
-
-            setupInitialConditionals('grondkering', 'grondkeringDetails');
-            setupInitialConditionals('arbeidsloon_meeverzekeren', 'arbeidsloonDetails');
-            // Special handling for werkDoorAannemer
-            const werkDoorAannemerChecked = document.querySelector('input[name="werkDoorAannemer"]:checked');
-            if(werkDoorAannemerChecked){
-                const showAannemerDetails = werkDoorAannemerChecked.value === 'geheel' || werkDoorAannemerChecked.value === 'gedeeltelijk';
-                toggleConditional('aannemerDetails', showAannemerDetails);
-                if(showAannemerDetails){
-                    const aannemerAvbJaChecked = document.querySelector('input[name="aannemer_avb"][value="ja"]:checked');
-                    toggleConditional('aannemerAvbDetails', !!aannemerAvbJaChecked); // !! converts to boolean
+            // Further nested: andereFunderingswijzeDetails and its text input
+            const bouwwerkenBinnen15mDetails = document.getElementById('bouwwerkenBinnen15mDetails');
+            if (bouwwerkenBinnen15mDetails && bouwwerkenBinnen15mDetails.style.display === 'block') {
+                const ookOpPalenRadios = document.getElementsByName('ookOpPalen');
+                let ookOpPalenCheckedValue = null;
+                ookOpPalenRadios.forEach(r => { if(r.checked) ookOpPalenCheckedValue = r.value; });
+                const showAndereFunderingswijze = ookOpPalenCheckedValue === 'nee';
+                toggleConditional('andereFunderingswijzeDetails', showAndereFunderingswijze);
+                if (showAndereFunderingswijze) {
+                    showLinkedText('andereFunderingswijze');
                 } else {
-                    toggleConditional('aannemerAvbDetails', false);
+                    hideLinkedText('andereFunderingswijze');
                 }
             } else {
-                toggleConditional('aannemerDetails', false);
+                 toggleConditional('andereFunderingswijzeDetails', false);
+                 hideLinkedText('andereFunderingswijze');
+            }
+        } else {
+            toggleConditional('bouwwerkenBinnen15mDetails', false);
+            toggleConditional('andereFunderingswijzeDetails', false);
+            hideLinkedText('andereFunderingswijze');
+        }
+
+
+        setupInitialConditionals('grondkering', 'grondkeringDetails');
+        setupInitialConditionals('arbeidsloon_meeverzekeren', 'arbeidsloonDetails');
+
+        const werkDoorAannemerChecked = document.querySelector('input[name="werkDoorAannemer"]:checked');
+        if(werkDoorAannemerChecked){
+            const showAannemerDetails = werkDoorAannemerChecked.value === 'geheel' || werkDoorAannemerChecked.value === 'gedeeltelijk';
+            toggleConditional('aannemerDetails', showAannemerDetails);
+            if(showAannemerDetails){
+                const aannemerAvbJaChecked = document.querySelector('input[name="aannemer_avb"][value="ja"]:checked');
+                toggleConditional('aannemerAvbDetails', !!aannemerAvbJaChecked);
+            } else {
                 toggleConditional('aannemerAvbDetails', false);
             }
+        } else {
+            toggleConditional('aannemerDetails', false);
+            toggleConditional('aannemerAvbDetails', false);
+        }
 
-            setupInitialConditionals('elders_ondergebracht', 'eldersOndergebrachtDetails');
+        setupInitialConditionals('elders_ondergebracht', 'eldersOndergebrachtDetails');
 
-            document.querySelectorAll('.inline-text-input').forEach(textField => {
-                const radioId = textField.id.replace('Text', 'Radio'); 
-                const linkedRadio = document.getElementById(radioId);
-                if (linkedRadio && !linkedRadio.checked) {
-                    textField.style.display = 'none';
-                } else if (linkedRadio && linkedRadio.checked) {
-                     textField.style.display = 'inline-block';
-                } else { // Default to hidden if no linked radio or radio not found
-                     textField.style.display = 'none';
+        // Initial state for "inline-text-input" based on radio state
+        document.querySelectorAll('.inline-text-input').forEach(textField => {
+            const radioId = textField.id.replace('Text', 'Radio'); // e.g., aardGebouwAndersText -> aardGebouwAndersRadio
+            const linkedRadio = document.getElementById(radioId);
+            if (linkedRadio && linkedRadio.checked) {
+                textField.classList.add('visible');
+            } else {
+                // Ensure 'visible' is not present if not checked, except for 'andereFunderingswijze' which is handled above
+                if (textField.id !== 'andereFunderingswijze') {
+                     textField.classList.remove('visible');
                 }
-            });
-            
-            // Initial state for "Anders, namelijk..." selects
-            document.querySelectorAll('select[onchange*="toonAndersVeld"]').forEach(selectElement => {
-                const targetIdMatch = selectElement.getAttribute('onchange').match(/toonAndersVeld\s*\(\s*this\s*,\s*['"]([^'"]+)['"]\s*\)/);
-                if (targetIdMatch && targetIdMatch[1]) {
-                    toonAndersVeld(selectElement, targetIdMatch[1]);
-                }
-            });
+            }
         });
 
-        function toonAndersVeld(selectElement, targetElementId) {
-            var selectedValue = selectElement.value;
-            var targetElement = document.getElementById(targetElementId);
+        // Initial state for "Anders, namelijk..." selects
+        document.querySelectorAll('select[onchange*="toonAndersVeld"]').forEach(selectElement => {
+            const targetIdMatch = selectElement.getAttribute('onchange').match(/toonAndersVeld\s*\(\s*this\s*,\s*['"]([^'"]+)['"]\s*\)/);
+            if (targetIdMatch && targetIdMatch[1]) {
+                toonAndersVeld(selectElement, targetIdMatch[1]);
+            }
+        });
+    });
 
-            if (targetElement) {
-                const inputInside = targetElement.querySelector('input[type="number"], input[type="text"]');
-                if (selectedValue.toLowerCase() === 'anders') {
-                    targetElement.style.display = 'flex'; 
-                    if (inputInside) {
-                        inputInside.disabled = false;
-                        // inputInside.focus(); // Can be annoying on page load
-                    }
-                } else {
-                    targetElement.style.display = 'none';
-                    if (inputInside) {
-                        inputInside.value = '';
-                        inputInside.disabled = true;
-                    }
+    function toonAndersVeld(selectElement, targetElementId) {
+        var selectedValue = selectElement.value;
+        var targetElement = document.getElementById(targetElementId);
+
+        if (targetElement) {
+            const inputInside = targetElement.querySelector('input[type="number"], input[type="text"]');
+            if (selectedValue && selectedValue.toLowerCase() === 'anders') {
+                targetElement.style.display = 'flex';
+                if (inputInside) {
+                    inputInside.disabled = false;
+                }
+            } else {
+                targetElement.style.display = 'none';
+                if (inputInside) {
+                    inputInside.value = '';
+                    inputInside.disabled = true;
                 }
             }
         }
-        // document.getElementById('carOfferteForm').addEventListener('submit', function(event) { ... });
+    }
+    // document.getElementById('carOfferteForm').addEventListener('submit', function(event) { ... }); // Submit logic not included here
+    </script>
+    <!-- Autofill script (no changes needed here from previous state, it uses the helper functions that were updated) -->
+    <script>
+        function autoFillFormForTesting() {
+            // Helper functions (potentially re-defined for safety or using global ones if available)
+            function _toggleConditional(elementId, show) {
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.style.display = show ? 'block' : 'none';
+                    const childInputs = element.querySelectorAll('input:not([type=button]):not([type=submit]), select, textarea');
+                    childInputs.forEach(input => {
+                        if (!show) {
+                            if (input.type === 'radio' || input.type === 'checkbox') input.checked = false;
+                            else if (input.tagName === 'SELECT') input.selectedIndex = 0;
+                            else input.value = '';
+                            if (input.hasAttribute('required')) {
+                               input.dataset.wasRequired = 'true';
+                               input.removeAttribute('required');
+                            }
+                            input.disabled = true;
+                            const onclickAttr = input.getAttribute('onclick');
+                            if (onclickAttr && onclickAttr.includes('toggleConditional')) {
+                                const match = onclickAttr.match(/toggleConditional\s*\(\s*['"]([^'"]+)['"]/);
+                                if (match && match[1]) _toggleConditional(match[1], false);
+                            }
+                            if (onclickAttr && onclickAttr.includes('showLinkedText')) {
+                                 const match = onclickAttr.match(/showLinkedText\s*\(\s*['"]([^'"]+)['"]/);
+                                 if(match && match[1]) _hideLinkedText(match[1]);
+                            }
+                            if (input.id === 'ookOpPalen_nee' && onclickAttr && onclickAttr.includes("showLinkedText('andereFunderingswijze')")) {
+                                _hideLinkedText('andereFunderingswijze');
+                            }
+                        } else {
+                            input.disabled = false;
+                            if (input.dataset.wasRequired === 'true') input.setAttribute('required', '');
+                        }
+                    });
+                }
+            }
+            function _toonAndersVeld(selectElementOrId, targetElementId) {
+                let selectElement = typeof selectElementOrId === 'string' ? document.getElementById(selectElementOrId) : selectElementOrId;
+                if (!selectElement) return;
+                var selectedValue = selectElement.value;
+                var targetElement = document.getElementById(targetElementId);
+                if (targetElement) {
+                    const inputInside = targetElement.querySelector('input[type="number"], input[type="text"]');
+                    if (selectedValue && selectedValue.toLowerCase() === 'anders') {
+                        targetElement.style.display = 'flex';
+                        if (inputInside) inputInside.disabled = false;
+                    } else {
+                        targetElement.style.display = 'none';
+                        if (inputInside) { inputInside.value = ''; inputInside.disabled = true; }
+                    }
+                }
+            }
+            function _showLinkedText(elementId) {
+                const element = document.getElementById(elementId);
+                if(element) { element.classList.add('visible'); element.focus(); }
+            }
+            function _hideLinkedText(elementId) {
+                 const element = document.getElementById(elementId);
+                if(element) { element.classList.remove('visible'); element.value = ''; }
+            }
+
+            // --- Stap 1: Bedrijfsgegevens ---
+            document.getElementById('kvkNummer').value = '12345678';
+            document.getElementById('rechtsvorm').value = 'Besloten Vennootschap';
+            document.getElementById('naamVoorletters').value = 'T. Ester';
+            document.getElementById('geslachtMan').checked = true;
+            document.getElementById('geboortedatum').value = '1985-05-15';
+            document.getElementById('bedrijfsnaam').value = 'Test Coöperatie Nederland';
+            document.getElementById('handelsnaam').value = 'Test & Co';
+            document.getElementById('telefoonnummer').value = '0611223344';
+            document.getElementById('emailadres').value = 'tester@example.nl';
+            document.getElementById('postadres').value = 'Testweg 123, 1000 AA Amsterdam';
+
+            // --- Stap 2: Werkdetails ---
+            document.getElementById('startWerkzaamheden').value = new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0];
+            document.getElementById('ingangsdatumVerzekering').value = new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0];
+            document.getElementById('omschrijvingWerk').value = 'Renovatie en uitbreiding kantoorpand Testweg';
+            document.getElementById('duurBouwMaanden').value = '9';
+
+            document.getElementById('onderhoudstermijnOvereen_ja').checked = true; _toggleConditional('onderhoudstermijnOvereenDetails', true);
+            document.getElementById('onderhoudstermijnMeeVerzekeren_ja').checked = true; _toggleConditional('onderhoudstermijnDuurDetails', true);
+            document.getElementById('duurOnderhoud_6').checked = true;
+
+            document.getElementById('aanneemsom').value = '750000';
+            document.getElementById('btw_inclusief').checked = true;
+            document.getElementById('inc_honoraria').checked = true;
+            document.getElementById('inc_opdrachtgeverWerk').checked = true;
+
+            // --- Stap 3: Verzekerde Sommen & Risico's ---
+            document.getElementById('aansprakelijkheid_som').value = '1250000';
+            document.getElementById('bestaande_eigendommen_som').value = '50000'; _toonAndersVeld('bestaande_eigendommen_som', 'anders_bestaand_eigendommen_input');
+            document.getElementById('Hulpmateriaal').value = 'Anders'; _toonAndersVeld('Hulpmateriaal', 'anders_Hulpmateriaal_input');
+            if(document.querySelector('[name="anders_Hulpmateriaal_val"]')) document.querySelector('[name="anders_Hulpmateriaal_val"]').value = '30000';
+
+            document.getElementById('Eigen_risico').value = '2500'; _toonAndersVeld('Eigen_risico', 'anders_Eigen_risico_input');
+
+            document.getElementById('bedrijfsschade_nee').checked = true; _toggleConditional('bedrijfsschadeDetails', false);
+
+            // --- Stap 4: Constructiedetails ---
+            document.getElementById('locatieWerk').value = 'Centrum Teststad, vlakbij station';
+            document.getElementById('aardGebouw_metaal').checked = true; _hideLinkedText('aardGebouwAndersText');
+
+            document.getElementById('sloopwerk_nee').checked = true; _toggleConditional('sloopwerkDetails', false);
+            document.getElementById('bemaling_nee').checked = true; _toggleConditional('bemalingDetails', false);
+            document.getElementById('gravenNabijFundering_nee').checked = true; _toggleConditional('gravenNabijFunderingDetails', false);
+            document.getElementById('kelderZwembad_nee').checked = true;
+
+            document.getElementById('paalfundering_ja').checked = true; _toggleConditional('paalfunderingDetails', true);
+                document.querySelector('input[name="funderingsadviesPaal"][value="ja"]').checked = true;
+                document.querySelector('input[name="paalsysteem"][value="geboord"]').checked = true;
+                document.getElementById('bouwwerkenBinnen15m_ja').checked = true; _toggleConditional('bouwwerkenBinnen15mDetails', true);
+                    document.querySelector('input[name="eigenaarBouwwerk"][value="opdrachtgever"]').checked = true;
+                    document.getElementById('afstandDichtstbijzijndeBouwwerk').value = '8';
+                    document.getElementById('ookOpPalen_ja').checked = true; _toggleConditional('andereFunderingswijzeDetails', false); _hideLinkedText('andereFunderingswijze');
+
+            document.getElementById('grondkering_nee').checked = true; _toggleConditional('grondkeringDetails', false);
+            document.getElementById('funderingsherstel_nee').checked = true;
+
+            // --- Stap 5: Uitvoering & Aannemer ---
+            document.querySelector('input[name="werkDoorOpdrachtgever"][value="nee"]').checked = true;
+            document.getElementById('arbeidsloon_nee').checked = true; _toggleConditional('arbeidsloonDetails', false);
+
+            document.querySelector('input[name="werkDoorAannemer"][value="geheel"]').checked = true; _toggleConditional('aannemerDetails', true);
+                document.getElementById('aannemer_naam').value = 'Prima Bouwers B.V.';
+                document.getElementById('aannemer_adres').value = 'Boulevard 5, 2000 BB Testdorp';
+                document.getElementById('aannemer_telefoon').value = '0209876543';
+                document.getElementById('aannemerAvb_ja').checked = true; _toggleConditional('aannemerAvbDetails', true);
+                    document.getElementById('aannemer_avb_maatschappij').value = 'ZekerVerzekerd N.V.';
+                    document.getElementById('aannemer_avb_polisnr').value = 'AVB-TEST-001';
+                    document.getElementById('aannemer_avb_bedrag').value = '5000000';
+                    document.getElementById('aannemer_avb_eigenrisico').value = '500';
+            document.getElementById('overige_opmerkingen_beoordeling').value = 'Dit is een automatische invulling voor testdoeleinden.';
+
+            // --- Stap 6: UBO & Afronding ---
+            document.getElementById('ubo1_voornamen').value = 'Anna B. C.';
+            document.getElementById('ubo1_tussenvoegsel').value = 'van der';
+            document.getElementById('ubo1_achternaam').value = 'Voorbeeld';
+            document.getElementById('ubo1_geboortedatum').value = '1978-11-22';
+            document.getElementById('ubo1_woonland').value = 'Nederland';
+            document.querySelector('input[name="ubo1_type"][value="statutair"]').checked = true;
+            document.getElementById('ubo1_adres').value = 'Ubolaan 1, 1234 UB Ubodorp';
+
+            document.getElementById('elders_ondergebracht_nee').checked = true; _toggleConditional('eldersOndergebrachtDetails', false);
+            // Checkboxes for verklaring expres leeg.
+
+            console.log("Formulier automatisch ingevuld voor testen.");
+            alert("Formulier is automatisch ingevuld. UBO verklaringen zijn nog niet aangevinkt.");
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('autofill') === 'true') {
+                try {
+                    autoFillFormForTesting();
+                } catch (e) {
+                    console.error("Fout bij automatisch invullen:", e);
+                    alert("Fout bij autofill. Check console.");
+                }
+            }
+        });
     </script>
 </body>
 </html>
