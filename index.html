@@ -8,10 +8,10 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
         :root {
-            --primary-color: #0A2463; /* Diep Blauw */
-            --secondary-color: #3E92CC; /* Medium Blauw */
-            --accent-color: #FFC947; /* Geel/Goud */
-            --light-accent-color: #FFEEB8; /* Licht Geel */
+            --primary-color: #191E4E; /* Diep Blauw */
+            --secondary-color: #618FF6; /* Medium Blauw */
+            --accent-color: #D5B1FF; /* Geel/Goud */
+            --light-accent-color: #d5b1ffb8; /* Licht Geel */
             --text-color: #333333;
             --light-text-color: #FFFFFF;
             --background-color: #FFFFFF;
@@ -123,7 +123,10 @@
 
         /* Hero Section */
         #hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 70%, #6AB1D7 100%); /* Verfijnde gradient */
+            /* MODIFIED: Replaced original background with image and overlay */
+            background-image: linear-gradient(rgba(25, 30, 78, 0.7), rgba(25, 30, 78, 0.7)), url('construction.png');
+            background-size: cover;
+            background-position: center;
             color: var(--light-text-color);
             padding: 120px 0; /* Meer padding */
             text-align: center;
@@ -141,7 +144,7 @@
             position: absolute;
             border-radius: 50%;
             opacity: 0.1;
-            z-index: 0;
+            z-index: 0; /* These will be above the background image/overlay but below text content */
             pointer-events: none;
         }
         #hero::before {
@@ -162,7 +165,7 @@
 
         #hero .container {
             position: relative; 
-            z-index: 1;
+            z-index: 1; /* Ensures text and CTA are above pseudo-elements (animated circles) */
         }
 
         #hero h1 {
@@ -683,7 +686,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; <span id="currentYear"></span> [Uw Bedrijfsnaam]. Alle rechten voorbehouden.</p>
+            <p>© <span id="currentYear"></span> [Uw Bedrijfsnaam]. Alle rechten voorbehouden.</p>
             <p>
                 <a href="#privacy">Privacybeleid</a> |
                 <a href="#voorwaarden">Algemene Voorwaarden</a>
