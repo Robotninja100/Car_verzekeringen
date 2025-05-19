@@ -515,6 +515,26 @@
         .reveal-delay-2 { transition-delay: 0.4s; }
         .reveal-delay-3 { transition-delay: 0.6s; }
 
+        .menu-toggle {
+            display: none; /* Standaard verborgen op desktop */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1100; /* Hoger dan de header content, maar lager dan een evt. overlay */
+            margin-left: auto; /* Duwt de knop naar rechts als er ruimte is */
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+            border-radius: 1px;
+        }
+
 
         /* Responsive Adjustments */
         @media (max-width: 992px) {
@@ -533,20 +553,88 @@
             .cta-button { padding: 14px 30px; font-size: 1.05rem; }
             section h2 { font-size: 2.1rem; }
 
-            header .container { flex-direction: column; text-align: center; }
-            .logo { margin-bottom: 15px; }
-            header nav ul { flex-direction: column; margin-top: 10px; width: 100%; }
-            header nav ul li { margin: 10px 0; }
-            header nav ul li a { display: block; padding: 10px; }
-            header nav ul li a::after { left: 50%; transform: translateX(-50%); } /* Centreer underline op mobiel */
+            header .container {
+                flex-direction: row; /* Terug naar row voor logo en hamburger naast elkaar */
+                justify-content: space-between; /* Logo links, hamburger rechts */
+                align-items: center;
+                position: relative; /* Nodig voor positionering van het uitklapmenu */
+            }
 
+            .logo {
+                margin-bottom: 0; /* Was 15px, niet meer nodig hier */
+                z-index: 1101; /* Zorg dat logo boven uitgeklapt menu blijft als het menu zou overlappen */
+            }
+
+            .menu-toggle {
+                display: block; /* Toon de hamburger knop */
+            }
+
+            /* Stijlen voor geanimeerde hamburger naar 'X' */
+            .menu-toggle.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            header nav {
+                position: absolute; /* Positioneer t.o.v. de header .container */
+                top: 100%; /* Start direct onder de header */
+                left: 0;
+                width: 100%;
+                background-color: var(--background-color);
+                box-shadow: var(--box-shadow);
+                max-height: 0; /* Initieel verborgen */
+                overflow: hidden; /* Verberg content als max-height 0 is */
+                transition: max-height 0.4s ease-out;
+                z-index: 1050; /* Onder de logo/menu-toggle, maar boven de pagina content */
+            }
+
+            header nav.menu-open {
+                max-height: calc(100vh - 70px); /* Max hoogte, bijv. viewport hoogte minus header hoogte. Pas 70px evt. aan. */
+                overflow-y: auto; /* Scrollbaar als er veel items zijn */
+            }
+
+            header nav ul {
+                flex-direction: column;
+                margin-top: 0; /* Verwijder bestaande margin */
+                width: 100%;
+                padding: 10px 0; /* Padding binnen het geopende menu */
+            }
+
+            header nav ul li {
+                margin: 0; /* Reset individuele item margin */
+                text-align: center;
+            }
+
+            header nav ul li a {
+                display: block;
+                padding: 15px 20px; /* Grotere klikgebieden */
+                border-bottom: 1px solid var(--light-gray-color); /* Lijn tussen items */
+            }
+            header nav ul li:last-child a {
+                border-bottom: none; /* Geen lijn voor laatste item */
+            }
+
+            header nav ul li a::after {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 10px; /* Aanpassen aan nieuwe padding */
+            }
 
             .diensten-grid { grid-template-columns: 1fr; }
             #offerte-cta p { font-size: 1.1rem; }
             .cta-button-main { padding: 16px 38px; font-size: 1.15rem; }
             
-            /* Zorg dat reveal animaties niet te storend zijn op mobiel */
             .reveal { transform: translateY(20px); } 
+        }
+
+        /* Als body.menu-is-open, voorkom scrollen van de pagina achter het menu */
+        body.menu-is-open {
+            overflow: hidden;
         }
     </style>
 </head>
@@ -554,9 +642,14 @@
     <header id="mainHeader">
         <div class="container">
             <a href="#hero" class="logo">CAR Verzekering</a>
-            <nav>
+            <button class="menu-toggle" aria-label="Menu openen/sluiten" aria-expanded="false" aria-controls="mainNavMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="mainNavMenu">
                 <ul>
-                    <li><a href="#hero" class="active">Home</a></li> <!-- Actief voor nu, kan met JS -->
+                    <li><a href="#hero" class="active">Home</a></li>
                     <li><a href="#informatie">Informatie</a></li>
                     <li><a href="#diensten">Diensten</a></li>
                     <li><a href="#offerte-cta">Offerte</a></li>
@@ -695,6 +788,39 @@
     </footer>
 
     <script>
+            // ... (jouw bestaande JavaScript code) ...
+
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('header nav'); // Selecteert het <nav> element
+
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+            const isOpen = mainNav.classList.toggle('menu-open');
+            menuToggle.classList.toggle('active'); // Voor de X animatie
+            menuToggle.setAttribute('aria-expanded', isOpen);
+            
+            // Voorkom scrollen van de body als menu open is
+            if (isOpen) {
+                document.body.classList.add('menu-is-open');
+            } else {
+                document.body.classList.remove('menu-is-open');
+            }
+        });
+
+        // Sluit menu als op een link wordt geklikt (voor single page navigatie)
+        const navLinksMobile = mainNav.querySelectorAll('a');
+        navLinksMobile.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('menu-open')) {
+                    mainNav.classList.remove('menu-open');
+                    menuToggle.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('menu-is-open');
+                }
+            });
+        });
+    }
         // Update copyright jaar
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
