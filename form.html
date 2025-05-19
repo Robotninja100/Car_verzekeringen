@@ -494,6 +494,8 @@
             left: 0;
         }
 
+        
+
         @keyframes fadeInTooltipAnimation {
             0% {
                 opacity: 0;
@@ -572,107 +574,103 @@
 
 
         @media (max-width: 768px) {
-            /* Responsive Header Styles */
-            header#mainHeader .container { flex-direction: column; text-align: center; }
-            .logo {
-                font-size: 1.6rem; /* Adjusted from 1.9rem */
-                margin-bottom: 15px;
-            }
-            header#mainHeader nav ul { flex-direction: column; margin-top: 10px; width: 100%; }
-            header#mainHeader nav ul li { margin: 10px 0; margin-left: 0; } /* Aangepast: margin-left verwijderd voor verticale lijst */
-            header#mainHeader nav ul li a { display: block; padding: 10px; }
-            header#mainHeader nav ul li a::after { left: 50%; transform: translateX(-50%); }
+    /* ... (jouw bestaande mobiele stijlen voor .form-container, legend, etc. blijven) ... */
 
-            /* Responsive Form Styles */
-            .form-container, .progress-bar-container { padding: 20px 15px; }
-
-            .form-container h1 {
-                font-size: 1.5rem; /* Adjusted from 1.7rem */
-                margin-bottom: 8px;
-            }
-            .form-container .form-intro {
-                font-size: 0.85rem; /* Adjusted from 0.9rem */
-                margin-bottom: 20px;
-            }
-
-            .form-row { flex-direction: column; gap: 0; }
-            /* .form-row .form-group { margin-bottom: 15px; } /* Optional: reduce bottom margin if 20px is too much */
-
-            legend { font-size: 1.25rem; }
-            .form-group label.radio-label, .form-group label.checkbox-label {
-                font-size: 0.9rem; /* Adjusted from 0.95rem */
-            }
-
-            .progress-step span.tooltip-text { display: none; } /* Tooltips op progress bar verbergen op mobiel */
-            
-            /* Help-tip op mobiel, de tooltip kan nu ook breder zijn */
-            .help-tip p {
-                width: calc(100vw - 60px); /* Maak het bijna schermbreed, met wat marge */
-                max-width: 280px; /* Maar niet breder dan de desktopversie */
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-
-            .nav-button { padding: 12px 20px; font-size: 0.95rem; } /* Standardized padding */
-
-            /* "Anders, namelijk" text input on mobile */
-            .inline-text-input.visible {
-                display: block; /* Mobile visible style: full width below label */
-                width: 100% !important; /* Override JS style for width */
-                margin-left: 0;
-                margin-top: 8px; /* Space from radio/label */
-            }
-             .radio-group div, .checkbox-group div { /* Ensure items in radio/checkbox groups can wrap if text is long */
-                flex-basis: 100%; /* Makes each item take full width if needed, helps with stacking if label + inline-input */
-            }
-            .radio-group div > input[type="radio"] + label + .inline-text-input.visible,
-            .checkbox-group div > input[type="checkbox"] + label + .inline-text-input.visible {
-                margin-top: 8px; /* Space between label and block input */
-            }
-
-
-            /* UBO section responsive styles */
-            /* Deze .ubo-section stijl is nu meer algemeen en wordt ook in Stap 1 gebruikt */
-            .ubo-section h4 {
-                font-size: 1.1rem; /* Reduced for mobile */
-            }
-            #uboSectieStap1 .cta-button, /* UBO toevoegen button in Stap 1 */
-            .ubo-section .remove-ubo-button { /* Verwijder knop binnen een .ubo-section */
-                display: block;
-                width: 100%;
-                text-align: center;
-                padding: 12px 20px; /* Standardized padding */
-                font-size: 1rem;
-                margin-top: 15px;
-            }
-            /* Maintain specific UBO button colors if .cta-button styles are too generic */
-            #uboSectieStap1 .cta-button { /* UBO toevoegen knop */
-                 background-color: var(--accent-color);
-                 color: var(--primary-color);
-            }
-             .remove-ubo-button {
-                background-color: #db1919; /* var(--danger-color) might be better if defined universally */
-                color: var(--form-button-text-color);
-            }
-
-            /* --- START RESPONSIVE CSS VOOR CONTACT FOOTER --- */ /* NIEUW / AANGEPAST */
-            .form-contact-footer h2 {
-                font-size: 1.3rem;
-            }
-            .form-contact-footer p, /* Algemene p in contact footer */
-            .form-contact-footer .contact-item { /* Specifieke contact items */
-                font-size: 0.9rem;
-            }
-            /* --- EINDE RESPONSIVE CSS VOOR CONTACT FOOTER --- */
+    /* Responsive Header Styles - NU MET HAMBURGER MENU */
+        header#mainHeader .container {
+            flex-direction: row; /* Logo en hamburger naast elkaar */
+            justify-content: space-between; /* Logo links, hamburger rechts */
+            align-items: center;
+            position: relative; /* Nodig voor positionering van het uitklapmenu */
         }
+
+        .logo {
+            font-size: 1.6rem;
+            margin-bottom: 0; /* Niet meer nodig als het naast de knop staat */
+            z-index: 1101; /* Zorg dat logo boven uitgeklapt menu blijft */
+        }
+
+        .menu-toggle {
+            display: block; /* Toon de hamburger knop op mobiel */
+        }
+
+        /* Stijlen voor geanimeerde hamburger naar 'X' */
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Navigatie menu zelf op mobiel */
+        header#mainHeader nav {
+            position: absolute;
+            top: 100%; /* Direct onder de header */
+            left: 0;
+            width: 100%;
+            background-color: var(--background-color); /* Gebruik achtergrond van header */
+            box-shadow: var(--box-shadow);
+            max-height: 0; /* Initieel verborgen */
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            z-index: 1050; /* Onder logo/toggle, boven pagina content */
+        }
+
+        header#mainHeader nav.menu-open {
+            max-height: calc(100vh - 60px); /* Max hoogte, bijv. viewport - header hoogte. Pas 60px evt. aan aan je header hoogte */
+            overflow-y: auto; /* Scrollbaar indien nodig */
+        }
+
+        header#mainHeader nav ul {
+            flex-direction: column;
+            margin-top: 0; /* Reset margin */
+            width: 100%;
+            padding: 10px 0; /* Padding binnen het geopende menu */
+        }
+
+        header#mainHeader nav ul li {
+            margin: 0; /* Reset individuele item margin */
+            margin-left: 0; /* Zorg dat dit gereset is */
+            text-align: center;
+        }
+
+        header#mainHeader nav ul li a {
+            display: block;
+            padding: 15px 20px; /* Grotere klikgebieden */
+            border-bottom: 1px solid var(--light-gray-color); /* Lijn tussen items */
+        }
+        header#mainHeader nav ul li:last-child a {
+            border-bottom: none; /* Geen lijn voor laatste item */
+        }
+
+        header#mainHeader nav ul li a::after {
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10px; /* Aanpassen aan nieuwe padding */
+        }
+
+        /* ... (de rest van je bestaande mobiele stijlen voor het formulier) ... */
+    }
+
+    /* Als body.menu-is-open, voorkom scrollen van de pagina achter het menu */
+    body.menu-is-open {
+        overflow: hidden;
+    }
     </style>
 </head>
 <body>
     <header id="mainHeader">
         <div class="container">
             <a href="index.html#hero" class="logo">[Uw Bedrijfsnaam]</a>
-            <nav>
+            <button class="menu-toggle" aria-label="Menu openen/sluiten" aria-expanded="false" aria-controls="mainNavMenuForm">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="mainNavMenuForm">
                 <ul>
                     <li><a href="index.html#hero">Home</a></li>
                     <li><a href="index.html#informatie">Informatie</a></li>
@@ -1416,6 +1414,44 @@
     </div>
 
     <script>
+
+            // ... (Jouw bestaande JavaScript code voor het formulier, progress bar, etc.) ...
+
+    // Mobile Menu Toggle voor form.html
+    const menuToggleForm = document.querySelector('#mainHeader .menu-toggle'); // Wees specifiek
+    const mainNavForm = document.querySelector('header#mainHeader nav#mainNavMenuForm'); // Wees specifiek
+
+    if (menuToggleForm && mainNavForm) {
+        menuToggleForm.addEventListener('click', () => {
+            const isOpen = mainNavForm.classList.toggle('menu-open');
+            menuToggleForm.classList.toggle('active'); // Voor de X animatie
+            menuToggleForm.setAttribute('aria-expanded', isOpen);
+            
+            // Voorkom scrollen van de body als menu open is
+            if (isOpen) {
+                document.body.classList.add('menu-is-open');
+            } else {
+                document.body.classList.remove('menu-is-open');
+            }
+        });
+
+        // Sluit menu als op een link wordt geklikt (voor single page navigatie)
+        const navLinksMobileForm = mainNavForm.querySelectorAll('a');
+        navLinksMobileForm.forEach(link => {
+            link.addEventListener('click', () => {
+                // Controleer of het een link is naar dezelfde pagina (hash-link)
+                // of naar een andere pagina. Voor deze pagina zijn het altijd links naar een andere pagina.
+                // We willen het menu sluiten, ongeacht waar de link naartoe gaat.
+                if (mainNavForm.classList.contains('menu-open')) {
+                    mainNavForm.classList.remove('menu-open');
+                    menuToggleForm.classList.remove('active');
+                    menuToggleForm.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('menu-is-open');
+                }
+            });
+        });
+    }
+
         
         // Zorg ervoor dat deze functie wordt aangeroepen bij het wisselen van type aanvrager
         document.querySelectorAll('input[name="aanvragerType"]').forEach(radio => {
