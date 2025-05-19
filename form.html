@@ -3,127 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uitgebreid Offerteformulier Tijdelijke CAR-Verzekering (Multi-Step) | [Uw Bedrijfsnaam]</title>
+    <title>Dynamische Diensten | CAR verzekering</title>
     <style>
-        /* ... (ALLE CSS BLIJFT HETZELFDE ALS IN DE VORIGE VERSIE) ... */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
         :root {
-            /* Variabelen van car_site.html (gebruikt door header) */
-            --primary-color: #0A2463; /* Diep Blauw */
-            --secondary-color: #3E92CC; /* Medium Blauw */
-            --accent-color: #FFC947; /* Geel/Goud */
-            --light-accent-color: #FFEEB8; /* Licht Geel */
+            --primary-color: #191E4E; /* Diep Blauw */
+            --secondary-color: #618FF6; /* Medium Blauw */
+            --accent-color: #D5B1FF; /* Geel/Goud */
+            --light-accent-color: #d5b1ffb8; /* Licht Geel */
             --text-color: #333333;
             --light-text-color: #FFFFFF;
-            --background-color: #FFFFFF; /* Gebruikt door header achtergrond */
+            --background-color: #FFFFFF;
             --light-gray-color: #F4F4F8;
             --border-color: #DDDDDD;
             --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             --box-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.12);
             --box-shadow-strong: 0 8px 25px rgba(0, 0, 0, 0.15);
-            --border-radius: 10px;
+            --border-radius: 10px; /* Iets ronder */
             --transition-speed: 0.3s;
             --transition-speed-fast: 0.2s;
-
-            /* Variabelen specifiek voor Offerte.html formulier */
-            --form-bg-color: #ffffff;
-            --form-border-color: #d1d5db;
-            --form-focus-border-color: #3b82f6;
-            --form-text-color: #1f2937;
-            --form-label-color: #374151;
-            --form-section-bg-color: #f9fafb;
-            --form-button-bg-color: #2563eb;
-            --form-button-hover-bg-color: #1d4ed8;
-            --form-button-secondary-bg-color: #6b7280;
-            --form-button-secondary-hover-bg-color: #4b5563;
-            --form-button-text-color: #ffffff;
-            --danger-color: #dc2626;
-            --progress-bar-bg: #e5e7eb;
-            --progress-bar-fill: #3b82f6;
-            --progress-step-active-bg: #3b82f6;
-            --progress-step-inactive-bg: #9ca3af;
-            --progress-step-text-color: #ffffff;
-            --conditional-bg-color: rgba(59, 130, 246, 0.03);
-            --conditional-border-color: rgba(59, 130, 246, 0.3);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         html {
             scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Open Sans', sans-serif; /* Default font for form page */
-            background-color: #e5e7eb; /* Page background for form area */
-            color: var(--form-text-color); /* Default text color for form elements */
-            line-height: 1.6;
-            /* padding: 20px; */ /* Verwijderd voor full-width header */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden; /* Voorkom horizontale scrollbars */
-        }
-
-        /* Header Styles (from car_site.html) */
-        header#mainHeader { /* Specific selector for offerte page header */
-            font-family: 'Poppins', sans-serif; /* Ensure header uses Poppins */
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7; /* Iets meer ruimte */
+            color: var(--text-color);
             background-color: var(--background-color);
-            padding: 1rem 0;
-            border-bottom: 1px solid transparent;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            width: 100%; /* Ensure full width */
-            transition: box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+            font-size: 16px;
+            overflow-x: hidden; /* Voorkom horizontale scrollbars door animaties */
         }
 
-        header#mainHeader.scrolled {
-            box-shadow: var(--box-shadow);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        /* Container for header content */
-        header#mainHeader .container {
+        .container {
             width: 90%;
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--background-color);
+            padding: 1rem 0;
+            border-bottom: 1px solid transparent; /* Start transparant */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+
+        header.scrolled {
+            box-shadow: var(--box-shadow);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.9rem;
+            font-size: 1.9rem; /* Iets groter */
             font-weight: 700;
             color: var(--primary-color);
-            text-decoration: none;
-            letter-spacing: -1px;
+            text-decoration: none; 
+            letter-spacing: -1px; /* Subtiel effect */
         }
 
-        header#mainHeader nav ul {
+        header nav ul {
             list-style: none;
             display: flex;
         }
 
-        header#mainHeader nav ul li {
-            margin-left: 30px;
+        header nav ul li {
+            margin-left: 30px; /* Iets meer ruimte */
         }
 
-        header#mainHeader nav ul li a {
+        header nav ul li a {
             text-decoration: none;
             color: var(--primary-color);
-            font-weight: 500;
-            padding: 8px 0px;
+            font-weight: 500; /* Iets lichter, 600 op hover */
+            padding: 8px 0px; /* Geen horizontale padding, regel via underline */
             position: relative;
             transition: color var(--transition-speed-fast) ease;
         }
 
-        header#mainHeader nav ul li a::after {
+        header nav ul li a::after { /* Underline effect */
             content: '';
             position: absolute;
             width: 0;
@@ -134,257 +110,83 @@
             transition: width var(--transition-speed) ease;
         }
 
-        header#mainHeader nav ul li a:hover,
-        header#mainHeader nav ul li a.active {
+        header nav ul li a:hover,
+        header nav ul li a.active { 
             color: var(--secondary-color);
             font-weight: 600;
         }
-        header#mainHeader nav ul li a:hover::after,
-        header#mainHeader nav ul li a.active::after {
+        header nav ul li a:hover::after,
+        header nav ul li a.active::after {
             width: 100%;
         }
-        /* End of Header Styles */
 
 
-        .form-container {
-            background-color: var(--form-bg-color);
-            padding: 20px 30px 30px 30px;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 900px;
-            /* margin-top: 20px; */ /* Wordt nu geregeld door progress-bar-container margin */
+        /* Hero Section */
+        #hero {
+            /* MODIFIED: Replaced original background with image and overlay */
+            background-image: linear-gradient(rgba(25, 30, 78, 0.7), rgba(25, 30, 78, 0.7)), url('construction.png');
+            background-size: cover;
+            background-position: center;
+            color: var(--light-text-color);
+            padding: 120px 0; /* Meer padding */
+            text-align: center;
+            min-height: 90vh; /* Iets hoger */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden; 
         }
 
-        .form-container h1 {
-            text-align: center; color: var(--form-text-color);
-            margin-bottom: 10px; font-size: 1.7rem;
+        #hero::before, #hero::after { /* Dezelfde geanimeerde cirkels */
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 0; /* These will be above the background image/overlay but below text content */
+            pointer-events: none;
         }
-        .form-container .form-intro {
-            text-align: center; color: var(--form-label-color);
-            margin-bottom: 25px; font-size: 0.9rem;
+        #hero::before {
+            width: 350px; height: 350px; background-color: var(--light-text-color);
+            top: -120px; left: -120px; animation: float 10s ease-in-out infinite;
         }
-
-        /* Progress Bar Styling */
-        .progress-bar-container {
-            width: 100%; max-width: 900px; margin-bottom: 20px;
-            background-color: var(--form-bg-color); padding: 15px 20px;
-            border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            margin-top: 20px; /* Added margin to clear sticky header, adjust if header height changes */
-        }
-        .progress-bar {
-            display: flex; justify-content: space-between; align-items: center;
-            position: relative; height: 30px;
-        }
-        .progress-bar::before {
-            content: ''; position: absolute; top: 50%; left: 0;
-            transform: translateY(-50%); height: 4px; width: 100%;
-            background-color: var(--progress-bar-bg); z-index: 1;
-        }
-        .progress-line {
-            position: absolute; top: 50%; left: 0; transform: translateY(-50%);
-            height: 4px; background-color: var(--progress-bar-fill); z-index: 2;
-            width: 0%; transition: width 0.4s ease;
-        }
-        .progress-step {
-            width: 30px; height: 30px; background-color: var(--progress-step-inactive-bg);
-            color: var(--progress-step-text-color); border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-weight: bold; font-size: 0.9rem; z-index: 3; position: relative;
-            border: 3px solid var(--form-bg-color); transition: background-color 0.4s ease, transform 0.3s ease;
-        }
-        .progress-step.active {
-            background-color: var(--progress-step-active-bg); transform: scale(1.15);
-        }
-        .progress-step.completed {
-             background-color: var(--progress-bar-fill);
-             border-color: var(--progress-bar-fill);
-        }
-        .progress-step.completed::after {
-            content: '\2713';
-            font-size: 1.1rem;
-            color: white;
+        #hero::after {
+            width: 450px; height: 450px; background-color: var(--accent-color);
+            bottom: -180px; right: -180px; animation: float 14s ease-in-out infinite reverse;
         }
 
-        .progress-step span.tooltip-text {
-            visibility: hidden; width: 140px; background-color: #333; color: #fff;
-            text-align: center; border-radius: 6px; padding: 6px 0;
-            position: absolute; z-index: 4; bottom: 130%; left: 50%;
-            margin-left: -70px; opacity: 0; transition: opacity 0.3s; font-size: 0.8rem;
-        }
-        .progress-step:hover span.tooltip-text { visibility: visible; opacity: 1; }
-        .progress-step .step-number {
-             display: inline-block;
-        }
-        .progress-step.completed .step-number {
-            display: none;
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-15px) translateX(10px) rotate(10deg) scale(1.05); }
+            50% { transform: translateY(-25px) translateX(0px) rotate(20deg) scale(1); }
+            75% { transform: translateY(-15px) translateX(-10px) rotate(10deg) scale(1.05); }
         }
 
-
-        fieldset.form-step {
-            border: none;
-            padding: 15px 5px 5px 5px;
-            margin-bottom: 0;
-            background-color: var(--form-bg-color);
-            display: none;
-            position: relative; /* Kan blijven, schaadt niet als help-tips inline zijn */
-        }
-        fieldset.form-step.active { display: block; animation: fadeInStep 0.5s ease-in-out; }
-        @keyframes fadeInStep {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        #hero .container {
+            position: relative; 
+            z-index: 1; /* Ensures text and CTA are above pseudo-elements (animated circles) */
         }
 
-        legend {
-            font-size: 1.4rem; font-weight: 700; color: var(--form-text-color);
-            padding: 0; margin-bottom: 20px; width: 100%;
-            border-bottom: 2px solid var(--form-focus-border-color); padding-bottom: 8px;
-        }
-
-        .form-group { margin-bottom: 20px; }
-        .form-group label {
-            display: block; font-weight: 600; color: var(--form-label-color);
-            margin-bottom: 8px; font-size: 0.9rem;
-        }
-        .form-group label.radio-label, .form-group label.checkbox-label {
-            display: inline-block; font-weight: normal; margin-right: 12px;
-            margin-bottom: 0; margin-left: 4px; font-size: 0.95rem;
-        }
-        .input-group { display: flex; align-items: center; }
-        .input-group .currency-symbol, .input-group .unit-symbol {
-            padding: 10px 12px; background-color: #e9ecef;
-            border: 1px solid var(--form-border-color); border-right: none;
-            border-radius: 4px 0 0 4px; color: var(--form-label-color); font-size:0.9rem;
-        }
-        .input-group input[type="text"], .input-group input[type="number"] {
-            border-radius: 0 4px 4px 0 !important;
-        }
-
-        input[type="text"], input[type="email"], input[type="tel"],
-        input[type="date"], input[type="number"], select, textarea {
-            width: 100%; padding: 10px 12px;
-            border: 1px solid var(--form-border-color); border-radius: 5px;
-            font-size: 0.95rem; color: var(--form-text-color);
-            background-color: #fff;
-            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none; border-color: var(--form-focus-border-color);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-        }
-        input:disabled, select:disabled, textarea:disabled {
-            background-color: #e9ecef; /* Bootstrap's disabled color */
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        textarea { min-height: 75px; resize: vertical; }
-        .radio-group, .checkbox-group { display: flex; flex-wrap: wrap; gap: 8px 18px; }
-        .radio-group div, .checkbox-group div { display: flex; align-items: center; }
-        input[type="radio"], input[type="checkbox"] {
-            margin-right: 6px; accent-color: var(--form-focus-border-color);
-            width: 16px; height: 16px;
-        }
-        .conditional-section {
-            display: none; padding: 15px; margin-top: 15px; margin-bottom:15px;
-            border-left: 4px solid var(--conditional-border-color);
-            background-color: var(--conditional-bg-color);
-            border-radius: 0 6px 6px 0;
-        }
-        .conditional-section .form-group:last-child { margin-bottom: 0; }
-
-        .form-navigation-buttons {
-            display: flex; justify-content: space-between; margin-top: 30px;
-            padding-top:20px; border-top: 1px solid #eee;
-        }
-        .nav-button {
-            padding: 11px 22px; border: none; border-radius: 6px; font-size: 1rem;
-            font-weight: 600; cursor: pointer;
-            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
-            color: var(--form-button-text-color);
-        }
-        .nav-button:active { transform: scale(0.98); }
-        .next-button { background-color: var(--form-button-bg-color); }
-        .next-button:hover { background-color: var(--form-button-hover-bg-color); }
-        .prev-button { background-color: var(--form-button-secondary-bg-color); }
-        .prev-button:hover { background-color: var(--form-button-secondary-hover-bg-color); }
-        .submit-button { background-color: var(--form-button-bg-color); width: 100%; }
-        .submit-button:hover { background-color: var(--form-button-hover-bg-color); }
-
-        .ubo-section {
-            padding-bottom: 10px; /* Space before buttons or hr */
-        }
-        .ubo-section h4 {
-            font-size: 1.25rem;
+        #hero h1 {
+            font-size: 3.5rem; /* Groter */
+            margin-bottom: 1.2rem;
             font-weight: 700;
-            color: var(--form-text-color);
-            margin-bottom: 20px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--form-border-color);
-        }
-        .remove-ubo-button {
-            background-color: #db1919;
-            color: whitesmoke; padding: 8px 16px; border-radius: 5px;
-            font-size: 0.9rem; font-weight: 600; cursor: pointer;
-            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
-            border: none; /* Ensure no default border */
-            margin-top: 10px; /* Add some space if multiple buttons appear */
+            letter-spacing: -1px;
+            animation: fadeInDownCustom 1s ease-out 0.2s;
+            animation-fill-mode: backwards;
         }
 
-        .remove-ubo-button:active { transform: scale(0.98); }
-        .remove-ubo-button:hover { background-color: #b01010; } /* Darker red on hover */
-
-        /* Aannemer Section Styles (nieuw) */
-        .aannemer-section {
-            padding: 20px;
-            margin-bottom: 20px; /* Ruimte tussen aannemer blokken */
-            border: 1px solid var(--form-border-color);
-            border-radius: var(--border-radius);
-            background-color: var(--form-section-bg-color); /* Lichtgrijze achtergrond voor het blok */
-        }
-        .aannemer-section h4 {
-            font-size: 1.15rem; /* Iets kleiner dan UBO h4 voor hiërarchie */
-            font-weight: 700;
-            color: var(--form-text-color);
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--form-border-color);
-        }
-        .remove-aannemer-button { /* Hergebruik stijl van UBO verwijder knop of definieer apart */
-            background-color: #db1919; /* Rode kleur */
-            color: white; padding: 8px 16px; border-radius: 5px;
-            font-size: 0.9rem; font-weight: 600; cursor: pointer;
-            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
-            border: none;
-            margin-top: 10px;
-        }
-        .remove-aannemer-button:hover { background-color: #b01010; } /* Donkerder rood */
-        /* Optioneel: styling voor de container van alle aannemer formulieren */
-        #aannemer-forms-container {
-            margin-bottom: 15px; /* Ruimte voor de "Aannemer toevoegen" knop */
-        }
-
-
-
-        .form-row { display: flex; gap: 20px; }
-        .form-row .form-group { flex: 1; }
-        .asterisk { color: var(--danger-color); font-weight: bold; margin-left: 2px;}
-        small.help-text { display: block; font-size: 0.8rem; color: #6c757d; margin-top: 4px; }
-        /* Styling for "Anders" waarschuwing, similar to .help-text or .duurBouwWaarschuwing */
-        .anders-waarschuwing {
-            color: #777; font-size: 0.9em; margin-top: 5px; display: none;
-        }
-
-
-        /* Styles for "Anders, namelijk" text input */
-        .inline-text-input {
-            display: none; /* Default hidden, JS will add 'visible' class */
-            width: auto; /* Desktop: allow it to take space based on flex-grow */
-            margin-left: 8px;
-            flex-grow: 1;
-        }
-        .inline-text-input.visible { /* JS adds this class to show the input */
-            display: inline-block; /* Desktop visible style */
+        #hero p {
+            font-size: 1.4rem; /* Groter */
+            margin-bottom: 2.5rem;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            opacity: 0.9;
+            animation: fadeInUpCustom 1s ease-out 0.5s;
+            animation-fill-mode: backwards;
         }
 
         .cta-button {
@@ -398,11 +200,10 @@
             border-radius: var(--border-radius);
             transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
             box-shadow: var(--box-shadow);
-            /* animation: fadeInUpCustom 1s ease-out 0.8s; */ /* Kan storend zijn bij dynamisch toevoegen */
-            /* animation-fill-mode: backwards; */
+            animation: fadeInUpCustom 1s ease-out 0.8s;
+            animation-fill-mode: backwards;
             position: relative;
             overflow: hidden;
-            border: none; /* Ensure no default border */
         }
         .cta-button::before { /* Shine effect */
             content: "";
@@ -416,105 +217,13 @@
         }
 
         .cta-button:hover {
-            background-color: #e6b840;
+            background-color: #e6b840; 
             transform: translateY(-4px) scale(1.02); /* Meer beweging */
             box-shadow: var(--box-shadow-hover);
         }
         .cta-button:hover::before {
             left: 100%;
         }
-
-        /* --- START AANGEPASTE CSS VOOR INLINE HELP TIP --- */
-        .help-tip {
-            display: inline-block; 
-            vertical-align: middle; 
-            margin-left: 5px;      
-            position: relative;    
-            width: 20px;
-            height: 20px;
-            line-height: 20px; 
-            font-size: 12px;  
-            background-color: #BCDBEA; 
-            border-radius: 50%;
-            text-align: center;
-            font-weight: bold;
-            color: #fff;
-            cursor: default;
-            z-index: 90; 
-        }
-
-        .help-tip:before { 
-            content: '?';
-        }
-
-        .help-tip p { 
-            display: none; 
-            position: absolute; 
-            width: 280px; 
-            padding: 15px;
-            background-color: #1E2021;
-            color: #FFF;
-            text-align: left;
-            font-size: 12px; 
-            line-height: 1.4;
-            border-radius: 3px;
-            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-            z-index: 100; 
-            top: calc(100% + 8px); 
-            left: 50%;
-            transform: translateX(-50%); 
-        }
-
-        .help-tip p:before { 
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 0 6px 6px 6px; 
-            border-color: transparent transparent #1E2021 transparent; 
-            top: -6px; 
-            left: 50%;
-            transform: translateX(-50%); 
-        }
-
-        .help-tip:hover p {
-            display: block;
-            transform-origin: 50% 0; 
-            animation: fadeInTooltipAnimation 0.3s ease-in-out;
-            -webkit-animation: fadeInTooltipAnimation 0.3s ease-in-out;
-        }
-
-        .help-tip p:after { 
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 28px; 
-            top: -28px; 
-            left: 0;
-        }
-
-        @keyframes fadeInTooltipAnimation {
-            0% {
-                opacity: 0;
-                transform: scale(0.8) translateX(-50%); 
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateX(-50%); 
-            }
-        }
-        @-webkit-keyframes fadeInTooltipAnimation { 
-            0% {
-                opacity: 0;
-                transform: scale(0.8) translateX(-50%);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateX(-50%);
-            }
-        }
-        /* --- EINDE AANGEPASTE CSS VOOR INLINE HELP TIP --- */
 
 
         @keyframes fadeInDownCustom {
@@ -527,2174 +236,659 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Section Base Styling */
+        section {
+            padding: 80px 0; /* Meer padding */
+        }
+
+        section:nth-child(even) { 
+            background-color: var(--light-gray-color);
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2.8rem; /* Groter */
+            color: var(--primary-color);
+            margin-bottom: 60px; /* Meer ruimte */
+            position: relative;
+            padding-bottom: 20px;
+            font-weight: 700;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px; /* Breder */
+            height: 5px; /* Dikker */
+            background-color: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        /* Informatie Section */
+        #informatie .info-content {
+            display: flex;
+            align-items: center;
+            gap: 50px; /* Meer ruimte */
+        }
+
+        #informatie .info-text {
+            flex: 1.2; 
+            font-size: 1.1rem; /* Iets groter */
+        }
+        #informatie .info-text p {
+            margin-bottom: 1.8rem;
+        }
+        #informatie .info-text strong {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        #informatie .info-illustration {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #informatie .info-illustration svg {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-strong); /* Sterkere schaduw */
+            transition: transform var(--transition-speed) ease;
+        }
+        #informatie .info-illustration svg:hover {
+            transform: scale(1.03);
+        }
+
+
+        /* Diensten Section */
+        #diensten .diensten-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Iets bredere kaarten */
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .dienst-item {
+            background-color: var(--background-color);
+            padding: 35px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            border: 1px solid var(--border-color); /* Subtiele border */
+            position: relative;
+            overflow: hidden; /* Voor effecten binnen de kaart */
+        }
+        .dienst-item::before { /* Accentbalkje */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            background-color: var(--accent-color);
+            transition: width var(--transition-speed) ease-out;
+        }
+
+        .dienst-item:hover {
+            transform: translateY(-12px); /* Meer lift */
+            box-shadow: var(--box-shadow-strong);
+        }
+        .dienst-item:hover::before {
+            width: 100%;
+        }
+
+        .dienst-item .icon-wrapper { /* Wrapper voor icoon styling */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px; 
+            height: 70px; 
+            background-color: var(--light-accent-color);
+            border-radius: 50%;
+            margin-bottom: 20px;
+            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+        }
+        .dienst-item:hover .icon-wrapper {
+            background-color: var(--accent-color);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .dienst-item .icon {
+            color: var(--primary-color); /* Donkerder voor contrast op lichte wrapper */
+            width: 35px; 
+            height: 35px; 
+            transition: color var(--transition-speed) ease;
+        }
+        .dienst-item:hover .icon {
+             color: var(--primary-color); /* Blijft zo, of naar light-text-color als wrapper donkerder wordt */
+        }
+
+        .dienst-item h3 {
+            font-size: 1.5rem; /* Groter */
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .dienst-item p {
+            font-size: 1rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Offerte CTA Section */
+        #offerte-cta {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%); /* Omgekeerde gradient */
+            color: var(--light-text-color);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        #offerte-cta::before { /* Subtiel patroon */
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+
+
+        #offerte-cta h2 {
+            color: var(--light-text-color);
+        }
+
+        #offerte-cta h2::after { 
+            background-color: var(--accent-color);
+        }
+
+        #offerte-cta p {
+            font-size: 1.2rem; /* Iets groter */
+            max-width: 750px;
+            margin: 0 auto 35px auto;
+            opacity: 0.95;
+        }
+
+        .cta-button-main {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 20px 45px; /* Royaler */
+            text-decoration: none;
+            font-size: 1.3rem; /* Groter */
+            font-weight: 700;
+            border-radius: var(--border-radius);
+            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative; /* Voor animatie */
+            overflow: hidden;
+        }
+        .cta-button-main::before { /* Shine effect */
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .cta-button-main:hover {
+            background-color: #e6b840;
+            color: var(--primary-color);
+            transform: translateY(-6px) scale(1.05); /* Meer effect */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .cta-button-main:hover::before {
+            left: 100%;
+        }
+
+        .offerte-uitleg {
+            font-size: 0.95rem !important; 
+            margin-top: 25px !important;
+            opacity: 0.8;
+        }
+        
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+        #contact p {
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
+        }
+        #contact strong {
+            color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #232F3E; /* Iets ander donkerblauw/grijs */
+            color: var(--light-gray-color);
+            text-align: center;
+            padding: 40px 0; /* Meer padding */
+            margin-top: 50px; 
+            border-top: 5px solid var(--primary-color);
+        }
+
+        footer p {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        footer a {
+            color: var(--light-accent-color); 
+            text-decoration: none;
+            transition: color var(--transition-speed) ease, text-decoration var(--transition-speed) ease;
+            padding: 0 5px;
+        }
+
+        footer a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* Reveal on Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px); /* Start iets lager */
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Speelse cubic-bezier */
+        }
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Specifieke delays voor gelaagde animatie (optioneel) */
+        .reveal-delay-1 { transition-delay: 0.2s; }
+        .reveal-delay-2 { transition-delay: 0.4s; }
+        .reveal-delay-3 { transition-delay: 0.6s; }
+
+        .menu-toggle {
+            display: none; /* Standaard verborgen op desktop */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1100; /* Hoger dan de header content, maar lager dan een evt. overlay */
+            margin-left: auto; /* Duwt de knop naar rechts als er ruimte is */
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+            border-radius: 1px;
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            #hero h1 { font-size: 3rem; }
+            #hero p { font-size: 1.25rem; }
+            section h2 { font-size: 2.4rem; }
+             #informatie .info-content { flex-direction: column; }
+            #informatie .info-illustration { margin-top: 40px; }
+             #informatie .info-illustration svg { width: 70%; max-width: 350px; }
+        }
 
         @media (max-width: 768px) {
-            /* Responsive Header Styles */
-            header#mainHeader .container { flex-direction: column; text-align: center; }
+            body { font-size: 15px; }
+            #hero h1 { font-size: 2.5rem; }
+            #hero p { font-size: 1.1rem; }
+            .cta-button { padding: 14px 30px; font-size: 1.05rem; }
+            section h2 { font-size: 2.1rem; }
+
+            header .container {
+                flex-direction: row; /* Terug naar row voor logo en hamburger naast elkaar */
+                justify-content: space-between; /* Logo links, hamburger rechts */
+                align-items: center;
+                position: relative; /* Nodig voor positionering van het uitklapmenu */
+            }
+
             .logo {
-                font-size: 1.6rem; /* Adjusted from 1.9rem */
-                margin-bottom: 15px;
-            }
-            header#mainHeader nav ul { flex-direction: column; margin-top: 10px; width: 100%; }
-            header#mainHeader nav ul li { margin: 10px 0; margin-left: 0; } /* Aangepast: margin-left verwijderd voor verticale lijst */
-            header#mainHeader nav ul li a { display: block; padding: 10px; }
-            header#mainHeader nav ul li a::after { left: 50%; transform: translateX(-50%); }
-
-            /* Responsive Form Styles */
-            .form-container, .progress-bar-container { padding: 20px 15px; }
-
-            .form-container h1 {
-                font-size: 1.5rem; /* Adjusted from 1.7rem */
-                margin-bottom: 8px;
-            }
-            .form-container .form-intro {
-                font-size: 0.85rem; /* Adjusted from 0.9rem */
-                margin-bottom: 20px;
+                margin-bottom: 0; /* Was 15px, niet meer nodig hier */
+                z-index: 1101; /* Zorg dat logo boven uitgeklapt menu blijft als het menu zou overlappen */
             }
 
-            .form-row { flex-direction: column; gap: 0; }
-            /* .form-row .form-group { margin-bottom: 15px; } /* Optional: reduce bottom margin if 20px is too much */
-
-            legend { font-size: 1.25rem; }
-            .form-group label.radio-label, .form-group label.checkbox-label {
-                font-size: 0.9rem; /* Adjusted from 0.95rem */
+            .menu-toggle {
+                display: block; /* Toon de hamburger knop */
             }
 
-            .progress-step span.tooltip-text { display: none; } /* Tooltips op progress bar verbergen op mobiel */
-            
-            /* Help-tip op mobiel, de tooltip kan nu ook breder zijn */
-            .help-tip p {
-                width: calc(100vw - 60px); /* Maak het bijna schermbreed, met wat marge */
-                max-width: 280px; /* Maar niet breder dan de desktopversie */
+            /* Stijlen voor geanimeerde hamburger naar 'X' */
+            .menu-toggle.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            header nav {
+                position: absolute; /* Positioneer t.o.v. de header .container */
+                top: 100%; /* Start direct onder de header */
+                left: 0;
+                width: 100%;
+                background-color: var(--background-color);
+                box-shadow: var(--box-shadow);
+                max-height: 0; /* Initieel verborgen */
+                overflow: hidden; /* Verberg content als max-height 0 is */
+                transition: max-height 0.4s ease-out;
+                z-index: 1050; /* Onder de logo/menu-toggle, maar boven de pagina content */
+            }
+
+            header nav.menu-open {
+                max-height: calc(100vh - 70px); /* Max hoogte, bijv. viewport hoogte minus header hoogte. Pas 70px evt. aan. */
+                overflow-y: auto; /* Scrollbaar als er veel items zijn */
+            }
+
+            header nav ul {
+                flex-direction: column;
+                margin-top: 0; /* Verwijder bestaande margin */
+                width: 100%;
+                padding: 10px 0; /* Padding binnen het geopende menu */
+            }
+
+            header nav ul li {
+                margin: 0; /* Reset individuele item margin */
+                text-align: center;
+            }
+
+            header nav ul li a {
+                display: block;
+                padding: 15px 20px; /* Grotere klikgebieden */
+                border-bottom: 1px solid var(--light-gray-color); /* Lijn tussen items */
+            }
+            header nav ul li:last-child a {
+                border-bottom: none; /* Geen lijn voor laatste item */
+            }
+
+            header nav ul li a::after {
                 left: 50%;
                 transform: translateX(-50%);
+                bottom: 10px; /* Aanpassen aan nieuwe padding */
             }
 
+            .diensten-grid { grid-template-columns: 1fr; }
+            #offerte-cta p { font-size: 1.1rem; }
+            .cta-button-main { padding: 16px 38px; font-size: 1.15rem; }
+            
+            .reveal { transform: translateY(20px); } 
+        }
 
-            .nav-button { padding: 12px 20px; font-size: 0.95rem; } /* Standardized padding */
-
-            /* "Anders, namelijk" text input on mobile */
-            .inline-text-input.visible {
-                display: block; /* Mobile visible style: full width below label */
-                width: 100% !important; /* Override JS style for width */
-                margin-left: 0;
-                margin-top: 8px; /* Space from radio/label */
-            }
-             .radio-group div, .checkbox-group div { /* Ensure items in radio/checkbox groups can wrap if text is long */
-                flex-basis: 100%; /* Makes each item take full width if needed, helps with stacking if label + inline-input */
-            }
-            .radio-group div > input[type="radio"] + label + .inline-text-input.visible,
-            .checkbox-group div > input[type="checkbox"] + label + .inline-text-input.visible {
-                margin-top: 8px; /* Space between label and block input */
-            }
-
-
-            /* UBO section responsive styles */
-            /* Deze .ubo-section stijl is nu meer algemeen en wordt ook in Stap 1 gebruikt */
-            .ubo-section h4 {
-                font-size: 1.1rem; /* Reduced for mobile */
-            }
-            #uboSectieStap1 .cta-button, /* UBO toevoegen button in Stap 1 */
-            .ubo-section .remove-ubo-button { /* Verwijder knop binnen een .ubo-section */
-                display: block;
-                width: 100%;
-                text-align: center;
-                padding: 12px 20px; /* Standardized padding */
-                font-size: 1rem;
-                margin-top: 15px;
-            }
-            /* Maintain specific UBO button colors if .cta-button styles are too generic */
-            #uboSectieStap1 .cta-button { /* UBO toevoegen knop */
-                 background-color: var(--accent-color);
-                 color: var(--primary-color);
-            }
-             .remove-ubo-button {
-                background-color: #db1919; /* var(--danger-color) might be better if defined universally */
-                color: var(--form-button-text-color);
-            }
+        /* Als body.menu-is-open, voorkom scrollen van de pagina achter het menu */
+        body.menu-is-open {
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
     <header id="mainHeader">
         <div class="container">
-            <a href="car_site.html#hero" class="logo">[Uw Bedrijfsnaam]</a>
-            <nav>
+            <a href="#hero" class="logo">CAR Verzekering</a>
+            <button class="menu-toggle" aria-label="Menu openen/sluiten" aria-expanded="false" aria-controls="mainNavMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="mainNavMenu">
                 <ul>
-                    <li><a href="car_site.html#hero">Home</a></li>
-                    <li><a href="car_site.html#informatie">Informatie</a></li>
-                    <li><a href="car_site.html#diensten">Diensten</a></li>
-                    <li><a href="car_site.html#offerte-cta" class="active">Offerte</a></li>
-                    <li><a href="car_site.html#contact">Contact</a></li>
+                    <li><a href="#hero" class="active">Home</a></li>
+                    <li><a href="#informatie">Informatie</a></li>
+                    <li><a href="#diensten">Diensten</a></li>
+                    <li><a href="#offerte-cta">Offerte</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <div class="progress-bar-container">
-        <div class="progress-bar" id="progressBar">
-            <div class="progress-line" id="progressLine"></div>
-            <!-- Steps dynamically inserted here -->
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1>Uw project, onze zekerheid. Kies CAR verzekeringen.</h1>
+                <p>Focus op bouwen, niet op risico's. Met onze CAR-verzekering is uw project van fundering tot oplevering beschermd tegen onvoorziene schade, diefstal en meer. Bouw met een gerust hart.</p>
+                <a href="#informatie" class="cta-button">Ontdek Meer</a>
+            </div>
+        </section>
+
+        <section id="informatie">
+            <div class="container">
+                <h2 class="reveal">Wat Wij Voor U Kunnen Betekenen</h2>
+                <div class="info-content">
+                    <div class="info-text reveal" data-reveal-delay="100">
+                        <p>Een bouwproject is een waardevolle onderneming, maar kent ook risico's. Bij <strong>[Uw Bedrijfsnaam]</strong> bieden we meer dan een verzekering: een solide fundament voor uw succes. Ontdek hoe wij het verschil maken en uw project <mark>van begin tot eind beschermen</mark>.</p>
+        
+                        <div class="benefit-block" style="padding-bottom: 15px; border-bottom: 1px dashed #ddd; margin-bottom: 20px;">
+                            <h3>  Uw Financiële Schild tegen Tegenslag</h3>
+                            <p>Onze CAR-verzekering is uw robuuste verdediging tegen onverwachte calamiteiten zoals storm, brand, diefstal of constructiefouten. Wij dekken materiële schade aan het bouwwerk én uw bouwmaterialen en hulpmiddelen, vaak al vanaf het transport. Zo blijft uw budget intact en uw visie onaangetast.</p>
+                        </div>
+        
+                        <div class="benefit-block" style="padding-bottom: 15px; border-bottom: 1px dashed #ddd; margin-bottom: 20px;">
+                            <h3>  Bescherming bij Aansprakelijkheid & Zorgeloze Continuïteit</h3>
+                            <p>Mocht er onverhoopt schade aan derden ontstaan of letsel tijdens de bouw, dan dekt onze CAR-verzekering uw aansprakelijkheid en voorkomt kostbare claims. We zorgen voor snelle schadeafhandeling, zodat uw project <mark>continuïteit behoudt</mark> en vertraging minimaal blijft.</p>
+                        </div>
+        
+                        <div class="benefit-block" style="padding-bottom: 15px; margin-bottom: 20px;"> <!-- Laatste blok geen border-bottom -->
+                            <h3>  Focus op Bouwen, Wij Regelen de Rest</h3>
+                            <p>Met de zekerheid van onze CAR-verzekering kunt u met een gerust hart focussen op uw kernactiviteit: bouwen. Wij waken over uw investering. Elk project is uniek; onze experts bieden persoonlijk, vakkundig advies voor een verzekering op maat, perfect afgestemd op uw <mark>specifieke risico's</mark>.</p>
+                        </div>
+        
+                    </div>
+        
+                    <div class="info-illustration reveal" data-reveal-delay="300">
+                        <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" aria-labelledby="infoIllustrationTitle">
+                            <title id="infoIllustrationTitle">Abstracte illustratie van samenwerking en groei</title>
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:var(--secondary-color);stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:var(--primary-color);stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="0" y="0" width="300" height="220" fill="var(--light-gray-color)" rx="15"/>
+                            <path d="M 30 180 Q 90 120 150 150 T 270 120" stroke="url(#grad1)" stroke-width="12" fill="none" stroke-linecap="round"/>
+                            <circle cx="80" cy="70" r="35" fill="var(--accent-color)"/>
+                            <circle cx="70" cy="65" r="10" fill="var(--light-text-color)"/>
+                            <rect x="150" y="50" width="100" height="25" fill="var(--secondary-color)" rx="5"/>
+                            <rect x="150" y="90" width="80" height="25" fill="var(--secondary-color)" rx="5" opacity="0.7"/>
+                            <path d="M50,120 L80,90 L110,120 Z" fill="var(--primary-color)" opacity="0.8"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="diensten">
+            <div class="container">
+                <h2 class="reveal">Onze Kerndiensten</h2>
+                <div class="diensten-grid">
+                    <div class="dienst-item reveal" data-reveal-delay="0">
+                        <div class="icon-wrapper">
+                            <!-- NIEUW ICOON voor Materiële schade (Hard Hat) -->
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 18a1 1 0 0 0 .89.49h18.22a1 1 0 0 0 .89-.49l-1.7-3.4A1 1 0 0 0 18.42 14H5.58a1 1 0 0 0-.89.11L2 18Z"></path>
+                                <path d="M12 2v2"></path>
+                                <path d="M15.31 3.46 12 6l-3.31-2.54"></path>
+                                <path d="M18.29 5.28 16 7.5l-4-3-4 3-2.29-2.22"></path>
+                                <path d="M6.69 3.46 10 6l-1.71 1.28"></path>
+                                <path d="M5 9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-3.5a2.5 2.5 0 0 1-5 0H5Z"></path>
+                            </svg>
+                        </div>
+                        <h3>Materiële schade</h3>
+                        <p>Dit is de kern van de verzekering. Het dekt schade aan hetgeen gebouwd of gemonteerd wordt, inclusief de gebruikte materialen op de bouwplaats.</p>
+                    </div>
+                    <div class="dienst-item reveal" data-reveal-delay="200">
+                        <div class="icon-wrapper">
+                            <!-- NIEUW ICOON voor Aansprakelijkheid (Shield) -->
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <h3>Aansprakelijkheid </h3>
+                        <p>Dekt de aansprakelijkheid voor schade (zowel materieel als letsel) die aan derden (personen of spullen die niet bij het project betrokken zijn) wordt toegebracht door de bouwwerkzaamheden.</p>
+                    </div>
+                    <div class="dienst-item reveal" data-reveal-delay="400">
+                        <div class="icon-wrapper">
+                            <!-- NIEUW ICOON voor UX/UI Design (Layout) -->
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                        </div>
+                        <h3>Financiële dekking</h3>
+                        <p>Wij zorgen ervoor dat de middelen beschikbaar komen om beschadigde onderdelen van het werk te herstellen of te vervangen, zodat het project voortgezet kan worden.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="offerte-cta">
+            <div class="container reveal">
+                <h2>Klaar om te Starten?</h2>
+                <p>Neem de volgende stap naar succes. Vraag vandaag nog een vrijblijvende offerte aan en ontdek hoe wij u kunnen helpen uw doelen te bereiken. Ons proces is snel, eenvoudig en volledig transparant.</p>
+                <a href="form.html" class="cta-button-main">Vraag Nu Offerte Aan</a>
+                </div>
+        </section>
+
+        <section id="contact">
+             <div class="container reveal">
+                <h2>Neem Contact Op</h2>
+                <p>Heeft u vragen, wilt u meer weten over onze diensten, of gewoon eens sparren over uw ideeën? <br>Wij horen graag van u!</p>
+                <p><strong>Email:</strong> info@uwbedrijfsnaam.com</p>
+                <p><strong>Telefoon:</strong> +31 6 123 456 78</p>
+             </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="currentYear"></span> [Uw Bedrijfsnaam]. Alle rechten voorbehouden.</p>
+            <p>
+                <a href="#privacy">Privacybeleid</a> |
+                <a href="#voorwaarden">Algemene Voorwaarden</a>
+            </p>
         </div>
-    </div>
-
-    <div class="form-container">
-        <h1>Offerte Tijdelijke CAR-Verzekering</h1>
-        <p class="form-intro">Volg de stappen om uw offerte aan te vragen. Velden met een <span class="asterisk">*</span> zijn verplicht.</p>
-
-        <form id="carOfferteForm" action="#" method="POST">
-
-            <!-- Stap 1: Aanvragergegevens -->
-            <fieldset class="form-step active" data-step-name="Aanvrager">
-                <legend>1. Aanvragergegevens</legend>
-
-                <div class="form-group">
-                    <label>Type aanvrager<span class="asterisk">*</span></label>
-                    <div class="radio-group">
-                        <div>
-                            <input type="radio" id="aanvragerTypeZakelijk" name="aanvragerType" value="zakelijk" onclick="toggleAanvragerType('zakelijk')">
-                            <label for="aanvragerTypeZakelijk" class="radio-label">Zakelijk</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="aanvragerTypeParticulier" name="aanvragerType" value="particulier" onclick="toggleAanvragerType('particulier')">
-                            <label for="aanvragerTypeParticulier" class="radio-label">Particulier</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Zakelijke Velden Container -->
-                <div id="zakelijkFieldsContainer" style="display: none;">
-                    <div class="form-group">
-                        <label for="kvkNummer">KVK-nummer<span class="asterisk">*</span>
-                            <span class="help-tip">
-                                <p>Vul hier uw Kamer van Koophandel nummer in. Dit nummer bestaat uit 8 cijfers.</p>
-                            </span>
-                        </label>
-                        <input type="text" id="kvkNummer" name="kvkNummer">
-                    </div>
-                    <div class="form-group">
-                        <label for="bedrijfsnaamZakelijk">Bedrijfsnaam<span class="asterisk">*</span></label>
-                        <input type="text" id="bedrijfsnaamZakelijk" name="bedrijfsnaamZakelijk">
-                    </div>
-                    <div class="form-group">
-                        <label for="handelsnaamZakelijk">Handelsnaam (optioneel)</label>
-                        <input type="text" id="handelsnaamZakelijk" name="handelsnaamZakelijk">
-                    </div>
-                    <div class="form-group">
-                        <label for="rechtsvorm">Rechtsvorm<span class="asterisk">*</span></label>
-                        <select id="rechtsvorm" name="rechtsvorm">
-                            <option value="">Kies een rechtsvorm</option>
-                            <option value="eenmanszaak">Eenmanszaak</option>
-                            <option value="bv">Besloten Vennootschap (B.V.)</option>
-                            <option value="vof">Vennootschap onder firma (V.O.F.)</option>
-                            <option value="nv">Naamloze Vennootschap (N.V.)</option>
-                            <option value="cv">Commanditaire Vennootschap (C.V.)</option>
-                            <option value="maatschap">Maatschap</option>
-                            <option value="stichting">Stichting</option>
-                            <option value="vereniging">Vereniging</option>
-                            <option value="anders">Anders</option>
-                        </select>
-                    </div>
-
-                    <!-- Start UBO Sectie in Stap 1 -->
-                    <div id="uboSectieStap1" style="display: none; padding: 15px 0px; margin-top:10px; margin-bottom: 20px; border-top: 1px dashed var(--form-border-color); border-bottom: 1px dashed var(--form-border-color);">
-                        <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--form-text-color); padding-bottom: 5px;">
-                            UBO Gegevens / Statutair Bestuurders
-                        </h3>
-                        <p style="font-size: 0.85rem; color: var(--form-label-color); margin-bottom: 20px;">
-                            Afhankelijk van de gekozen rechtsvorm is het opgeven van UBO's (Ultimate Beneficial Owners) verplicht.
-                            Een UBO is een natuurlijk persoon die de uiteindelijke eigenaar is van of zeggenschap heeft over een onderneming.
-                        </p>
-                        <div id="ubo-forms-container">
-                            <!-- Eerste UBO-sectie (initieel aanwezig) -->
-                            <div class="ubo-section" data-ubo-index="1">
-                                <h4>UBO 1 / Statutair Bestuurder 1</h4>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="ubo1_voornamen">Volledige voornamen<span class="asterisk"></span></label>
-                                        <input type="text" id="ubo1_voornamen" name="ubo1_voornamen">
-                                    </div>
-                                    <div class="form-group" style="flex: 0.5;">
-                                        <label for="ubo1_tussenvoegsel">Tussenvoegsel(s)</label>
-                                        <input type="text" id="ubo1_tussenvoegsel" name="ubo1_tussenvoegsel">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="ubo1_achternaam">Eigen achternaam<span class="asterisk"></span></label>
-                                    <input type="text" id="ubo1_achternaam" name="ubo1_achternaam">
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="ubo1_geboortedatum">Geboortedatum<span class="asterisk"></span></label>
-                                        <input type="date" id="ubo1_geboortedatum" name="ubo1_geboortedatum">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ubo1_woonland">Woonland<span class="asterisk"></span></label>
-                                        <input type="text" id="ubo1_woonland" name="ubo1_woonland">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Type UBO<span class="asterisk">*</span></label>
-                                    <div class="radio-group">
-                                        <div><input type="radio" id="ubo1_type_eigendom" name="ubo1_type" value="eigendom"><label for="ubo1_type_eigendom" class="radio-label">Op basis van eigendom</label></div>
-                                        <div><input type="radio" id="ubo1_type_zeggenschap" name="ubo1_type" value="zeggenschap"><label for="ubo1_type_zeggenschap" class="radio-label">Op basis van zeggenschap</label></div>
-                                        <div><input type="radio" id="ubo1_type_statutair" name="ubo1_type" value="statutair"><label for="ubo1_type_statutair" class="radio-label">Op basis van (statutair) bestuur</label></div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="ubo1_adres">Volledige adres<span class="asterisk">*</span></label>
-                                    <input type="text" id="ubo1_adres" name="ubo1_adres" placeholder="Straatnaam Huisnr, Postcode Plaats">
-                                </div>
-                                <!-- Eerste UBO sectie heeft geen eigen "Verwijder" knop als het de enige is -->
-                            </div>
-                            <!-- Dynamisch toegevoegde UBOs komen hier -->
-                        </div>
-                        <button type="button" onclick="UBOtoevoegen()" class="cta-button" style="margin-top: 15px; font-size: 1rem; padding: 10px 20px;">Extra UBO/Bestuurder Toevoegen</button>
-                    </div>
-                    <!-- Einde UBO Sectie in Stap 1 -->
-
-                    <div class="form-group">
-                        <label for="postadresZakelijk">Vestigingsadres<span class="asterisk">*</span></label>
-                        <input type="text" id="postadresZakelijk" name="postadresZakelijk" placeholder="Straatnaam Huisnr, Postcode Plaats">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="telefoonnummerZakelijk">Telefoonnummer<span class="asterisk">*</span></label>
-                            <input type="tel" id="telefoonnummerZakelijk" name="telefoonnummerZakelijk">
-                        </div>
-                        <div class="form-group">
-                            <label for="emailadresZakelijk">E-mailadres<span class="asterisk">*</span></label>
-                            <input type="email" id="emailadresZakelijk" name="emailadresZakelijk">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Particuliere Velden Container -->
-                <div id="particulierFieldsContainer" style="display: none;">
-                    <div class="form-group">
-                        <label for="naamVoorlettersParticulier">Naam en voorletter(s)<span class="asterisk">*</span></label>
-                        <input type="text" id="naamVoorlettersParticulier" name="naamVoorlettersParticulier">
-                    </div>
-                    <div class="form-group">
-                        <label>Geslacht<span class="asterisk">*</span></label>
-                        <div class="radio-group">
-                            <div><input type="radio" id="geslachtManParticulier" name="geslachtParticulier" value="man"><label for="geslachtManParticulier" class="radio-label">Man</label></div>
-                            <div><input type="radio" id="geslachtVrouwParticulier" name="geslachtParticulier" value="vrouw"><label for="geslachtVrouwParticulier" class="radio-label">Vrouw</label></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="geboortedatumParticulier">Geboortedatum<span class="asterisk">*</span></label>
-                        <input type="date" id="geboortedatumParticulier" name="geboortedatumParticulier">
-                    </div>
-                    <div class="form-group">
-                        <label for="postadresParticulier">Woonadres<span class="asterisk">*</span></label>
-                        <input type="text" id="postadresParticulier" name="postadresParticulier" placeholder="Straatnaam Huisnr, Postcode Plaats">
-                    </div>
-                     <div class="form-row">
-                        <div class="form-group">
-                            <label for="telefoonnummerParticulier">Telefoonnummer<span class="asterisk">*</span></label>
-                            <input type="tel" id="telefoonnummerParticulier" name="telefoonnummerParticulier">
-                        </div>
-                        <div class="form-group">
-                            <label for="emailadresParticulier">E-mailadres<span class="asterisk">*</span></label>
-                            <input type="email" id="emailadresParticulier" name="emailadresParticulier">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-navigation-buttons">
-                    <span></span> 
-                    <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
-                </div>
-            </fieldset>
-
-            <!-- Stap 2: Werkdetails -->
-            <fieldset class="form-step" data-step-name="Werk">
-                 <legend>2. Werkdetails</legend>
-                 <div class="form-group">
-                    <label for="startWerkzaamheden">Wanneer beginnen de werkzaamheden of per welke datum zijn de werkzaamheden begonnen?<span class="asterisk">*</span></label>
-                    <input type="date" id="startWerkzaamheden" name="startWerkzaamheden" required>
-                </div>
-                 <div class="form-group">
-                    <label for="ingangsdatumVerzekering">Ingangsdatum verzekering<span class="asterisk">*</span></label>
-                    <input type="date" id="ingangsdatumVerzekering" name="ingangsdatumVerzekering" required>
-                </div>
-                <div class="form-group" id="redenLateStartContainer" style="display: none;">
-                    <label for="redenLateStart">Als de werkzaamheden al zijn begonnen voor de ingangsdatum, wat is de reden?</label>
-                    <textarea id="redenLateStart" name="redenLateStart"></textarea>
-                    <p class="help-text" style=" color: #777; font-size: 0.9em;
-                    margin-top: 5px;">We nemen nog contact op voor aanvullende informatie.</p>
-                </div>
-                <div class="form-group">
-                    <label for="duurBouwMaanden">Geschatte duur bouw (maanden)?<span class="asterisk">*</span></label>
-                    <input type="number" id="duurBouwMaanden" name="duurBouwMaanden" min="1" required>
-                    <p class="duurBouwWaarschuwing" style="display:none; color: #777; font-size: 0.9em; margin-top: 5px;">
-                        Voor projecten langer dan 12 maanden nemen we mogelijk contact op voor aanvullende informatie.
-                    </p>
-                </div>
-
-                <!-- Nieuwe sectie voor type werkzaamheden -->
-                <div class="form-group">
-                    <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--form-text-color); margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid var(--form-border-color);">
-                        Welke werkzaamheden worden er hoofdzakelijk uitgevoerd?<span class="asterisk">*</span>
-                        <span class="help-tip"><p>Selecteer "Ja" voor alle relevante werkzaamheden. U dient voor elke categorie een keuze te maken. Indien u "Anders" selecteert, specificeer dan a.u.b.</p></span>
-                    </h3>
-                
-                    <div class="form-group" style="margin-bottom: 10px;"> <!-- Sub-group voor Nieuwbouw Woning -->
-                        <label class="checkbox-label" style="font-weight: normal; display: block; margin-bottom: 8px;">Nieuwbouw woning</label>
-                        <div class="radio-group">
-                            <div>
-                                <input type="radio" id="werk_nieuwbouw_woning_ja" name="werk_nieuwbouw_woning" value="ja" required>
-                                <label for="werk_nieuwbouw_woning_ja" class="radio-label">Ja</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="werk_nieuwbouw_woning_nee" name="werk_nieuwbouw_woning" value="nee" checked>
-                                <label for="werk_nieuwbouw_woning_nee" class="radio-label">Nee</label>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="form-group" style="margin-bottom: 10px;"> <!-- Sub-group voor Verbouw Woning -->
-                        <label class="checkbox-label" style="font-weight: normal; display: block; margin-bottom: 8px;">Verbouw/Renovatie woning</label>
-                        <div class="radio-group">
-                            <div>
-                                <input type="radio" id="werk_verbouw_woning_ja" name="werk_verbouw_woning" value="ja" required>
-                                <label for="werk_verbouw_woning_ja" class="radio-label">Ja</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="werk_verbouw_woning_nee" name="werk_verbouw_woning" value="nee" checked>
-                                <label for="werk_verbouw_woning_nee" class="radio-label">Nee</label>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="form-group" style="margin-bottom: 10px;"> <!-- Sub-group voor Nieuwbouw Bedrijfspand -->
-                        <label class="checkbox-label" style="font-weight: normal; display: block; margin-bottom: 8px;">Nieuwbouw bedrijfspand</label>
-                        <div class="radio-group">
-                            <div>
-                                <input type="radio" id="werk_nieuwbouw_bedrijf_ja" name="werk_nieuwbouw_bedrijf" value="ja" required>
-                                <label for="werk_nieuwbouw_bedrijf_ja" class="radio-label">Ja</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="werk_nieuwbouw_bedrijf_nee" name="werk_nieuwbouw_bedrijf" value="nee" checked>
-                                <label for="werk_nieuwbouw_bedrijf_nee" class="radio-label">Nee</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 10px;"> <!-- Sub-group voor Verbouw Bedrijfspand -->
-                        <label class="checkbox-label" style="font-weight: normal; display: block; margin-bottom: 8px;">Verbouw/Renovatie bedrijfspand</label>
-                        <div class="radio-group">
-                            <div>
-                                <input type="radio" id="werk_verbouw_bedrijf_ja" name="werk_verbouw_bedrijf" value="ja" required>
-                                <label for="werk_verbouw_bedrijf_ja" class="radio-label">Ja</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="werk_verbouw_bedrijf_nee" name="werk_verbouw_bedrijf" value="nee" checked>
-                                <label for="werk_verbouw_bedrijf_nee" class="radio-label">Nee</label>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="form-group" style="margin-bottom: 10px;"> <!-- Sub-group voor Installatiewerk -->
-                        <label class="checkbox-label" style="font-weight: normal; display: block; margin-bottom: 8px;">Installatiewerkzaamheden (bijv. elektra, loodgieterswerk, HVAC)</label>
-                        <div class="radio-group">
-                            <div>
-                                <input type="radio" id="werk_installatie_ja" name="werk_installatie" value="ja" required>
-                                <label for="werk_installatie_ja" class="radio-label">Ja</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="werk_installatie_nee" name="werk_installatie" value="nee" checked>
-                                <label for="werk_installatie_nee" class="radio-label">Nee</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 10px;"> <!-- Sub-group voor GWW -->
-                        <label class="checkbox-label" style="font-weight: normal; display: block; margin-bottom: 8px;">Grond-, Weg- en Waterbouw (GWW)</label>
-                        <div class="radio-group">
-                            <div>
-                                <input type="radio" id="werk_gww_ja" name="werk_gww" value="ja" required>
-                                <label for="werk_gww_ja" class="radio-label">Ja</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="werk_gww_nee" name="werk_gww" value="nee" checked>
-                                <label for="werk_gww_nee" class="radio-label">Nee</label>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="form-group" style="margin-bottom: 10px;"> <!-- Sub-group voor Anders -->
-                        <label class="checkbox-label" style="font-weight: normal; display: block; margin-bottom: 8px;">Anders</label>
-                        <div class="radio-group">
-                            <div>
-                                <input type="radio" id="werk_anders_ja" name="werk_anders" value="ja" required onclick="toggleConditional('werkAndersSpecificatieContainer', true)">
-                                <label for="werk_anders_ja" class="radio-label">Ja</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="werk_anders_nee" name="werk_anders" value="nee" checked onclick="toggleConditional('werkAndersSpecificatieContainer', false)">
-                                <label for="werk_anders_nee" class="radio-label">Nee</label>
-                            </div>
-                        </div>
-                        <div id="werkAndersSpecificatieContainer" class="conditional-section" style="margin-top: 10px;">
-                             <div class="form-group">
-                                <label for="werk_anders_specificatie">Specificatie andere werkzaamheden<span class="asterisk">*</span></label>
-                                <input type="text" id="werk_anders_specificatie" name="werk_anders_specificatie" placeholder="Omschrijf de werkzaamheden">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Einde nieuwe sectie -->
-
-                <div class="form-group">
-                    <label>Onderhoudstermijn overeengekomen?<span class="asterisk">*</span></label>
-                    <div class="radio-group">
-                        <div><input type="radio" id="onderhoudstermijnOvereen_ja" name="onderhoudstermijnOvereen" value="ja" required onclick="toggleConditional('onderhoudstermijnOvereenDetails', true)"><label for="onderhoudstermijnOvereen_ja" class="radio-label">Ja</label></div>
-                        <div><input type="radio" id="onderhoudstermijnOvereen_nee" name="onderhoudstermijnOvereen" value="nee" onclick="toggleConditional('onderhoudstermijnOvereenDetails', false)"><label for="onderhoudstermijnOvereen_nee" class="radio-label">Nee</label></div>
-                    </div>
-                </div>
-                <div id="onderhoudstermijnOvereenDetails" class="conditional-section">
-                    <div class="form-group">
-                        <label>Onderhoudstermijn meeverzekeren?<span class="asterisk">*</span></label>
-                         <div class="radio-group">
-                            <div><input type="radio" id="onderhoudstermijnMeeVerzekeren_ja" name="onderhoudstermijnMeeVerzekeren" value="ja" onclick="toggleConditional('onderhoudstermijnDuurDetails', true)"><label for="onderhoudstermijnMeeVerzekeren_ja" class="radio-label">Ja</label></div>
-                            <div><input type="radio" id="onderhoudstermijnMeeVerzekeren_nee" name="onderhoudstermijnMeeVerzekeren" value="nee" onclick="toggleConditional('onderhoudstermijnDuurDetails', false)"><label for="onderhoudstermijnMeeVerzekeren_nee" class="radio-label">Nee</label></div>
-                        </div>
-                    </div>
-                    <div id="onderhoudstermijnDuurDetails" class="conditional-section">
-                         <div class="form-group">
-                            <label>Duur onderhoudstermijn?<span class="asterisk">*</span></label>
-                            <div class="radio-group">
-                                <div><input type="radio" id="duurOnderhoud_3" name="duurOnderhoud" value="3"><label for="duurOnderhoud_3" class="radio-label">3 maanden</label></div>
-                                <div><input type="radio" id="duurOnderhoud_6" name="duurOnderhoud" value="6"><label for="duurOnderhoud_6" class="radio-label">6 maanden</label></div>
-                                <div><input type="radio" id="duurOnderhoud_12" name="duurOnderhoud" value="12"><label for="duurOnderhoud_12" class="radio-label">12 maanden</label></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="aanneemsom">Aanneemsom van het werk?<span class="asterisk">*</span></label>
-                    <div class="input-group">
-                        <span class="currency-symbol">€</span>
-                        <input type="number" id="aanneemsom" name="aanneemsom" step="0.01" required>
-                    </div>
-                </div>
-                <div class="form-group" id="btwField">
-                    <label>BTW<span class="asterisk">*</span></label>
-                    <div class="radio-group">
-                        <div>
-                            <input type="radio" id="btw_inclusief" name="btw" value="inclusief" required>
-                            <label for="btw_inclusief" class="radio-label">Inclusief btw</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="btw_exclusief" name="btw" value="exclusief">
-                            <label for="btw_exclusief" class="radio-label">Exclusief btw</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Aanneemsom inclusief:</label>
-                    <div class="checkbox-group">
-                        <div><input type="checkbox" id="inc_honoraria" name="aanneemsomInclusief[]" value="honoraria"><label for="inc_honoraria" class="checkbox-label">Honoraria</label></div>
-                        <div><input type="checkbox" id="inc_toezicht" name="aanneemsomInclusief[]" value="toezicht"><label for="inc_toezicht" class="checkbox-label">Toezicht/controle</label></div>
-                        <div><input type="checkbox" id="inc_buitenbestek" name="aanneemsomInclusief[]" value="buitenbestek"><label for="inc_buitenbestek" class="checkbox-label">Buiten bestek</label></div>
-                        <div><input type="checkbox" id="inc_opdrachtgeverWerk" name="aanneemsomInclusief[]" value="opdrachtgeverWerk"><label for="inc_opdrachtgeverWerk" class="checkbox-label">Werk opdrachtgever</label></div>
-                        <div><input type="checkbox" id="inc_opdrachtgeverBouwcomp" name="aanneemsomInclusief[]" value="opdrachtgeverBouwcomp"><label for="inc_opdrachtgeverBouwcomp" class="checkbox-label">Componenten opdrachtgever</label></div>
-                        <div><input type="checkbox" id="inc_geen" name="aanneemsomInclusief[]" value="geen"><label for="inc_geen" class="checkbox-label">Geen van deze</label></div>
-                    </div>
-                </div>
-
-                <div class="form-navigation-buttons">
-                    <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
-                    <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
-                </div>
-            </fieldset>
-
-            <!-- Stap 3: Verzekerde Sommen & Risico's -->
-            <fieldset class="form-step" data-step-name="Sommen">
-                 <legend>3. Verzekerde Sommen & Risico's</legend>
-                 <div class="form-group">
-                    <label>Aansprakelijkheid (secundaire dekking)<span class="asterisk">*</span></label>
-                    <select name="aansprakelijkheid_som" required>
-                        <option value="" disabled selected>Kies een bedrag</option>
-                        <option value="500000">tot € 500.000,-</option>
-                        <option value="1250000">tot € 1.250.000,-</option>
-                        <option value="2500000">tot € 2.500.000,-</option>
-                        <option value="niet_meeverzekeren">Niet meeverzekeren</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Bestaande eigendommen opdrachtgever<span class="asterisk">*</span></label>
-                    <select name="bestaande_eigendommen_som" id="bestaande_eigendommen_som" onchange="toonAndersVeld(this, 'anders_bestaand_eigendommen_input', 'anders_bestaand_eigendommen_message')" required>
-                        <option value="" disabled selected>Kies een bedrag</option>
-                        <option value="50000">tot € 50.000,-</option>
-                        <option value="125000">tot € 125.000,-</option>
-                        <option value="250000">tot € 250.000,-</option>
-                        <option value="niet_meeverzekeren">Niet meeverzekeren</option>
-                        <option value="Anders">Anders</option>
-                    </select>
-                    <div class="input-group" id="anders_bestaand_eigendommen_input" style="display: none; margin-top: 8px;">
-                        <span class="currency-symbol">€</span>
-                        <input type="number" name="bestaande_eigendommen_som_anders_val" placeholder="Anders, namelijk...">
-                    </div>
-                    <p class="anders-waarschuwing" id="anders_bestaand_eigendommen_message">We nemen nog contact op voor aanvullende informatie.</p>
-                </div>
-                <div class="form-group">
-                    <label>Hulpmateriaal<span class="asterisk">*</span></label>
-                    <select name="Hulpmateriaal" id="Hulpmateriaal" onchange="toonAndersVeld(this, 'anders_Hulpmateriaal_input', 'anders_Hulpmateriaal_message')" required>
-                        <option value="" disabled selected>Kies een bedrag</option>
-                        <option value="50000">tot € 50.000,-</option>
-                        <option value="125000">tot € 125.000,-</option>
-                        <option value="250000">tot € 250.000,-</option>
-                        <option value="niet_meeverzekeren">Niet meeverzekeren</option>
-                        <option value="Anders">Anders</option>
-                    </select>
-                    <div class="input-group" id="anders_Hulpmateriaal_input" style="display: none; margin-top: 8px;">
-                        <span class="currency-symbol">€</span>
-                        <input type="number" name="anders_Hulpmateriaal_val" placeholder="Anders, namelijk...">
-                    </div>
-                    <p class="anders-waarschuwing" id="anders_Hulpmateriaal_message">We nemen nog contact op voor aanvullende informatie.</p>
-                </div>
-                <div class="form-group">
-                    <label>Eigen risico<span class="asterisk">*</span></label>
-                    <select name="Eigen_risico_select" id="Eigen_risico" onchange="toonAndersVeld(this, 'anders_Eigen_risico_input', 'anders_Eigen_risico_message')" required> <!-- Changed name to avoid conflict -->
-                        <option value="" disabled selected>Kies een bedrag</option>
-                        <option value="500">tot € 500,-</option>
-                        <option value="1000">tot € 1.000,-</option>
-                        <option value="2500">tot € 2.500,-</option>
-                        <option value="5000">tot € 5.000,-</option>
-                        <option value="niet_meeverzekeren">Niet meeverzekeren</option>
-                        <option value="Anders">Anders</option>
-                    </select>
-                    <div class="input-group" id="anders_Eigen_risico_input" style="display: none; margin-top: 8px;">
-                        <span class="currency-symbol">€</span>
-                        <input type="number" name="anders_Eigen_risico_val" placeholder="Anders, namelijk...">
-                    </div>
-                    <p class="anders-waarschuwing" id="anders_Eigen_risico_message">We nemen nog contact op voor aanvullende informatie.</p>
-                </div>
-                <div class="form-group">
-                    <label>Wil je bedrijfsschade meeverzekeren?<span class="asterisk">*</span></label>
-                     <div class="radio-group">
-                        <div><input type="radio" id="bedrijfsschade_ja" name="bedrijfsschade_meeverzekeren" value="ja" onclick="toggleConditional('bedrijfsschadeDetails', true)"><label for="bedrijfsschade_ja" class="radio-label">Ja</label></div>
-                        <div><input type="radio" id="bedrijfsschade_nee" name="bedrijfsschade_meeverzekeren" value="nee" checked onclick="toggleConditional('bedrijfsschadeDetails', false)"><label for="bedrijfsschade_nee" class="radio-label">Nee</label></div>
-                    </div>
-                </div>
-                <div id="bedrijfsschadeDetails" class="conditional-section">
-                    <div class="form-group">
-                        <label for="bedrijfsschade_belang">Verzekerd belang bedrijfsschade<span class="asterisk">*</span></label>
-                        <div class="input-group">
-                            <span class="currency-symbol">€</span>
-                            <input type="number" id="bedrijfsschade_belang" name="bedrijfsschade_belang">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="bedrijfsschade_uitkeringstermijn">Uitkeringstermijn (weken)<span class="asterisk">*</span></label>
-                        <input type="number" id="bedrijfsschade_uitkeringstermijn" name="bedrijfsschade_uitkeringstermijn">
-                    </div>
-                </div>
-
-                <div class="form-navigation-buttons">
-                    <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
-                    <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
-                </div>
-            </fieldset>
-
-            <!-- Stap 4: Constructiedetails -->
-            <fieldset class="form-step" data-step-name="Constructie">
-                 <legend>4. Constructiedetails & Specifieke Risico's</legend>
-                <!-- ... (inhoud van stap 4 blijft hetzelfde) ... -->
-                <div class="form-group">
-                    <label for="locatieWerk">Waar wordt het werk gerealiseerd?<span class="asterisk">*</span></label>
-                    <input type="text" id="locatieWerk" name="locatieWerk" required>
-                </div>
-                <div class="form-group">
-                    <label>Aard van gebouw/bouwwerk<span class="asterisk">*</span></label>
-                    <div class="radio-group">
-                        <div><input type="radio" id="aardGebouw_steen" name="aardGebouw" value="steenhard" required onclick="hideLinkedText('aardGebouwAndersText')"><label for="aardGebouw_steen" class="radio-label">Steen/hard</label></div>
-                        <div><input type="radio" id="aardGebouw_metaal" name="aardGebouw" value="metaalhard" onclick="hideLinkedText('aardGebouwAndersText')"><label for="aardGebouw_metaal" class="radio-label">Metaal/hard</label></div>
-                        <div> <!-- Container for radio, label, and inline text -->
-                            <input type="radio" id="aardGebouw_andersRadio" name="aardGebouw" value="anders" onclick="showLinkedText('aardGebouwAndersText')">
-                            <label for="aardGebouw_andersRadio" class="radio-label">Anders, namelijk:</label>
-                            <input type="text" id="aardGebouwAndersText" name="aardGebouwAndersText" class="inline-text-input">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Worden er sloopwerkzaamheden verricht aan dragende constructies?</label>
-                     <div class="radio-group">
-                        <div><input type="radio" id="sloopwerk_ja" name="sloopwerk" value="ja" onclick="toggleConditional('sloopwerkDetails', true)"><label for="sloopwerk_ja" class="radio-label">Ja</label></div>
-                        <div><input type="radio" id="sloopwerk_nee" name="sloopwerk" value="nee" checked onclick="toggleConditional('sloopwerkDetails', false)"><label for="sloopwerk_nee" class="radio-label">Nee</label></div>
-                    </div>
-                </div>
-                <div id="sloopwerkDetails" class="conditional-section">
-                    <div class="form-group">
-                        <label for="sloopwerk_constructies">Welke dragende constructies worden gesloopt?</label>
-                        <textarea id="sloopwerk_constructies" name="sloopwerk_constructies" placeholder="Bijv. muren, kolommen, vloeren..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Is hiervoor door een gekwalificeerd constructeur een schriftelijk sloopadvies opgesteld dat gericht is op het voorkomen van schade aan te behouden zaken?</label>
-                         <div class="radio-group">
-                            <div><input type="radio" id="sloopadvies_ja" name="sloopadvies" value="ja"><label for="sloopadvies_ja" class="radio-label">Ja</label></div>
-                            <div><input type="radio" id="sloopadvies_nee" name="sloopadvies" value="nee"><label for="sloopadvies_nee" class="radio-label">Nee</label></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Vindt er bemaling plaats?</label>
-                     <div class="radio-group">
-                        <div><input type="radio" id="bemaling_ja" name="bemaling" value="ja" onclick="toggleConditional('bemalingDetails', true)"><label for="bemaling_ja" class="radio-label">Ja</label></div>
-                        <div><input type="radio" id="bemaling_nee" name="bemaling" value="nee" checked onclick="toggleConditional('bemalingDetails', false)"><label for="bemaling_nee" class="radio-label">Nee</label></div>
-                    </div>
-                </div>
-                <div id="bemalingDetails" class="conditional-section">
-                    <div class="form-group">
-                        <label>Is hiervoor door een geotechnisch adviseur een schriftelijk bemalingsadvies opgesteld waaruit blijkt dat de omgeving de benodigde grondwaterstandverlaging kan doorstaan met een verwaarloosbare kans op schade?</label>
-                         <div class="radio-group">
-                            <div><input type="radio" id="bemalingsadvies_ja" name="bemalingsadvies" value="ja"><label for="bemalingsadvies_ja" class="radio-label">Ja</label></div>
-                            <div><input type="radio" id="bemalingsadvies_nee" name="bemalingsadvies" value="nee"><label for="bemalingsadvies_nee" class="radio-label">Nee</label></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Wordt er binnen vijf meter langs een bestaande fundering gegraven tot dieper dan die bestaande fundering?</label>
-                     <div class="radio-group">
-                        <div><input type="radio" id="gravenNabijFundering_ja" name="gravenNabijFundering" value="ja" onclick="toggleConditional('gravenNabijFunderingDetails', true)"><label for="gravenNabijFundering_ja" class="radio-label">Ja</label></div>
-                        <div><input type="radio" id="gravenNabijFundering_nee" name="gravenNabijFundering" value="nee" checked onclick="toggleConditional('gravenNabijFunderingDetails', false)"><label for="gravenNabijFundering_nee" class="radio-label">Nee</label></div>
-                    </div>
-                </div>
-                <div id="gravenNabijFunderingDetails" class="conditional-section">
-                    <div class="form-group">
-                        <label>Is hiervoor door een geotechnisch adviseur een schriftelijk uitvoeringsplan opgesteld waaruit blijkt dat deze fundering de ontgraving kan verdragen met een verwaarloosbare kans op schade?</label>
-                         <div class="radio-group">
-                            <div><input type="radio" id="uitvoeringsplanGraven_ja" name="uitvoeringsplanGraven" value="ja"><label for="uitvoeringsplanGraven_ja" class="radio-label">Ja</label></div>
-                            <div><input type="radio" id="uitvoeringsplanGraven_nee" name="uitvoeringsplanGraven" value="nee"><label for="uitvoeringsplanGraven_nee" class="radio-label">Nee</label></div>
-                        </div>
-                    </div>
-                </div>
-                 <div class="form-group">
-                    <label>Is er sprake van de bouw van een kelder of zwembad?</label>
-                     <div class="radio-group">
-                        <div><input type="radio" id="kelderZwembad_ja" name="kelderZwembad" value="ja"><label for="kelderZwembad_ja" class="radio-label">Ja</label></div>
-                        <div><input type="radio" id="kelderZwembad_nee" name="kelderZwembad" value="nee" checked><label for="kelderZwembad_nee" class="radio-label">Nee</label></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Wordt er een paalfundering aangebracht?</label>
-                     <div class="radio-group">
-                        <div><input type="radio" id="paalfundering_ja" name="paalfundering" value="ja" onclick="toggleConditional('paalfunderingDetails', true)"><label for="paalfundering_ja" class="radio-label">Ja</label></div>
-                        <div><input type="radio" id="paalfundering_nee" name="paalfundering" value="nee" checked onclick="toggleConditional('paalfunderingDetails', false)"><label for="paalfundering_nee" class="radio-label">Nee</label></div>
-                    </div>
-                </div>
-                <div id="paalfunderingDetails" class="conditional-section">
-                    <div class="form-group">
-                        <label>Is hiervoor door een geotechnisch adviseur een schriftelijk funderingsadvies opgesteld waaruit blijkt dat de omgeving deze werkzaamheden kan doorstaan met een verwaarloosbare kans op schade?</label>
-                        <div class="radio-group">
-                            <div><input type="radio" id="funderingsadviesPaal_ja" name="funderingsadviesPaal" value="ja"><label for="funderingsadviesPaal_ja" class="radio-label">Ja</label></div>
-                            <div><input type="radio" id="funderingsadviesPaal_nee" name="funderingsadviesPaal" value="nee"><label for="funderingsadviesPaal_nee" class="radio-label">Nee</label></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Welk paalsysteem wordt er toegepast?</label>
-                        <div class="radio-group">
-                            <div><input type="radio" id="paalsysteem_geslagen" name="paalsysteem" value="geslagen_getrild"><label for="paalsysteem_geslagen" class="radio-label">Geslagen/getrild</label></div>
-                            <div><input type="radio" id="paalsysteem_gedrukt" name="paalsysteem" value="gedrukt"><label for="paalsysteem_gedrukt" class="radio-label">Gedrukt</label></div>
-                            <div><input type="radio" id="paalsysteem_geboord" name="paalsysteem" value="geboord"><label for="paalsysteem_geboord" class="radio-label">Geboord</label></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Staan er bouwwerken binnen een afstand van 15 meter van de aan te brengen paalfundering?</label>
-                        <div class="radio-group">
-                            <div><input type="radio" id="bouwwerkenBinnen15m_ja" name="bouwwerkenBinnen15m" value="ja" onclick="toggleConditional('bouwwerkenBinnen15mDetails', true)"><label for="bouwwerkenBinnen15m_ja" class="radio-label">Ja</label></div>
-                            <div><input type="radio" id="bouwwerkenBinnen15m_nee" name="bouwwerkenBinnen15m" value="nee" onclick="toggleConditional('bouwwerkenBinnen15mDetails', false)"><label for="bouwwerkenBinnen15m_nee" class="radio-label">Nee</label></div>
-                        </div>
-                    </div>
-                    <div id="bouwwerkenBinnen15mDetails" class="conditional-section">
-                        <div class="form-group">
-                            <label>Van wie zijn de bouwwerken?</label>
-                            <div class="radio-group">
-                                <div><input type="radio" id="eigenaarBouwwerk_opdrachtgever" name="eigenaarBouwwerk" value="opdrachtgever"><label for="eigenaarBouwwerk_opdrachtgever" class="radio-label">Van opdrachtgever</label></div>
-                                <div><input type="radio" id="eigenaarBouwwerk_anderen" name="eigenaarBouwwerk" value="anderen"><label for="eigenaarBouwwerk_anderen" class="radio-label">Van anderen</label></div>
-                                <div><input type="radio" id="eigenaarBouwwerk_beide" name="eigenaarBouwwerk" value="beide"><label for="eigenaarBouwwerk_beide" class="radio-label">Beide</label></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="afstandDichtstbijzijndeBouwwerk">Op hoeveel meter afstand staat het dichtstbijzijnde bouwwerk?</label>
-                            <div class="input-group">
-                                <input type="number" id="afstandDichtstbijzijndeBouwwerk" name="afstandDichtstbijzijndeBouwwerk" min="0" step="0.1">
-                                <span class="unit-symbol">meter</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Zijn de bouwwerken binnen een afstand van 15 meter ook op palen gefundeerd?</label>
-                            <div class="radio-group">
-                                <div><input type="radio" id="ookOpPalen_ja" name="ookOpPalen" value="ja" onclick="toggleConditional('andereFunderingswijzeDetails', false); hideLinkedText('andereFunderingswijze');"><label for="ookOpPalen_ja" class="radio-label">Ja</label></div>
-                                <div> <!-- Modified this radio's onclick to also control the text field directly -->
-                                    <input type="radio" id="ookOpPalen_nee" name="ookOpPalen" value="nee" onclick="toggleConditional('andereFunderingswijzeDetails', true); showLinkedText('andereFunderingswijze');">
-                                    <label for="ookOpPalen_nee" class="radio-label">Nee</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="andereFunderingswijzeDetails" class="conditional-section">
-                             <div class="form-group"> <!-- This form-group wraps the text input for "andere funderingswijze" -->
-                                <label for="andereFunderingswijze">Zo nee, welke funderingswijze is er dan toegepast?</label>
-                                <input type="text" id="andereFunderingswijze" name="andereFunderingswijze" placeholder="Bijv. op staal, strokenfundering..." class="inline-text-input"> <!-- Applied class here too -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Worden er grondkerende constructies (zoals een damwand of berlinerwand) aangebracht?</label>
-                     <div class="radio-group">
-                        <div><input type="radio" id="grondkering_ja" name="grondkering" value="ja" onclick="toggleConditional('grondkeringDetails', true)"><label for="grondkering_ja" class="radio-label">Ja</label></div>
-                        <div><input type="radio" id="grondkering_nee" name="grondkering" value="nee" checked onclick="toggleConditional('grondkeringDetails', false)"><label for="grondkering_nee" class="radio-label">Nee</label></div>
-                    </div>
-                </div>
-                <div id="grondkeringDetails" class="conditional-section">
-                     <div class="form-group">
-                        <label>Is hiervoor door een geotechnisch adviseur een schriftelijk advies opgesteld waaruit blijkt dat de omgeving deze werkzaamheden kan doorstaan met een verwaarloosbare kans op schade?</label>
-                         <div class="radio-group">
-                            <div><input type="radio" id="adviesGrondkering_ja" name="adviesGrondkering" value="ja"><label for="adviesGrondkering_ja" class="radio-label">Ja</label></div>
-                            <div><input type="radio" id="adviesGrondkering_nee" name="adviesGrondkering" value="nee"><label for="adviesGrondkering_nee" class="radio-label">Nee</label></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Is er sprake van funderingsherstel of verbetering van de fundering?</label>
-                     <div class="radio-group">
-                        <div><input type="radio" id="funderingsherstel_ja" name="funderingsherstel" value="ja"><label for="funderingsherstel_ja" class="radio-label">Ja</label></div>
-                        <div><input type="radio" id="funderingsherstel_nee" name="funderingsherstel" value="nee" checked><label for="funderingsherstel_nee" class="radio-label">Nee</label></div>
-                    </div>
-                </div>
-
-                <div class="form-navigation-buttons">
-                    <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
-                    <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
-                </div>
-            </fieldset>
-
-            <!-- Stap 5: Uitvoering & Aannemer -->
-             <fieldset class="form-step" data-step-name="Uitvoering">
-                 <legend>5. Uitvoering & Aannemer</legend>
-                <!-- ... (inhoud van stap 5 blijft hetzelfde) ... -->
-                 <div class="form-group">
-                    <label>Dient er een bedrag voor arbeidsloon meeverzekerd te worden?</label>
-                     <div class="radio-group">
-                        <div><input type="radio" id="arbeidsloon_ja" name="arbeidsloon_meeverzekeren" value="ja" onclick="toggleConditional('arbeidsloonDetails', true)"><label for="arbeidsloon_ja" class="radio-label">Ja</label></div>
-                        <div><input type="radio" id="arbeidsloon_nee" name="arbeidsloon_meeverzekeren" value="nee" checked onclick="toggleConditional('arbeidsloonDetails', false)"><label for="arbeidsloon_nee" class="radio-label">Nee</label></div>
-                    </div>
-                </div>
-                <div id="arbeidsloonDetails" class="conditional-section">
-                    <div class="form-group">
-                        <label for="arbeidsloon_som">Verzekerde som arbeidsloon</label>
-                        <div class="input-group">
-                            <span class="currency-symbol">€</span>
-                            <input type="number" id="arbeidsloon_som" name="arbeidsloon_som">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Wordt het werk door een aannemer uitgevoerd?</label>
-                    <div class="radio-group">
-                        <div><input type="radio" id="werkDoorAannemer_nee" name="werkDoorAannemer" value="nee" onclick="toggleConditional('aannemerDetailopmerking', true);toggleConditional('aannemerDetailsContainer', false)"><label for="werkDoorAannemer_nee" class="radio-label">Nee</label></div>
-                        <div><input type="radio" id="werkDoorAannemer_geheel" name="werkDoorAannemer" value="geheel" checked onclick="toggleConditional('aannemerDetailsContainer', true);toggleConditional('aannemerDetailopmerking', false)"><label for="werkDoorAannemer_geheel" class="radio-label">Geheel</label></div>
-                        <div><input type="radio" id="werkDoorAannemer_gedeeltelijk" name="werkDoorAannemer" value="gedeeltelijk" onclick="toggleConditional('aannemerDetailsContainer', true);toggleConditional('aannemerDetailopmerking', false)"><label for="werkDoorAannemer_gedeeltelijk" class="radio-label">Gedeeltelijk</label></div>
-                    </div>
-                </div>
-
-                <div id="aannemerDetailopmerking" class="conditional-section">
-                    <div class="form-group">
-                        <label for="aannemer_opmerking">Opmerking</label>
-                        <textarea id="aannemer_opmerking" name="aannemer_opmerking" placeholder="Bijv. Waarom wordt het werk door de aannemer niet uitgevoerd?"></textarea>
-                    </div>
-                </div>
-                <div id="aannemerDetailsContainer" class="conditional-section">
-                    <div id="aannemer-forms-container">
-                        <!-- Eerste aannemer-sectie (initieel aanwezig) -->
-                        <div class="aannemer-section" data-aannemer-index="1">
-                            <h4>Aannemer 1</h4>
-                            <div class="form-group">
-                                <label for="aannemer1_naam">Naam van de aannemer<span class="asterisk">*</span></label>
-                                <input type="text" id="aannemer1_naam" name="aannemer1_naam">
-                            </div>
-                            <div class="form-group">
-                                <label for="aannemer1_adres">Adresgegevens aannemer<span class="asterisk">*</span></label>
-                                <input type="text" id="aannemer1_adres" name="aannemer1_adres" placeholder="Straat Huisnr, Postcode Plaats">
-                            </div>
-                            <div class="form-group">
-                                <label for="aannemer1_telefoon">Telefoonnummer aannemer</label>
-                                <input type="tel" id="aannemer1_telefoon" name="aannemer1_telefoon">
-                            </div>
-                            <div class="form-group">
-                                <label>Heeft deze aannemer een Bedrijfsaansprakelijkheidsverzekering (AVB)?<span class="asterisk">*</span></label>
-                                <div class="radio-group">
-                                    <div><input type="radio" id="aannemer1_avb_ja" name="aannemer1_avb" value="ja" onclick="toggleConditional('aannemer1_avbDetails', true)"><label for="aannemer1_avb_ja" class="radio-label">Ja</label></div>
-                                    <div><input type="radio" id="aannemer1_avb_nee" name="aannemer1_avb" value="nee" onclick="toggleConditional('aannemer1_avbDetails', false)"><label for="aannemer1_avb_nee" class="radio-label">Nee</label></div>
-                                </div>
-                            </div>
-                            <div id="aannemer1_avbDetails" class="conditional-section">
-                                <div class="form-group">
-                                    <label for="aannemer1_avb_maatschappij">Bij welke maatschappij?</label>
-                                    <input type="text" id="aannemer1_avb_maatschappij" name="aannemer1_avb_maatschappij">
-                                </div>
-                                <div class="form-group">
-                                    <label for="aannemer1_avb_polisnr">Polisnummer</label>
-                                    <input type="text" id="aannemer1_avb_polisnr" name="aannemer1_avb_polisnr">
-                                </div>
-                                 <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="aannemer1_avb_bedrag">Verzekerd bedrag</label>
-                                        <div class="input-group"><span class="currency-symbol">€</span><input type="number" id="aannemer1_avb_bedrag" name="aannemer1_avb_bedrag" step="any"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="aannemer1_avb_eigenrisico">Eigen risico p.g.</label>
-                                        <div class="input-group"><span class="currency-symbol">€</span><input type="number" id="aannemer1_avb_eigenrisico" name="aannemer1_avb_eigenrisico" step="any"></div>
-                                    </div>
-                                </div>
-                            </div>
-                             <!-- Verwijderknop wordt hier niet standaard getoond, alleen voor extra aannemers -->
-                        </div>
-                        <!-- Dynamisch toegevoegde aannemers komen hier -->
-                    </div>
-                    <button type="button" onclick="AannemerToevoegen()" class="cta-button" style="margin-top: 5px;">Extra Aannemer Toevoegen</button>
-                </div>
-                 <div class="form-group">
-                    <label for="overige_opmerkingen_beoordeling">Overige opmerkingen voor beoordeling</label>
-                    <textarea id="overige_opmerkingen_beoordeling" name="overige_opmerkingen_beoordeling"></textarea>
-                </div>
-
-                <div class="form-navigation-buttons">
-                    <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
-                    <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
-                </div>
-            </fieldset>
-
-            <!-- Stap 6: Afronding & Verklaringen -->
-            <fieldset class="form-step" data-step-name="Afronding"> <!-- AANGEPAST -->
-                 <legend>6. Afronding & Verklaringen</legend> <!-- AANGEPAST -->
-                
-                 <div class="form-group">
-                    <label>Is deze verzekering momenteel elders ondergebracht?</label>
-                     <div class="radio-group">
-                        <div><input type="radio" id="elders_ondergebracht_ja" name="elders_ondergebracht" value="ja" onclick="toggleConditional('eldersOndergebrachtDetails', true)"><label for="elders_ondergebracht_ja" class="radio-label">Ja</label></div>
-                        <div><input type="radio" id="elders_ondergebracht_nee" name="elders_ondergebracht" value="nee" checked onclick="toggleConditional('eldersOndergebrachtDetails', false)"><label for="elders_ondergebracht_nee" class="radio-label">Nee</label></div>
-                    </div>
-                </div>
-                <div id="eldersOndergebrachtDetails" class="conditional-section">
-                    <div class="form-group">
-                        <label for="vorige_maatschappij">Maatschappij</label>
-                        <input type="text" id="vorige_maatschappij" name="vorige_maatschappij">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="vorige_polisnummer">Polisnummer</label>
-                            <input type="text" id="vorige_polisnummer" name="vorige_polisnummer">
-                        </div>
-                        <div class="form-group">
-                            <label for="vorige_afloopdatum">Afloopdatum</label>
-                            <input type="date" id="vorige_afloopdatum" name="vorige_afloopdatum">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group" style="margin-top: 25px;">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="verklaring_waarheid" required>
-                        Ik verklaar alle gegevens naar waarheid te hebben ingevuld.<span class="asterisk">*</span>
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="verklaring_wijziging_ubo" required>
-                        Ik verklaar wijzigingen ten aanzien van de UBO's (indien van toepassing) direct te melden.<span class="asterisk">*</span>
-                    </label>
-                </div>
-
-                <div class="form-navigation-buttons">
-                    <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
-                    <button type="submit" class="nav-button submit-button">Offerte Aanvragen</button>
-                </div>
-            </fieldset>
-        </form>
-        <h1>Indien u vragen heeft kunt u contact met ons opnemen via </h1>
-    </div>
+    </footer>
 
     <script>
-        
-        // Zorg ervoor dat deze functie wordt aangeroepen bij het wisselen van type aanvrager
-        document.querySelectorAll('input[name="aanvragerType"]').forEach(radio => {
-            radio.addEventListener('change', function () {
-                toggleBtwField(this.value);
-            });
+            // ... (jouw bestaande JavaScript code) ...
+
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('header nav'); // Selecteert het <nav> element
+
+    if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', () => {
+            const isOpen = mainNav.classList.toggle('menu-open');
+            menuToggle.classList.toggle('active'); // Voor de X animatie
+            menuToggle.setAttribute('aria-expanded', isOpen);
+            
+            // Voorkom scrollen van de body als menu open is
+            if (isOpen) {
+                document.body.classList.add('menu-is-open');
+            } else {
+                document.body.classList.remove('menu-is-open');
+            }
         });
 
-        // Initialiseer de zichtbaarheid bij het laden van de pagina
-        document.addEventListener('DOMContentLoaded', function () {
-            const selectedType = document.querySelector('input[name="aanvragerType"]:checked');
-            if (selectedType) {
-                toggleBtwField(selectedType.value);
-            }
+        // Sluit menu als op een link wordt geklikt (voor single page navigatie)
+        const navLinksMobile = mainNav.querySelectorAll('a');
+        navLinksMobile.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('menu-open')) {
+                    mainNav.classList.remove('menu-open');
+                    menuToggle.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('menu-is-open');
+                }
+            });
         });
+    }
+        // Update copyright jaar
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-    document.getElementById('duurBouwMaanden').addEventListener('input', function () {
-            const waarschuwing = document.querySelector('.duurBouwWaarschuwing'); // Corrected selector
-            if (parseInt(this.value) > 12) { // Ensure it's parsed as integer
-                waarschuwing.style.display = 'block';
-            } else {
-                waarschuwing.style.display = 'none';
-            }
-    });
-        // --- FUNCTIES VOOR STAP 1 & UBO ---
-        function toggleAanvragerType(type) {
-            const zakelijkContainer = document.getElementById('zakelijkFieldsContainer');
-            const particulierContainer = document.getElementById('particulierFieldsContainer');
-            const uboSectieStap1 = document.getElementById('uboSectieStap1');
-            
-            const zakelijkFieldsQuery = zakelijkContainer.querySelectorAll('input:not([id^="ubo"]), select:not([id^="ubo"]), textarea:not([id^="ubo"])'); // Exclusief UBO velden hier
-            const particulierFieldsQuery = particulierContainer.querySelectorAll('input, select, textarea');
-
-            if (type === 'zakelijk') {
-                zakelijkContainer.style.display = 'block';
-                particulierContainer.style.display = 'none';
-                setFieldsRequired(zakelijkFieldsQuery, true);
-                setFieldsRequired(particulierFieldsQuery, false);
-                checkRechtsvormForUbo(); // Controleer direct of UBO getoond moet worden
-            } else if (type === 'particulier') {
-                zakelijkContainer.style.display = 'none';
-                particulierContainer.style.display = 'block';
-                setFieldsRequired(zakelijkFieldsQuery, false);
-                setFieldsRequired(particulierFieldsQuery, true);
-                if (uboSectieStap1) uboSectieStap1.style.display = 'none'; // Verberg UBO sectie expliciet
-                setFieldsRequiredForUBOSectie(false); // Deactiveer alle UBO velden
-            } else { 
-                zakelijkContainer.style.display = 'none';
-                particulierContainer.style.display = 'none';
-                if (uboSectieStap1) uboSectieStap1.style.display = 'none';
-                setFieldsRequired(zakelijkFieldsQuery, false);
-                setFieldsRequired(particulierFieldsQuery, false);
-                setFieldsRequiredForUBOSectie(false);
-            }
-            saveFormData(); 
-        }
-
-        function checkRechtsvormForUbo() {
-            const rechtsvormSelect = document.getElementById('rechtsvorm');
-            const uboSectieStap1 = document.getElementById('uboSectieStap1');
-            if (!rechtsvormSelect || !uboSectieStap1 || document.getElementById('aanvragerTypeParticulier').checked) {
-                if (uboSectieStap1) uboSectieStap1.style.display = 'none';
-                setFieldsRequiredForUBOSectie(false);
-                return;
-            }
-
-            const gekozenRechtsvorm = rechtsvormSelect.value;
-            // Definieer rechtsvormen die UBO-plichtig zijn. Voorbeeld: Eenmanszaak niet.
-            const uboPlichtigeRechtsvormen = ['bv', 'vof', 'nv', 'cv', 'maatschap', 'stichting', 'vereniging', 'anders']; 
-
-            if (uboPlichtigeRechtsvormen.includes(gekozenRechtsvorm)) {
-                uboSectieStap1.style.display = 'block';
-                setFieldsRequiredForUBOSectie(true);
-            } else {
-                uboSectieStap1.style.display = 'none';
-                setFieldsRequiredForUBOSectie(false);
-            }
-            saveFormData();
-        }
-
-        function setFieldsRequired(fields, required) {
-            fields.forEach(field => {
-                let isMarkedAsRequired = false;
-                const label = document.querySelector(`label[for="${field.id}"]`);
-                if (label && label.querySelector('.asterisk')) {
-                    isMarkedAsRequired = true;
-                }
-                if (field.type === 'radio') {
-                    const radioGroup = field.closest('.form-group');
-                    const groupLabel = radioGroup.querySelector('label:not(.radio-label)');
-                     if (groupLabel && groupLabel.querySelector('.asterisk')) {
-                        isMarkedAsRequired = true;
-                    }
-                }
-
-                if (required && isMarkedAsRequired) {
-                    field.required = true;
-                    field.disabled = false;
-                } else {
-                    field.required = false;
-                    // field.disabled = true; // Keep disabled if parent is hidden, enable if parent shown but not required
-                }
-                 // Ensure field is enabled if it's part of a visible container, even if not required
-                if (required) field.disabled = false;
-                else { // not required
-                    // Disable only if its main container (zakelijk/particulier) is hidden
-                    const zakelijkContainer = document.getElementById('zakelijkFieldsContainer');
-                    const particulierContainer = document.getElementById('particulierFieldsContainer');
-                    
-                    const zakelijkVisible = zakelijkContainer && zakelijkContainer.style.display === 'block';
-                    const particulierVisible = particulierContainer && particulierContainer.style.display === 'block';
-
-                    if (field.closest('#zakelijkFieldsContainer') && !zakelijkVisible) field.disabled = true;
-                    else if (field.closest('#particulierFieldsContainer') && !particulierVisible) field.disabled = true;
-                    else field.disabled = false; // Enable if in visible section, even if not required.
-                }
-            });
-        }
-
-
-        function setFieldsRequiredForUBOSectie(makeRequired) {
-            const uboContainer = document.getElementById('ubo-forms-container');
-            if (!uboContainer) return;
-
-            const uboVelden = uboContainer.querySelectorAll('input, select, textarea');
-            uboVelden.forEach(field => {
-                // Bepaal of het veld standaard 'required' is binnen een UBO sectie
-                // Dit is simpeler: alle UBO velden met een asterisk in het label zijn verplicht als de sectie actief is.
-                let isMarkedAsRequired = false;
-                const label = field.closest('.form-group, .form-row')?.querySelector(`label[for="${field.id}"]`);
-                if (label && label.querySelector('.asterisk')) {
-                    isMarkedAsRequired = true;
-                }
-                 // Voor radio groepen binnen UBO
-                if (field.type === 'radio' && field.name.startsWith('ubo') && field.name.endsWith('_type')) {
-                     isMarkedAsRequired = true; // Type UBO is altijd verplicht in een actieve UBO sectie
-                }
-
-
-                if (makeRequired && isMarkedAsRequired) {
-                    field.required = true;
-                    field.disabled = false;
-                } else {
-                    field.required = false;
-                    field.disabled = !makeRequired; // disable if not makeRequired, enable if makeRequired but not marked
-                    if (!makeRequired) { // If section is hidden, clear values
-                        if (field.type === 'radio' || field.type === 'checkbox') field.checked = false;
-                        else if (field.tagName === 'SELECT') field.selectedIndex = 0;
-                        else if (field.type !== 'button') field.value = '';
-                    }
-                }
-                 if (makeRequired && !isMarkedAsRequired) { // If UBO section is visible, but field is optional
-                    field.disabled = false;
-                 }
-            });
-        }
-
-        function UBOtoevoegen() {
-            const uboSectieStap1 = document.getElementById('uboSectieStap1');
-            if (!uboSectieStap1 || uboSectieStap1.style.display === 'none') {
-                // console.log("UBO sectie is niet zichtbaar, toevoegen niet mogelijk.");
-                return;
-            }
-
-            const uboContainer = document.getElementById('ubo-forms-container');
-            if (!uboContainer) {
-                console.error('Container element met id "ubo-forms-container" niet gevonden!');
-                return;
-            }
-            const existingUbos = uboContainer.querySelectorAll('.ubo-section');
-            const nextUboNumber = existingUbos.length + 1;
-    
-            if (nextUboNumber > 10) {
-                alert("Je kunt maximaal 10 UBO-secties toevoegen.");
-                return;
-            }
-    
-            const templateHtml = `
-                <div class="ubo-section" data-ubo-index="${nextUboNumber}">
-                    <h4>UBO ${nextUboNumber} / Statutair Bestuurder ${nextUboNumber}</h4>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="ubo${nextUboNumber}_voornamen">Volledige voornamen<span class="asterisk"></span></label>
-                            <input type="text" id="ubo${nextUboNumber}_voornamen" name="ubo${nextUboNumber}_voornamen">
-                        </div>
-                        <div class="form-group" style="flex: 0.5;">
-                            <label for="ubo${nextUboNumber}_tussenvoegsel">Tussenvoegsel(s)</label>
-                            <input type="text" id="ubo${nextUboNumber}_tussenvoegsel" name="ubo${nextUboNumber}_tussenvoegsel">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="ubo${nextUboNumber}_achternaam">Eigen achternaam<span class="asterisk"></span></label>
-                        <input type="text" id="ubo${nextUboNumber}_achternaam" name="ubo${nextUboNumber}_achternaam">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="ubo${nextUboNumber}_geboortedatum">Geboortedatum<span class="asterisk"></span></label>
-                            <input type="date" id="ubo${nextUboNumber}_geboortedatum" name="ubo${nextUboNumber}_geboortedatum">
-                        </div>
-                        <div class="form-group">
-                            <label for="ubo${nextUboNumber}_woonland">Woonland<span class="asterisk"></span></label>
-                            <input type="text" id="ubo${nextUboNumber}_woonland" name="ubo${nextUboNumber}_woonland">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Type UBO<span class="asterisk">*</span></label>
-                        <div class="radio-group">
-                            <div><input type="radio" id="ubo${nextUboNumber}_type_eigendom" name="ubo${nextUboNumber}_type" value="eigendom"><label for="ubo${nextUboNumber}_type_eigendom" class="radio-label">Op basis van eigendom</label></div>
-                            <div><input type="radio" id="ubo${nextUboNumber}_type_zeggenschap" name="ubo${nextUboNumber}_type" value="zeggenschap"><label for="ubo${nextUboNumber}_type_zeggenschap" class="radio-label">Op basis van zeggenschap</label></div>
-                            <div><input type="radio" id="ubo${nextUboNumber}_type_statutair" name="ubo${nextUboNumber}_type" value="statutair"><label for="ubo${nextUboNumber}_type_statutair" class="radio-label">Op basis van (statutair) bestuur</label></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="ubo${nextUboNumber}_adres">Volledige adres<span class="asterisk">*</span></label>
-                        <input type="text" id="ubo${nextUboNumber}_adres" name="ubo${nextUboNumber}_adres" placeholder="Straatnaam Huisnr, Postcode Plaats">
-                    </div>
-                    <button type="button" onclick="verwijderUBO(this)" class="remove-ubo-button">Verwijder UBO ${nextUboNumber}</button>
-                </div>
-            `;
-    
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = templateHtml.trim(); // No need to replace IDs, template uses nextUboNumber
-            const newUboElement = tempDiv.firstElementChild;
-    
-            if (nextUboNumber > 1) { 
-                const hrSeparator = document.createElement('hr');
-                hrSeparator.style.margin = '25px 0';
-                hrSeparator.style.borderColor = '#eee'; // var(--form-border-color) might be better
-                hrSeparator.classList.add('ubo-separator');
-                uboContainer.appendChild(hrSeparator);
-            }
-    
-            uboContainer.appendChild(newUboElement);
-            setFieldsRequiredForUBOSectie(true); // Zorg dat nieuwe velden correct ge(de)activeerd zijn
-    
-            newUboElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            const firstInput = newUboElement.querySelector('input[type="text"], input[type="date"]');
-            if (firstInput) {
-                 firstInput.focus();
-            }
-            saveFormData();
-        }
-    
-        function verwijderUBO(buttonElement) {
-            const uboSection = buttonElement.closest('.ubo-section');
-            if (uboSection) {
-                if (confirm('Weet je zeker dat je deze UBO wilt verwijderen?')) {
-                    const prevElement = uboSection.previousElementSibling;
-                    uboSection.remove();
-                    if (prevElement && prevElement.tagName === 'HR' && prevElement.classList.contains('ubo-separator')) {
-                        prevElement.remove();
-                    }
-                    hernummerUbos();
-                    saveFormData();
-                }
-            }
-        }
-    
-        function hernummerUbos() {
-            const uboContainer = document.getElementById('ubo-forms-container');
-            if (!uboContainer) return;
-            const existingUbos = uboContainer.querySelectorAll('.ubo-section');
-            
-            existingUbos.forEach((uboElement, index) => {
-                const currentNumber = index + 1;
-                uboElement.dataset.uboIndex = currentNumber; // Update data-ubo-index
-
-                const h4 = uboElement.querySelector('h4');
-                if (h4) {
-                    h4.textContent = `UBO ${currentNumber} / Statutair Bestuurder ${currentNumber}`;
-                }
-
-                // Hernummeren van IDs, names, fors
-                const fields = uboElement.querySelectorAll('[id*="ubo"], [name*="ubo"], [for*="ubo"]');
-                const oldPrefixRegex = new RegExp(`ubo\\d+_`, 'g');
-                const oldIdNumRegex = new RegExp(`ubo\\d+(_type_eigendom|_type_zeggenschap|_type_statutair)`, 'g'); // voor radio ids
-                const newPrefix = `ubo${currentNumber}_`;
-
-                fields.forEach(field => {
-                    if (field.id)   field.id = field.id.replace(oldPrefixRegex, newPrefix).replace(oldIdNumRegex, `ubo${currentNumber}$1`);
-                    if (field.name) field.name = field.name.replace(oldPrefixRegex, newPrefix);
-                    if (field.htmlFor) field.htmlFor = field.htmlFor.replace(oldPrefixRegex, newPrefix).replace(oldIdNumRegex, `ubo${currentNumber}$1`);
-                });
-
-                const removeButton = uboElement.querySelector('.remove-ubo-button');
-                if (removeButton) {
-                     removeButton.textContent = `Verwijder UBO ${currentNumber}`;
-                }
-            });
-             // Zorg dat de required status correct is na hernummeren (indien nodig, maar setFieldsRequiredForUBOSectie zou dit al moeten afvangen)
-            const uboSectieStap1 = document.getElementById('uboSectieStap1');
-            if (uboSectieStap1 && uboSectieStap1.style.display === 'block') {
-                 setFieldsRequiredForUBOSectie(true);
-            }
-        }
-    
-    
         // Header schaduw bij scrollen
-        const mainHeader = document.getElementById('mainHeader');
-        if (mainHeader) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    mainHeader.classList.add('scrolled');
-                } else {
-                    mainHeader.classList.remove('scrolled');
-                }
-            });
-        }
-    
-        // JavaScript voor het multi-step formulier
-        let currentStep = 0;
-        const steps = Array.from(document.querySelectorAll('.form-step'));
-        const progressBar = document.getElementById('progressBar');
-        const progressLine = document.getElementById('progressLine');
-        const stepIndicators = [];
-
-         // Aannemer Functions
-         let aannemerCount = 1; 
-        function AannemerToevoegen() {
-            const container = document.getElementById('aannemer-forms-container');
-            if (!container) return;
-
-            const existingAannemers = container.querySelectorAll('.aannemer-section');
-            aannemerCount = existingAannemers.length + 1;
-
-            if (aannemerCount > 5) { 
-                alert("U kunt maximaal 5 aannemers opgeven.");
-                return;
-            }
-
-            const newIdPrefix = `aannemer${aannemerCount}_`;
-            const newAvbDetailsId = `${newIdPrefix}avbDetails`;
-
-            const newSection = document.createElement('div');
-            newSection.classList.add('aannemer-section');
-            newSection.dataset.aannemerIndex = aannemerCount; 
-
-            newSection.innerHTML = `
-                <h4>Aannemer ${aannemerCount}</h4>
-                <div class="form-group">
-                    <label for="${newIdPrefix}naam">Naam van de aannemer<span class="asterisk">*</span></label>
-                    <input type="text" id="${newIdPrefix}naam" name="${newIdPrefix}naam">
-                </div>
-                <div class="form-group">
-                    <label for="${newIdPrefix}adres">Adresgegevens aannemer<span class="asterisk">*</span></label>
-                    <input type="text" id="${newIdPrefix}adres" name="${newIdPrefix}adres" placeholder="Straat Huisnr, Postcode Plaats">
-                </div>
-                <div class="form-group">
-                    <label for="${newIdPrefix}telefoon">Telefoonnummer aannemer</label>
-                    <input type="tel" id="${newIdPrefix}telefoon" name="${newIdPrefix}telefoon">
-                </div>
-                <div class="form-group">
-                    <label>Heeft deze aannemer een Bedrijfsaansprakelijkheidsverzekering (AVB)?<span class="asterisk">*</span></label>
-                    <div class="radio-group">
-                        <div><input type="radio" id="${newIdPrefix}avb_ja" name="${newIdPrefix}avb" value="ja" onclick="toggleConditional('${newAvbDetailsId}', true)"><label for="${newIdPrefix}avb_ja" class="radio-label">Ja</label></div>
-                        <div><input type="radio" id="${newIdPrefix}avb_nee" name="${newIdPrefix}avb" value="nee" onclick="toggleConditional('${newAvbDetailsId}', false)" checked><label for="${newIdPrefix}avb_nee" class="radio-label">Nee</label></div>
-                    </div>
-                </div>
-                <div id="${newAvbDetailsId}" class="conditional-section">
-                    <div class="form-group">
-                        <label for="${newIdPrefix}avb_maatschappij">Bij welke maatschappij?</label>
-                        <input type="text" id="${newIdPrefix}avb_maatschappij" name="${newIdPrefix}avb_maatschappij">
-                    </div>
-                    <div class="form-group">
-                        <label for="${newIdPrefix}avb_polisnr">Polisnummer</label>
-                        <input type="text" id="${newIdPrefix}avb_polisnr" name="${newIdPrefix}avb_polisnr">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="${newIdPrefix}avb_bedrag">Verzekerd bedrag</label>
-                            <div class="input-group"><span class="currency-symbol">€</span><input type="number" id="${newIdPrefix}avb_bedrag" name="${newIdPrefix}avb_bedrag" step="any"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="${newIdPrefix}avb_eigenrisico">Eigen risico p.g.</label>
-                            <div class="input-group"><span class="currency-symbol">€</span><input type="number" id="${newIdPrefix}avb_eigenrisico" name="${newIdPrefix}avb_eigenrisico" step="any"></div>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="remove-aannemer-button" onclick="verwijderAannemer(this)">Verwijder Aannemer ${aannemerCount}</button>
-            `;
-            container.appendChild(newSection);
-            
-            toggleConditional(newAvbDetailsId, false); 
-            
-            const aannemerContainer = document.getElementById('aannemerDetailsContainer');
-            if (aannemerContainer && aannemerContainer.style.display === 'block') {
-                setRequiredForAannemerSection(newSection, true);
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { // 50px scroll
+                header.classList.add('scrolled');
             } else {
-                 setRequiredForAannemerSection(newSection, false); 
+                header.classList.remove('scrolled');
             }
-
-            const firstInput = newSection.querySelector('input, select, textarea');
-            if (firstInput) firstInput.focus();
-            newSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            saveFormData();
-        }
-
-        function verwijderAannemer(buttonElement) {
-            const sectionToRemove = buttonElement.closest('.aannemer-section');
-            if (sectionToRemove) {
-                sectionToRemove.remove();
-                hernummerAannemers();
-                saveFormData();
-            }
-        }
-
-        function hernummerAannemers() {
-            const container = document.getElementById('aannemer-forms-container');
-            if (!container) return;
-            const sections = container.querySelectorAll('.aannemer-section');
-            aannemerCount = sections.length;
-
-            sections.forEach((section, index) => {
-                const newNumber = index + 1;
-                const oldPrefixRegex = /aannemer\d+_/g;
-                const newPrefix = `aannemer${newNumber}_`;
-                const newAvbDetailsId = `${newPrefix}avbDetails`;
-
-                section.dataset.aannemerIndex = newNumber;
-                const h4 = section.querySelector('h4');
-                if (h4) h4.textContent = `Aannemer ${newNumber}`;
-
-                section.querySelectorAll('[id], [name], [for]').forEach(el => {
-                    if (el.id && el.id.match(oldPrefixRegex)) el.id = el.id.replace(oldPrefixRegex, newPrefix);
-                    if (el.name && el.name.match(oldPrefixRegex)) el.name = el.name.replace(oldPrefixRegex, newPrefix);
-                    if (el.htmlFor && el.htmlFor.match(oldPrefixRegex)) el.htmlFor = el.htmlFor.replace(oldPrefixRegex, newPrefix);
-                });
-                
-                const avbJaRadio = section.querySelector(`input[id^="${newPrefix}avb_ja"]`);
-                if (avbJaRadio) avbJaRadio.setAttribute('onclick', `toggleConditional('${newAvbDetailsId}', true)`);
-                const avbNeeRadio = section.querySelector(`input[id^="${newPrefix}avb_nee"]`);
-                if (avbNeeRadio) avbNeeRadio.setAttribute('onclick', `toggleConditional('${newAvbDetailsId}', false)`);
-
-
-                const removeButton = section.querySelector('.remove-aannemer-button');
-                if (removeButton) removeButton.textContent = `Verwijder Aannemer ${newNumber}`;
-            });
-            if (sections.length === 0 && document.getElementById('aannemerDetailsContainer')?.style.display === 'block') {
-                 AannemerToevoegen(); 
-            }
-        }
-
-        function setRequiredForAannemerSection(sectionElement, required) {
-            const inputs = sectionElement.querySelectorAll('input[name^="aannemer"], select[name^="aannemer"], textarea[name^="aannemer"]');
-            inputs.forEach(input => {
-                const label = sectionElement.querySelector(`label[for="${input.id}"]`);
-                let isMarkedAsRequired = label && label.querySelector('.asterisk');
-
-                if (isMarkedAsRequired) {
-                    if (required) {
-                        input.setAttribute('required', '');
-                        input.disabled = false;
-                    } else {
-                        input.removeAttribute('required');
-                        input.disabled = true;
-                    }
-                } else { // Not marked as required (e.g. phone, conditional AVB fields)
-                     input.disabled = !required; // Disable if main aannemer section not required, enable if it is
-                }
-            });
-            const avbRadios = sectionElement.querySelectorAll(`input[name$="_avb"]`); 
-            if (required) {
-                 avbRadios.forEach(r => { r.setAttribute('required',''); r.disabled = false; });
-            } else {
-                 avbRadios.forEach(r => { r.removeAttribute('required'); r.disabled = true; });
-            }
-        }
-    
-        function initializeProgressBar() {
-            steps.forEach((step, index) => {
-                const stepIndicator = document.createElement('div');
-                stepIndicator.classList.add('progress-step');
-    
-                const stepNumberSpan = document.createElement('span');
-                stepNumberSpan.classList.add('step-number');
-                stepNumberSpan.textContent = index + 1;
-                stepIndicator.appendChild(stepNumberSpan);
-    
-                const stepName = step.dataset.stepName || `Stap ${index + 1}`;
-                const tooltip = document.createElement('span');
-                tooltip.classList.add('tooltip-text');
-                tooltip.textContent = stepName;
-                stepIndicator.appendChild(tooltip);
-    
-                progressBar.appendChild(stepIndicator);
-                stepIndicators.push(stepIndicator);
-            });
-            updateProgressBar();
-        }
-    
-        function updateProgressBar() {
-            stepIndicators.forEach((indicator, index) => {
-                indicator.classList.remove('active', 'completed');
-                const stepNumberElement = indicator.querySelector('.step-number');
-                if (stepNumberElement) stepNumberElement.style.display = 'inline-block';
-                indicator.style.backgroundColor = 'var(--progress-step-inactive-bg)';
-    
-                if (index === currentStep) {
-                    indicator.classList.add('active');
-                    indicator.style.backgroundColor = 'var(--progress-step-active-bg)';
-                }
-                if (index < currentStep) {
-                    indicator.classList.add('completed');
-                    if (stepNumberElement) stepNumberElement.style.display = 'none';
-                }
-            });
-            const progressPercentage = (steps.length > 1) ? (currentStep / (steps.length - 1)) * 100 : 0;
-            progressLine.style.width = `${progressPercentage}%`;
-        }
-    
-        function showStep(stepIndex) {
-            steps.forEach((step, index) => {
-                step.classList.toggle('active', index === stepIndex);
-            });
-            if (progressBar) {
-                 window.scrollTo({ top: progressBar.offsetTop - 20, behavior: 'smooth' });
-            }
-            updateProgressBar();
-        }
-    
-        function validateCurrentStep() {
-            const currentStepFields = steps[currentStep].querySelectorAll('[required]:not(:disabled)');
-            let allValid = true;
-            currentStepFields.forEach(field => {
-                let isVisible = false; 
-                let fieldContainer = field.closest('#zakelijkFieldsContainer, #particulierFieldsContainer, #uboSectieStap1, .conditional-section, .aannemer-section');
-                
-                if (fieldContainer) {
-                     // Check if any parent up to the current step fieldset is hidden
-                    let tempParent = fieldContainer;
-                    isVisible = true;
-                    while(tempParent && tempParent !== steps[currentStep] && tempParent !== document.body) {
-                        if (tempParent.style.display === 'none') {
-                            isVisible = false;
-                            break;
-                        }
-                        tempParent = tempParent.parentElement;
-                    }
-                    // Also ensure the field itself is not in a hidden direct parent like an 'anders' input group
-                    if (field.parentElement.style.display === 'none' && field.parentElement.classList.contains('input-group')) {
-                        isVisible = false;
-                    }
-                     if (field.closest('.inline-text-input') && !field.closest('.inline-text-input').classList.contains('visible')) {
-                        isVisible = false;
-                    }
-
-
-                } else { // Field is not in a special container, check general visibility up to current step
-                    let tempParent = field;
-                    isVisible = true; 
-                    while(tempParent && tempParent !== steps[currentStep] && tempParent !== document.body) {
-                        if (tempParent.style.display === 'none') {
-                            isVisible = false;
-                            break;
-                        }
-                        tempParent = tempParent.parentElement;
-                    }
-                }
-                
-                if (!isVisible) return; // Skip validation for non-visible required fields
-    
-                if ((field.type === 'radio' || field.type === 'checkbox')) {
-                    const name = field.name;
-                    const groupElement = field.closest('.radio-group') || field.closest('.checkbox-group') || field.closest('.form-group');
-                    if (!document.querySelector(`input[name="${name}"]:checked`)) {
-                        allValid = false;
-                        if (groupElement) {
-                            groupElement.style.setProperty('border', '1px solid var(--danger-color)', 'important');
-                            groupElement.style.padding = '5px';
-                            groupElement.style.borderRadius = '4px';
-                        }
-                    } else {
-                        if (groupElement) {
-                            groupElement.style.border = 'none';
-                            groupElement.style.padding = '0';
-                        }
-                    }
-                } else if (!field.value.trim()) {
-                    allValid = false;
-                    field.style.borderColor = 'var(--danger-color)';
-                    field.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.25)';
-                } else {
-                     field.style.borderColor = 'var(--form-border-color)';
-                     if (document.activeElement === field) {
-                        field.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.25)';
-                     } else {
-                        field.style.boxShadow = 'none';
-                     }
-                }
-            });
-            return allValid;
-        }
-    
-    
-        function nextStep() {
-            if (!validateCurrentStep()) {
-                 alert('Vul alstublieft alle verplichte velden (*) correct in om door te gaan.');
-                const firstInvalid = steps[currentStep].querySelector('[required]:not(:disabled):invalid, [style*="border-color: var(--danger-color)"]');
-                if (firstInvalid) {
-                    let focusTarget = firstInvalid;
-                    // If it's a radio, focus its group or the first radio itself
-                    if (firstInvalid.type === 'radio') {
-                        const group = firstInvalid.closest('.radio-group') || firstInvalid.closest('.form-group');
-                        if (group) focusTarget = group;
-                    }
-                    focusTarget.focus();
-                    focusTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                return;
-            }
-            if (currentStep < steps.length - 1) {
-                currentStep++;
-                showStep(currentStep);
-            }
-        }
-    
-        function prevStep() {
-            if (currentStep > 0) {
-                const currentStepErrorFields = steps[currentStep].querySelectorAll('[style*="border-color: var(--danger-color)"]');
-                currentStepErrorFields.forEach(field => {
-                    field.style.borderColor = 'var(--form-border-color)';
-                    field.style.boxShadow = 'none';
-                });
-                const currentStepErrorGroups = steps[currentStep].querySelectorAll('.form-group[style*="border: 1px solid var(--danger-color)"], .radio-group[style*="border: 1px solid var(--danger-color)"], .checkbox-group[style*="border: 1px solid var(--danger-color)"]');
-                 currentStepErrorGroups.forEach(group => {
-                    group.style.border = 'none';
-                    group.style.padding = '0';
-                });
-    
-                currentStep--;
-                showStep(currentStep);
-            }
-        }
-    
-        function showLinkedText(elementId) {
-            const element = document.getElementById(elementId);
-            if(element) {
-                element.classList.add('visible');
-                element.required = true; // Make linked text input required when shown
-                element.disabled = false;
-            }
-        }
-        function hideLinkedText(elementId) {
-             const element = document.getElementById(elementId);
-            if(element) {
-                element.classList.remove('visible');
-                element.value = '';
-                element.required = false; // Make linked text input not required when hidden
-                element.disabled = true;
-            }
-        }
-    
-        function toggleConditional(elementId, show) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.style.display = show ? 'block' : 'none';
-                const childInputs = element.querySelectorAll('input, select, textarea, button');
-    
-                childInputs.forEach(input => {
-                    let isMarkedAsRequired = false;
-                    const label = input.closest('.form-group')?.querySelector(`label[for="${input.id}"]`);
-                     if (label && label.querySelector('.asterisk')) {
-                        isMarkedAsRequired = true;
-                    }
-                    // For radio groups in conditional sections
-                    if (input.type === 'radio') {
-                        const groupLabel = input.closest('.form-group')?.querySelector('label:not(.radio-label):not(.checkbox-label)');
-                        if (groupLabel && groupLabel.querySelector('.asterisk')) isMarkedAsRequired = true;
-                    }
-
-                    if (!show) { // Hiding the conditional section
-                        if (input.type === 'radio' || input.type === 'checkbox') {
-                             input.checked = false;
-                        } else if (input.tagName === 'SELECT') {
-                            input.selectedIndex = 0;
-                            if (input.getAttribute('onchange') && input.getAttribute('onchange').includes('toonAndersVeld')) {
-                                const targetIdMatch = input.getAttribute('onchange').match(/toonAndersVeld\s*\(\s*this\s*,\s*['"]([^'"]+)['"]\s*,\s*['"]([^'"]+)['"]\s*\)/);
-                                if (targetIdMatch && targetIdMatch[1] && targetIdMatch[2]) {
-                                    const andersInputVeld = document.getElementById(targetIdMatch[1]);
-                                    const andersMessageVeld = document.getElementById(targetIdMatch[2]);
-                                    if (andersInputVeld) {
-                                        andersInputVeld.style.display = 'none';
-                                        const inputFieldInside = andersInputVeld.querySelector('input');
-                                        if (inputFieldInside) {
-                                            inputFieldInside.value = '';
-                                            inputFieldInside.disabled = true;
-                                            inputFieldInside.required = false;
-                                        }
-                                    }
-                                    if (andersMessageVeld) {
-                                        andersMessageVeld.style.display = 'none';
-                                    }
-                                }
-                            }
-                        } else if (input.tagName.toLowerCase() !== 'button') {
-                            input.value = '';
-                        }
-                        
-                        input.required = false;
-                        input.disabled = true;
-    
-                        // Recursively hide/deactivate nested conditionals or linked texts
-                        const onclickAttr = input.getAttribute('onclick');
-                        if (onclickAttr) {
-                            if (onclickAttr.includes('toggleConditional')) {
-                                const match = onclickAttr.match(/toggleConditional\s*\(\s*['"]([^'"]+)['"]/);
-                                if (match && match[1]) {
-                                    toggleConditional(match[1], false); 
-                                }
-                            }
-                            if (onclickAttr.includes('showLinkedText')) {
-                                 const match = onclickAttr.match(/showLinkedText\s*\(\s*['"]([^'"]+)['"]/);
-                                 if(match && match[1]) hideLinkedText(match[1]);
-                            }
-                            if (input.id === 'ookOpPalen_nee' && onclickAttr.includes("showLinkedText('andereFunderingswijze')")) {
-                                hideLinkedText('andereFunderingswijze'); 
-                            }
-                        }
-                    } else { // Showing the conditional section
-                        input.disabled = false;
-                        if (isMarkedAsRequired) {
-                            input.required = true;
-                        }
-                        if (input.checked && input.getAttribute('onclick')) {
-                            const onclickAttr = input.getAttribute('onclick');
-                             if (onclickAttr.includes('toggleConditional')) {
-                                const match = onclickAttr.match(/toggleConditional\s*\(\s*['"]([^'"]+)['"]\s*,\s*(true|false)\s*\)/);
-                                if (match && match[1] && match[2]) {
-                                    toggleConditional(match[1], match[2] === 'true'); 
-                                }
-                            }
-                            if (onclickAttr.includes('showLinkedText')) {
-                                const match = onclickAttr.match(/showLinkedText\s*\(\s*['"]([^'"]+)['"]/);
-                                if(match && match[1]) showLinkedText(match[1]);
-                            }
-                        }
-                    }
-                });
-            }
-        }
-    
-        function setupRedenLateStartToggle() {
-    const ingangsdatumInput = document.getElementById('ingangsdatumVerzekering');
-    const gekozenDatumwerkzaamhedenInput = document.getElementById('startWerkzaamheden');
-    const redenContainer = document.getElementById('redenLateStartContainer');
-    const redenTextarea = document.getElementById('redenLateStart');
-
-    if (!ingangsdatumInput || !gekozenDatumwerkzaamhedenInput || !redenContainer || !redenTextarea) {
-        console.error("Een of meer benodigde elementen zijn niet gevonden voor Reden Late Start.");
-        return;
-    }
-
-    function toggleRedenLateStartVisibility() {
-        const gekozenDatumString = ingangsdatumInput.value;
-        const gekozenDatumwerkzaamhedenString = gekozenDatumwerkzaamhedenInput.value;
-
-        if (!gekozenDatumString || !gekozenDatumwerkzaamhedenString) { 
-            redenContainer.style.display = 'none';
-            redenTextarea.required = false;
-            return;
-        }
-
-        const gekozenDatum = new Date(gekozenDatumString);
-        const datumWerkzaamheden = new Date(gekozenDatumwerkzaamhedenString);
-        
-        gekozenDatum.setHours(0,0,0,0);
-        datumWerkzaamheden.setHours(0,0,0,0);
-
-
-        if (datumWerkzaamheden < gekozenDatum) { 
-            redenContainer.style.display = 'block';
-            redenTextarea.required = true; 
-        } else {
-            redenContainer.style.display = 'none';
-            redenTextarea.required = false;
-            redenTextarea.value = ''; 
-        }
-    }
-    ingangsdatumInput.addEventListener('change', toggleRedenLateStartVisibility);
-    ingangsdatumInput.addEventListener('input', toggleRedenLateStartVisibility);
-    gekozenDatumwerkzaamhedenInput.addEventListener('change', toggleRedenLateStartVisibility);
-    gekozenDatumwerkzaamhedenInput.addEventListener('input', toggleRedenLateStartVisibility);
-    
-    toggleRedenLateStartVisibility(); 
-}
-        const FORM_STORAGE_KEY = 'carOfferteFormData';
-        const formElement = document.getElementById('carOfferteForm');
-
-        function saveFormData() {
-            if (!formElement) return;
-            const formData = new FormData(formElement);
-            const data = {};
-            let maxUboIndex = 0;
-            let maxAannemerIndex = 0;
-
-            formData.forEach((value, key) => {
-                if (key.endsWith('[]')) {
-                    const realKey = key.slice(0, -2);
-                    if (!data[realKey]) {
-                        data[realKey] = [];
-                    }
-                    data[realKey].push(value);
-                } else {
-                    data[key] = value;
-                }
-
-                if (key.startsWith('ubo') && key.includes('_voornamen')) { 
-                    const match = key.match(/^ubo(\d+)_/);
-                    if (match && parseInt(match[1]) > maxUboIndex) {
-                        maxUboIndex = parseInt(match[1]);
-                    }
-                }
-                if (key.startsWith('aannemer') && key.includes('_naam')) { 
-                    const match = key.match(/^aannemer(\d+)_/);
-                    if (match && parseInt(match[1]) > maxAannemerIndex) {
-                        maxAannemerIndex = parseInt(match[1]);
-                    }
-                }
-            });
-            data._maxUboIndex = maxUboIndex > 0 ? maxUboIndex : (document.querySelectorAll('#ubo-forms-container .ubo-section').length);
-            data._maxAannemerIndex = maxAannemerIndex > 0 ? maxAannemerIndex : (document.querySelectorAll('#aannemer-forms-container .aannemer-section').length);
-            data._currentStep = currentStep; 
-
-            localStorage.setItem(FORM_STORAGE_KEY, JSON.stringify(data));
-        }
-
-        function loadFormData() {
-            const savedData = localStorage.getItem(FORM_STORAGE_KEY);
-            if (!savedData) return;
-
-            const data = JSON.parse(savedData);
-
-            if (data.aanvragerType) {
-                const typeRadio = document.getElementById(`aanvragerType${data.aanvragerType.charAt(0).toUpperCase() + data.aanvragerType.slice(1)}`);
-                if (typeRadio) typeRadio.checked = true;
-            }
-            if (data.rechtsvorm) {
-                const rechtsvormSelect = document.getElementById('rechtsvorm');
-                if (rechtsvormSelect) rechtsvormSelect.value = data.rechtsvorm;
-            }
-            
-             const aanvragerTypeChecked = document.querySelector('input[name="aanvragerType"]:checked');
-             if (aanvragerTypeChecked) {
-                toggleAanvragerType(aanvragerTypeChecked.value);
-             } else {
-                toggleAanvragerType(null); 
-             }
-
-
-            if (data._maxUboIndex > 1 && document.getElementById('uboSectieStap1')?.style.display === 'block') {
-                for (let i = 1; i < data._maxUboIndex; i++) { 
-                    UBOtoevoegen(); 
-                }
-            }
-            if (data._maxAannemerIndex > 1) {
-                 const aannemerContainer = document.getElementById('aannemerDetailsContainer');
-                 const werkDoorAannemerVal = data.werkDoorAannemer;
-                 if (aannemerContainer && (werkDoorAannemerVal === 'geheel' || werkDoorAannemerVal === 'gedeeltelijk')) {
-                    for (let i = 1; i < data._maxAannemerIndex; i++) {
-                        AannemerToevoegen(); 
-                    }
-                 }
-            }
-
-
-            for (const key in data) {
-                if (data.hasOwnProperty(key)) {
-                    if (key === '_maxUboIndex' || key === '_maxAannemerIndex' || key === '_currentStep' || key === 'aanvragerType' || key === 'rechtsvorm') continue;
-
-                    const elements = formElement.elements[key];
-                    if (elements) {
-                        if (elements.type === 'radio' || (elements.length && elements[0] && elements[0].type === 'radio')) { 
-                             const radioToSelect = Array.from(elements.length ? elements : [elements]).find(rb => rb.value === data[key]);
-                            if (radioToSelect) {
-                                radioToSelect.checked = true;
-                            }
-                        } else if (elements.type === 'checkbox') {
-                            elements.checked = (data[key] === 'on' || data[key] === true || data[key] === elements.value);
-                        } else if (elements.length && elements[0] && elements[0].type === 'checkbox' && key.endsWith('Inclusief')) { 
-                             const savedArray = data[key] || data[key.slice(0,-2)]; 
-                             if (Array.isArray(savedArray)) {
-                                Array.from(elements).forEach(checkbox => {
-                                    if (savedArray.includes(checkbox.value)) {
-                                        checkbox.checked = true;
-                                    }
-                                });
-                             }
-                        }
-                        else {
-                            elements.value = data[key];
-                        }
-                    } else {
-                        const checkboxGroup = formElement.querySelectorAll(`input[name="${key}[]"]`);
-                        if (checkboxGroup.length > 0 && Array.isArray(data[key])) {
-                            checkboxGroup.forEach(checkbox => {
-                                if (data[key].includes(checkbox.value)) {
-                                    checkbox.checked = true;
-                                }
-                            });
-                        }
-                    }
-                }
-            }
-            
-            if (data._currentStep !== undefined) {
-                currentStep = parseInt(data._currentStep, 10) || 0;
-            }
-        }
-
-        function clearSavedFormData() {
-            localStorage.removeItem(FORM_STORAGE_KEY);
-            console.log('Saved form data cleared.');
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            loadFormData(); 
-            
-            const rechtsvormSelect = document.getElementById('rechtsvorm');
-            if (rechtsvormSelect) {
-                rechtsvormSelect.addEventListener('change', checkRechtsvormForUbo);
-            }
-
-            if(progressBar) {
-              initializeProgressBar(); 
-            }
-            showStep(currentStep); 
-    
-            setupRedenLateStartToggle(); 
-    
-            function reapplyInitialConditionals() {
-                const aanvragerTypeChecked = document.querySelector('input[name="aanvragerType"]:checked');
-                if (aanvragerTypeChecked) {
-                    toggleAanvragerType(aanvragerTypeChecked.value); 
-                } else {
-                    toggleAanvragerType(null);
-                }
-
-                setupInitialConditionals('onderhoudstermijnOvereen', 'onderhoudstermijnOvereenDetails', 'onderhoudstermijnMeeVerzekeren', 'onderhoudstermijnDuurDetails');
-                setupInitialConditionals('werk_anders', 'werkAndersSpecificatieContainer'); 
-                setupInitialConditionals('bedrijfsschade_meeverzekeren', 'bedrijfsschadeDetails');
-                setupInitialConditionals('sloopwerk', 'sloopwerkDetails');
-                setupInitialConditionals('bemaling', 'bemalingDetails');
-                setupInitialConditionals('gravenNabijFundering', 'gravenNabijFunderingDetails');
-                setupInitialConditionals('paalfundering', 'paalfunderingDetails');
-        
-                const paalfunderingDetails = document.getElementById('paalfunderingDetails');
-                if (paalfunderingDetails && paalfunderingDetails.style.display === 'block') {
-                    const bouwwerkenRadios = document.getElementsByName('bouwwerkenBinnen15m');
-                    let bouwwerkenCheckedValue = null;
-                    bouwwerkenRadios.forEach(r => { if(r.checked && !r.disabled) bouwwerkenCheckedValue = r.value; });
-                    toggleConditional('bouwwerkenBinnen15mDetails', bouwwerkenCheckedValue === 'ja');
-        
-                    const bouwwerkenBinnen15mDetails = document.getElementById('bouwwerkenBinnen15mDetails');
-                    if (bouwwerkenBinnen15mDetails && bouwwerkenBinnen15mDetails.style.display === 'block') {
-                        const ookOpPalenRadios = document.getElementsByName('ookOpPalen');
-                        let ookOpPalenCheckedValue = null;
-                        ookOpPalenRadios.forEach(r => { if(r.checked && !r.disabled) ookOpPalenCheckedValue = r.value; });
-                        const showAndereFunderingswijze = ookOpPalenCheckedValue === 'nee';
-                        toggleConditional('andereFunderingswijzeDetails', showAndereFunderingswijze);
-                        if (showAndereFunderingswijze) {
-                            showLinkedText('andereFunderingswijze');
-                        } else {
-                            hideLinkedText('andereFunderingswijze');
-                        }
-                    } else {
-                         toggleConditional('andereFunderingswijzeDetails', false);
-                         hideLinkedText('andereFunderingswijze');
-                    }
-                } else {
-                    toggleConditional('bouwwerkenBinnen15mDetails', false);
-                    toggleConditional('andereFunderingswijzeDetails', false);
-                    hideLinkedText('andereFunderingswijze');
-                }
-        
-        
-                setupInitialConditionals('grondkering', 'grondkeringDetails');
-                setupInitialConditionals('arbeidsloon_meeverzekeren', 'arbeidsloonDetails');
-        
-                const werkDoorAannemerChecked = document.querySelector('input[name="werkDoorAannemer"]:checked:not(:disabled)');
-                if(werkDoorAannemerChecked){
-                    const showAannemerDetails = werkDoorAannemerChecked.value === 'geheel' || werkDoorAannemerChecked.value === 'gedeeltelijk';
-                    toggleConditional('aannemerDetailsContainer', showAannemerDetails); 
-                    toggleConditional('aannemerDetailopmerking', werkDoorAannemerChecked.value === 'nee');
-
-                    if(showAannemerDetails){
-                        document.querySelectorAll('.aannemer-section').forEach(section => {
-                            const index = section.dataset.aannemerIndex;
-                            const avbRadioCheckedJa = section.querySelector(`input[name="aannemer${index}_avb"][value="ja"]:checked:not(:disabled)`);
-                            toggleConditional(`aannemer${index}_avbDetails`, !!avbRadioCheckedJa);
-                             setRequiredForAannemerSection(section, true); 
-                        });
-                    } else {
-                        document.querySelectorAll('.aannemer-section').forEach(section => {
-                            const index = section.dataset.aannemerIndex;
-                            toggleConditional(`aannemer${index}_avbDetails`, false);
-                            setRequiredForAannemerSection(section, false); 
-                        });
-                    }
-                } else {
-                    toggleConditional('aannemerDetailsContainer', false); 
-                    toggleConditional('aannemerDetailopmerking', false);
-                     document.querySelectorAll('.aannemer-section').forEach(section => {
-                        const index = section.dataset.aannemerIndex;
-                        toggleConditional(`aannemer${index}_avbDetails`, false);
-                        setRequiredForAannemerSection(section, false);
-                    });
-                }
-        
-                setupInitialConditionals('elders_ondergebracht', 'eldersOndergebrachtDetails');
-        
-                document.querySelectorAll('.inline-text-input').forEach(textField => {
-                    if (textField.disabled && textField.id !== 'aardGebouwAndersText' && textField.id !== 'andereFunderingswijze') return; 
-                    const radioId = textField.id.replace('Text', 'Radio');
-                    const linkedRadio = document.getElementById(radioId);
-                    if (linkedRadio && linkedRadio.checked && !linkedRadio.disabled) {
-                        textField.classList.add('visible');
-                        textField.disabled = false;
-                        textField.required = true; 
-                    } else {
-                        if (textField.id !== 'andereFunderingswijze') { 
-                             textField.classList.remove('visible');
-                        }
-                        if (textField.id === 'aardGebouwAndersText' && (!linkedRadio || !linkedRadio.checked) ) {
-                             textField.classList.remove('visible');
-                             textField.required = false;
-                             textField.disabled = true;
-                        }
-                    }
-                });
-        
-                document.querySelectorAll('select[onchange*="toonAndersVeld"]').forEach(selectElement => {
-                    if (selectElement.disabled) return; 
-                    const targetIdMatch = selectElement.getAttribute('onchange').match(/toonAndersVeld\s*\(\s*this\s*,\s*['"]([^'"]+)['"]\s*,\s*['"]([^'"]+)['"]\s*\)/);
-                    if (targetIdMatch && targetIdMatch[1] && targetIdMatch[2]) {
-                        toonAndersVeld(selectElement, targetIdMatch[1], targetIdMatch[2]); 
-                    }
-                });
-                const duurBouwInput = document.getElementById('duurBouwMaanden');
-                if (duurBouwInput) {
-                    const event = new Event('input', { bubbles: true });
-                    duurBouwInput.dispatchEvent(event);
-                }
-            }
-
-            reapplyInitialConditionals(); 
-
-            formElement.addEventListener('input', saveFormData);
-            formElement.addEventListener('change', saveFormData); 
         });
-    
-        function toonAndersVeld(selectElement, targetInputElementId, targetMessageElementId) {
-            var selectedValue = selectElement.value;
-            var targetInputElement = document.getElementById(targetInputElementId);
-            var targetMessageElement = document.getElementById(targetMessageElementId); 
-    
-            if (targetInputElement && targetMessageElement) { 
-                const inputInside = targetInputElement.querySelector('input[type="number"], input[type="text"]');
-                if (selectedValue && selectedValue.toLowerCase() === 'anders') {
-                    targetInputElement.style.display = 'flex';
-                    targetMessageElement.style.display = 'block'; 
-                    if (inputInside) {
-                        inputInside.disabled = false;
-                        inputInside.required = true; 
-                    }
-                } else {
-                    targetInputElement.style.display = 'none';
-                    targetMessageElement.style.display = 'none'; 
-                    if (inputInside) {
-                        inputInside.value = '';
-                        inputInside.disabled = true;
-                        inputInside.required = false; 
-                    }
-                }
-            }
-        }
-        
-        function setupInitialConditionals(radioName, detailsId, subRadioName, subDetailsId) {
-            const radioChecked = document.querySelector(`input[name="${radioName}"]:checked:not(:disabled)`);
-            if (radioChecked) {
-                toggleConditional(detailsId, radioChecked.value === 'ja');
-                if (subRadioName && subDetailsId && radioChecked.value === 'ja') {
-                    const subRadioChecked = document.querySelector(`input[name="${subRadioName}"]:checked:not(:disabled)`);
-                    if (subRadioChecked) {
-                        toggleConditional(subDetailsId, subRadioChecked.value === 'ja');
-                    } else {
-                        toggleConditional(subDetailsId, false); 
-                    }
-                } else if (subDetailsId) {
-                     toggleConditional(subDetailsId, false); 
-                }
-            } else {
-                toggleConditional(detailsId, false);
-                if (subDetailsId) toggleConditional(subDetailsId, false);
-            }
-        }
 
-        </script>
-        <script>
-            function autoFillFormForTesting() {
-                function _toggleConditional(elementId, show) { if (typeof toggleConditional === "function") toggleConditional(elementId, show); }
-                function _toonAndersVeld(selectElementOrId, targetInputElementId, targetMessageElementId) { if (typeof toonAndersVeld === "function") { let el = typeof selectElementOrId === 'string' ? document.getElementById(selectElementOrId) : selectElementOrId; if (el) toonAndersVeld(el, targetInputElementId, targetMessageElementId); } }
-                function _showLinkedText(elementId) { if (typeof showLinkedText === "function") showLinkedText(elementId); }
-                function _hideLinkedText(elementId) { if (typeof hideLinkedText === "function") hideLinkedText(elementId); }
-                function _toggleAanvragerType(type) { if (typeof toggleAanvragerType === "function") toggleAanvragerType(type); }
-                function _checkRechtsvormForUbo() { if (typeof checkRechtsvormForUbo === "function") checkRechtsvormForUbo(); }
-                function _UBOtoevoegen() { if (typeof UBOtoevoegen === "function") UBOtoevoegen(); }
-        
-                // --- Stap 1: Aanvragergegevens ---
-                document.getElementById('aanvragerTypeZakelijk').checked = true;
-                _toggleAanvragerType('zakelijk'); 
+        // Reveal on Scroll functionaliteit
+        const revealElements = document.querySelectorAll('.reveal');
 
-                document.getElementById('kvkNummer').value = '87654321';
-                document.getElementById('bedrijfsnaamZakelijk').value = 'Autofill Solutions BV';
-                document.getElementById('handelsnaamZakelijk').value = 'AS BV';
-                document.getElementById('rechtsvorm').value = 'bv'; 
-                _checkRechtsvormForUbo(); 
-
-                if (document.getElementById('uboSectieStap1')?.style.display === 'block') {
-                    document.getElementById('ubo1_voornamen').value = 'Udo B. Owner';
-                    document.getElementById('ubo1_achternaam').value = 'Voorbeeld';
-                    document.getElementById('ubo1_geboortedatum').value = '1980-01-01';
-                    document.getElementById('ubo1_woonland').value = 'Nederland';
-                    const ubo1Type = document.getElementById('ubo1_type_eigendom');
-                    if (ubo1Type) ubo1Type.checked = true;
-                    document.getElementById('ubo1_adres').value = 'Ubolaan 10, 9876 UB Ubostad';
-                }
-                
-                document.getElementById('postadresZakelijk').value = 'Testlaan 100, 1234 AB Testdorp';
-                document.getElementById('telefoonnummerZakelijk').value = '0612345678';
-                document.getElementById('emailadresZakelijk').value = 'info@autofillsolutions.test';
-        
-                // --- Stap 2: Werkdetails ---
-                document.getElementById('startWerkzaamheden').value = new Date(new Date().setDate(new Date().getDate() + 10)).toISOString().split('T')[0];
-                const eergisteren = new Date();
-                eergisteren.setDate(eergisteren.getDate() - 2);
-                document.getElementById('ingangsdatumVerzekering').value = eergisteren.toISOString().split('T')[0];
-                
-                ['startWerkzaamheden', 'ingangsdatumVerzekering'].forEach(id => {
-                    const el = document.getElementById(id);
-                    if(el) {
-                        el.dispatchEvent(new Event('input', { bubbles: true }));
-                        el.dispatchEvent(new Event('change', { bubbles: true }));
-                    }
-                });
-
-                const redenLateStartContainer = document.getElementById('redenLateStartContainer');
-                if (redenLateStartContainer && redenLateStartContainer.style.display === 'block') {
-                    document.getElementById('redenLateStart').value = 'Autofill test: late start reden.';
-                }
-                document.getElementById('duurBouwMaanden').value = '13'; 
-                document.getElementById('duurBouwMaanden').dispatchEvent(new Event('input', { bubbles: true }));
-
-
-                document.getElementById('werk_nieuwbouw_woning_ja').checked = true;
-                document.getElementById('werk_verbouw_woning_nee').checked = true;
-                document.getElementById('werk_nieuwbouw_bedrijf_nee').checked = true;
-                document.getElementById('werk_verbouw_bedrijf_ja').checked = true;
-                document.getElementById('werk_installatie_nee').checked = true;
-                document.getElementById('werk_gww_nee').checked = true;
-                document.getElementById('werk_anders_ja').checked = true; _toggleConditional('werkAndersSpecificatieContainer', true);
-                if(document.getElementById('werk_anders_specificatie')) document.getElementById('werk_anders_specificatie').value = "Speciale testwerkzaamheden";
-
-        
-                document.getElementById('onderhoudstermijnOvereen_ja').checked = true; _toggleConditional('onderhoudstermijnOvereenDetails', true);
-                document.getElementById('onderhoudstermijnMeeVerzekeren_ja').checked = true; _toggleConditional('onderhoudstermijnDuurDetails', true);
-                document.getElementById('duurOnderhoud_12').checked = true;
-        
-                document.getElementById('aanneemsom').value = '1250000';
-                document.getElementById('btw_exclusief').checked = true;
-                document.getElementById('inc_toezicht').checked = true;
-        
-                // --- Stap 3: Verzekerde Sommen & Risico's ---
-                const aansprakelijkheidSelect = document.querySelector('select[name="aansprakelijkheid_som"]');
-                if (aansprakelijkheidSelect) aansprakelijkheidSelect.value = '2500000';
-                
-                document.getElementById('bestaande_eigendommen_som').value = 'Anders'; 
-                _toonAndersVeld(document.getElementById('bestaande_eigendommen_som'), 'anders_bestaand_eigendommen_input', 'anders_bestaand_eigendommen_message');
-                const andersBestaandEigendom = document.querySelector('input[name="bestaande_eigendommen_som_anders_val"]');
-                if(andersBestaandEigendom) andersBestaandEigendom.value = "300000";
-
-                document.getElementById('Hulpmateriaal').value = '125000'; 
-                _toonAndersVeld(document.getElementById('Hulpmateriaal'), 'anders_Hulpmateriaal_input', 'anders_Hulpmateriaal_message');
-        
-                document.getElementById('Eigen_risico').value = '5000'; 
-                _toonAndersVeld(document.getElementById('Eigen_risico'), 'anders_Eigen_risico_input', 'anders_Eigen_risico_message');
-        
-                document.getElementById('bedrijfsschade_ja').checked = true; _toggleConditional('bedrijfsschadeDetails', true);
-                if(document.getElementById('bedrijfsschade_belang')) document.getElementById('bedrijfsschade_belang').value = "150000";
-                if(document.getElementById('bedrijfsschade_uitkeringstermijn')) document.getElementById('bedrijfsschade_uitkeringstermijn').value = "26";
-        
-                // --- Stap 4: Constructiedetails ---
-                document.getElementById('locatieWerk').value = 'Industrieterrein Noord, Teststad';
-                document.getElementById('aardGebouw_steen').checked = true; _hideLinkedText('aardGebouwAndersText');
-        
-                document.getElementById('sloopwerk_ja').checked = true; _toggleConditional('sloopwerkDetails', true);
-                    if(document.getElementById('sloopwerk_constructies')) document.getElementById('sloopwerk_constructies').value = "Dragende binnenmuur en deel van gevel.";
-                    const sloopadviesJa = document.querySelector('input[name="sloopadvies"][value="ja"]');
-                    if(sloopadviesJa) sloopadviesJa.checked = true;
-
-                document.getElementById('bemaling_ja').checked = true; _toggleConditional('bemalingDetails', true);
-                    const bemalingsadviesJa = document.querySelector('input[name="bemalingsadvies"][value="ja"]');
-                    if(bemalingsadviesJa) bemalingsadviesJa.checked = true;
-
-                document.getElementById('gravenNabijFundering_ja').checked = true; _toggleConditional('gravenNabijFunderingDetails', true);
-                    const uitvoeringsplanGravenJa = document.querySelector('input[name="uitvoeringsplanGraven"][value="ja"]');
-                    if(uitvoeringsplanGravenJa) uitvoeringsplanGravenJa.checked = true;
-
-                document.getElementById('kelderZwembad_ja').checked = true;
-        
-                document.getElementById('paalfundering_ja').checked = true; _toggleConditional('paalfunderingDetails', true);
-                    const funderingsadviesPaalJa = document.querySelector('input[name="funderingsadviesPaal"][value="ja"]');
-                    if (funderingsadviesPaalJa) funderingsadviesPaalJa.checked = true;
-                    const paalsysteemGedrukt = document.querySelector('input[name="paalsysteem"][value="gedrukt"]');
-                    if (paalsysteemGedrukt) paalsysteemGedrukt.checked = true;
-                    document.getElementById('bouwwerkenBinnen15m_ja').checked = true; _toggleConditional('bouwwerkenBinnen15mDetails', true);
-                        const eigenaarAnderen = document.querySelector('input[name="eigenaarBouwwerk"][value="anderen"]');
-                        if (eigenaarAnderen) eigenaarAnderen.checked = true;
-                        document.getElementById('afstandDichtstbijzijndeBouwwerk').value = '5.5';
-                        document.getElementById('ookOpPalen_nee').checked = true; 
-                            _toggleConditional('andereFunderingswijzeDetails', true); 
-                            _showLinkedText('andereFunderingswijze');
-                        if(document.getElementById('andereFunderingswijze')) document.getElementById('andereFunderingswijze').value = "Op staal gefundeerd";
-        
-                document.getElementById('grondkering_ja').checked = true; _toggleConditional('grondkeringDetails', true);
-                    const adviesGrondkeringJa = document.querySelector('input[name="adviesGrondkering"][value="ja"]');
-                    if(adviesGrondkeringJa) adviesGrondkeringJa.checked = true;
-                document.getElementById('funderingsherstel_ja').checked = true;
-        
-                // --- Stap 5: Uitvoering & Aannemer ---
-                document.getElementById('arbeidsloon_ja').checked = true; _toggleConditional('arbeidsloonDetails', true);
-                if(document.getElementById('arbeidsloon_som')) document.getElementById('arbeidsloon_som').value = "50000";
-        
-                document.getElementById('werkDoorAannemer_gedeeltelijk').checked = true;
-                _toggleConditional('aannemerDetailsContainer', true); 
-                _toggleConditional('aannemerDetailopmerking', false); 
-        
-                    document.getElementById('aannemer1_naam').value = 'TopBouw Nederland';
-                    document.getElementById('aannemer1_adres').value = 'Constructieweg 10, 7890 CD Bouwdorp';
-                    document.getElementById('aannemer1_telefoon').value = '0501234567';
-                    document.getElementById('aannemer1_avb_ja').checked = true; _toggleConditional('aannemer1_avbDetails', true);
-                        document.getElementById('aannemer1_avb_maatschappij').value = 'GarantVerzekeringen';
-                        document.getElementById('aannemer1_avb_polisnr').value = 'GV-AVB-998877';
-                        document.getElementById('aannemer1_avb_bedrag').value = '2500000';
-                        document.getElementById('aannemer1_avb_eigenrisico').value = '1000';
-                document.getElementById('overige_opmerkingen_beoordeling').value = 'Autofill test - complexe situatie.';
-        
-                // --- Stap 6: Afronding ---
-                document.getElementById('elders_ondergebracht_ja').checked = true; _toggleConditional('eldersOndergebrachtDetails', true);
-                if(document.getElementById('vorige_maatschappij')) document.getElementById('vorige_maatschappij').value = "Oude Polis NV";
-                if(document.getElementById('vorige_polisnummer')) document.getElementById('vorige_polisnummer').value = "OP-12345";
-                if(document.getElementById('vorige_afloopdatum')) document.getElementById('vorige_afloopdatum').value = new Date(new Date().setDate(new Date().getDate() - 30)).toISOString().split('T')[0];
-        
-                if (typeof saveFormData === "function") {
-                    saveFormData();
-                }
-                if (typeof reapplyInitialConditionals === "function") { 
-                    reapplyInitialConditionals();
-                }
-
-                console.log("Formulier automatisch ingevuld voor testen (Zakelijk met UBO).");
-                alert("Formulier is automatisch ingevuld (Zakelijk met UBO) en opgeslagen in localStorage. Ververs de pagina om te zien of de data geladen wordt, of ga naar de volgende stap en terug om de conditionals te zien.");
-            }
-        
-            document.addEventListener('DOMContentLoaded', function() {
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.get('autofill') === 'true') {
-                    setTimeout(function() {
-                        try {
-                            autoFillFormForTesting();
-                        } catch (e) {
-                            console.error("Fout bij automatisch invullen:", e);
-                            alert("Fout bij autofill. Check console.");
-                        }
-                    }, 500); 
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Haal de delay op van data-attribuut, of gebruik een standaard delay
+                    const delay = entry.target.dataset.revealDelay || 0;
+                    
+                    setTimeout(() => {
+                        entry.target.classList.add('revealed');
+                    }, parseInt(delay));
+                    
+                    observer.unobserve(entry.target); // Optioneel: animeer maar één keer
                 }
             });
-        </script>
+        }, {
+            root: null, // null = viewport
+            threshold: 0.1, // 10% van element moet zichtbaar zijn
+            rootMargin: "0px 0px -50px 0px" // Start animatie iets eerder (50px vanaf onderkant viewport)
+        });
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Active menu link (simpele versie gebaseerd op scroll, kan uitgebreider)
+        // Dit is een basisversie. Voor een perfecte "active" state is complexere logica nodig.
+        const navLinks = document.querySelectorAll('header nav ul li a');
+        const sections = document.querySelectorAll('main section');
+
+        window.addEventListener('scroll', () => {
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) { // Iets eerder activeren
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+            // Zorg dat home altijd actief is als er geen sectie is (bovenaan pagina)
+            if (!currentSectionId && pageYOffset < sections[0].offsetTop - sections[0].clientHeight / 3){
+                 navLinks.forEach(link => link.classList.remove('active'));
+                 document.querySelector('header nav ul li a[href="#hero"]').classList.add('active');
+            }
+        });
+
+
+    </script>
 </body>
 </html>
