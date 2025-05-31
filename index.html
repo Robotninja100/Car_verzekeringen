@@ -8,10 +8,11 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
         :root {
-            --primary-color: #191E4E; /* Diep Blauw */
-            --secondary-color: #618FF6; /* Medium Blauw */
-            --accent-color: #D5B1FF; /* Geel/Goud */
-            --light-accent-color: #d5b1ffb8; /* Licht Geel */
+            --primary-color: #191E4E; 
+            --secondary-color: #618FF6; 
+            --accent-color: #D5B1FF; 
+            --accent-color-rgb: 213, 177, 255; 
+            --light-accent-color: #d5b1ffb8; 
             --text-color: #333333;
             --light-text-color: #FFFFFF;
             --background-color: #FFFFFF;
@@ -20,7 +21,7 @@
             --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             --box-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.12);
             --box-shadow-strong: 0 8px 25px rgba(0, 0, 0, 0.15);
-            --border-radius: 10px; /* Iets ronder */
+            --border-radius: 10px; 
             --transition-speed: 0.3s;
             --transition-speed-fast: 0.2s;
         }
@@ -37,12 +38,27 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            line-height: 1.7; /* Iets meer ruimte */
+            line-height: 1.7; 
             color: var(--text-color);
             background-color: var(--background-color);
             font-size: 16px;
-            overflow-x: hidden; /* Voorkom horizontale scrollbars door animaties */
+            letter-spacing: 0.1px; 
+            overflow-x: hidden; 
         }
+
+        *:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 3px;
+            box-shadow: 0 0 0 5px rgba(var(--accent-color-rgb), 0.3);
+            border-radius: 3px; 
+        }
+        .menu-toggle:focus-visible {
+            outline-offset: 0px; 
+        }
+        .cta-button:focus-visible, .cta-button-main:focus-visible, .read-more-btn:focus-visible {
+             border-radius: var(--border-radius); 
+        }
+
 
         .container {
             width: 90%;
@@ -55,7 +71,7 @@
         header {
             background-color: var(--background-color);
             padding: 1rem 0;
-            border-bottom: 1px solid transparent; /* Start transparant */
+            border-bottom: 1px solid transparent;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -74,11 +90,11 @@
         }
 
         .logo {
-            font-size: 1.9rem; /* Iets groter */
+            font-size: 1.9rem;
             font-weight: 700;
             color: var(--primary-color);
             text-decoration: none; 
-            letter-spacing: -1px; /* Subtiel effect */
+            letter-spacing: -1px;
         }
 
         header nav ul {
@@ -87,19 +103,19 @@
         }
 
         header nav ul li {
-            margin-left: 30px; /* Iets meer ruimte */
+            margin-left: 30px;
         }
 
         header nav ul li a {
             text-decoration: none;
             color: var(--primary-color);
-            font-weight: 500; /* Iets lichter, 600 op hover */
-            padding: 8px 0px; /* Geen horizontale padding, regel via underline */
+            font-weight: 500;
+            padding: 8px 0px;
             position: relative;
             transition: color var(--transition-speed-fast) ease;
         }
 
-        header nav ul li a::after { /* Underline effect */
+        header nav ul li a::after {
             content: '';
             position: absolute;
             width: 0;
@@ -123,14 +139,13 @@
 
         /* Hero Section */
         #hero {
-            /* MODIFIED: Replaced original background with image and overlay */
-            background-image: linear-gradient(rgba(25, 30, 78, 0.7), rgba(25, 30, 78, 0.7)), url('construction.png');
+            background-image: linear-gradient(rgba(25, 30, 78, 0.75), rgba(25, 30, 78, 0.75)), url('construction.png');
             background-size: cover;
             background-position: center;
             color: var(--light-text-color);
-            padding: 120px 0; /* Meer padding */
+            padding: 120px 0; 
             text-align: center;
-            min-height: 90vh; /* Iets hoger */
+            min-height: 90vh; 
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -139,12 +154,12 @@
             overflow: hidden; 
         }
 
-        #hero::before, #hero::after { /* Dezelfde geanimeerde cirkels */
+        #hero::before, #hero::after { 
             content: '';
             position: absolute;
             border-radius: 50%;
             opacity: 0.1;
-            z-index: 0; /* These will be above the background image/overlay but below text content */
+            z-index: 0; 
             pointer-events: none;
         }
         #hero::before {
@@ -165,11 +180,12 @@
 
         #hero .container {
             position: relative; 
-            z-index: 1; /* Ensures text and CTA are above pseudo-elements (animated circles) */
+            z-index: 1; 
         }
 
         #hero h1 {
-            font-size: 3.5rem; /* Groter */
+            font-size: 3.2rem; /* AANGEPAST: Iets kleiner voor lange titels */
+            line-height: 1.25; /* AANGEPAST: Betere regelhoogte voor titels */
             margin-bottom: 1.2rem;
             font-weight: 700;
             letter-spacing: -1px;
@@ -178,7 +194,7 @@
         }
 
         #hero p {
-            font-size: 1.4rem; /* Groter */
+            font-size: 1.3rem; /* AANGEPAST: Iets kleiner voor balans met H1 */
             margin-bottom: 2.5rem;
             max-width: 750px;
             margin-left: auto;
@@ -193,7 +209,7 @@
             display: inline-block;
             background-color: var(--accent-color);
             color: var(--primary-color);
-            padding: 16px 38px; /* Iets groter */
+            padding: 16px 38px; 
             text-decoration: none;
             font-size: 1.15rem;
             font-weight: 600;
@@ -205,7 +221,7 @@
             position: relative;
             overflow: hidden;
         }
-        .cta-button::before { /* Shine effect */
+        .cta-button::before { 
             content: "";
             position: absolute;
             top: 0;
@@ -217,8 +233,9 @@
         }
 
         .cta-button:hover {
-            background-color: #e6b840; 
-            transform: translateY(-4px) scale(1.02); /* Meer beweging */
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+            transform: translateY(-4px) scale(1.02); 
             box-shadow: var(--box-shadow-hover);
         }
         .cta-button:hover::before {
@@ -238,66 +255,90 @@
 
         /* Section Base Styling */
         section {
-            padding: 80px 0; /* Meer padding */
+            padding: 80px 0; 
         }
 
         section:nth-child(even) { 
             background-color: var(--light-gray-color);
         }
 
-        section h2 {
+        section h2 { /* AANGEPAST */
             text-align: center;
-            font-size: 2.8rem; /* Groter */
+            font-size: 2.5rem; /* Was 2.8rem */
+            line-height: 1.3;  /* Voor betere afbreking */
             color: var(--primary-color);
-            margin-bottom: 60px; /* Meer ruimte */
+            margin-bottom: 50px; /* Was 60px, iets compacter */
             position: relative;
-            padding-bottom: 20px;
+            padding-bottom: 15px; /* Was 20px */
             font-weight: 700;
         }
 
-        section h2::after {
+        section h2::after { /* AANGEPAST */
             content: '';
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 90px; /* Breder */
-            height: 5px; /* Dikker */
+            width: 70px; /* Was 90px */
+            height: 4px; /* Was 5px */
             background-color: var(--accent-color);
             border-radius: 3px;
         }
+        
+        .section-intro-p {
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 50px; 
+            font-size: 1.1rem; 
+            color: var(--text-color); 
+            line-height: 1.8;
+        }
+
 
         /* Informatie Section */
         #informatie .info-content {
             display: flex;
-            align-items: center;
-            gap: 50px; /* Meer ruimte */
+            align-items: flex-start; 
+            gap: 50px; 
         }
 
         #informatie .info-text {
             flex: 1.2; 
-            font-size: 1.1rem; /* Iets groter */
+            font-size: 1.05rem; /* AANGEPAST: Iets compacter voor lange teksten */
         }
         #informatie .info-text p {
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.5rem; /* AANGEPAST: Iets minder witruimte */
         }
         #informatie .info-text strong {
             color: var(--secondary-color);
             font-weight: 600;
         }
+        
+        /* AANGEPAST: Styling voor H3 binnen benefit-block */
+        #informatie .benefit-block h3 {
+            font-size: 1.25rem; 
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
 
         #informatie .info-illustration {
             flex: 0.8;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; 
+            margin-top: 10px; 
         }
 
         #informatie .info-illustration svg {
             max-width: 100%;
             height: auto;
             border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow-strong); /* Sterkere schaduw */
+            box-shadow: var(--box-shadow-strong); 
             transition: transform var(--transition-speed) ease;
         }
         #informatie .info-illustration svg:hover {
@@ -308,7 +349,7 @@
         /* Diensten Section */
         #diensten .diensten-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Iets bredere kaarten */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
             gap: 35px;
             margin-top: 50px;
         }
@@ -320,11 +361,11 @@
             box-shadow: var(--box-shadow);
             text-align: center;
             transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-            border: 1px solid var(--border-color); /* Subtiele border */
+            border: 1px solid var(--border-color); 
             position: relative;
-            overflow: hidden; /* Voor effecten binnen de kaart */
+            overflow: visible; 
         }
-        .dienst-item::before { /* Accentbalkje */
+        .dienst-item::before { 
             content: '';
             position: absolute;
             top: 0;
@@ -336,14 +377,14 @@
         }
 
         .dienst-item:hover {
-            transform: translateY(-12px); /* Meer lift */
+            transform: translateY(-12px); 
             box-shadow: var(--box-shadow-strong);
         }
         .dienst-item:hover::before {
             width: 100%;
         }
 
-        .dienst-item .icon-wrapper { /* Wrapper voor icoon styling */
+        .dienst-item .icon-wrapper { 
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -360,37 +401,92 @@
         }
 
         .dienst-item .icon {
-            color: var(--primary-color); /* Donkerder voor contrast op lichte wrapper */
+            color: var(--primary-color); 
             width: 35px; 
             height: 35px; 
             transition: color var(--transition-speed) ease;
         }
         .dienst-item:hover .icon {
-             color: var(--primary-color); /* Blijft zo, of naar light-text-color als wrapper donkerder wordt */
+             color: var(--primary-color); 
         }
 
-        .dienst-item h3 {
-            font-size: 1.5rem; /* Groter */
+        .dienst-item h3 { /* AANGEPAST */
+            font-size: 1.4rem; /* Was 1.5rem */
+            line-height: 1.35;  /* Betere regelhoogte */
             color: var(--primary-color);
             margin-bottom: 12px;
             font-weight: 600;
         }
 
         .dienst-item p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-color);
             line-height: 1.6;
+            transition: max-height 0.5s ease-out; 
         }
+        
+        .dienst-item p.is-truncated {
+            max-height: 75px; 
+            overflow: hidden;
+            position: relative;
+        }
+
+        .dienst-item p.is-truncated:not(.expanded)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px; 
+            background: linear-gradient(to bottom, transparent, var(--background-color) 90%);
+            pointer-events: none; 
+        }
+
+        .dienst-item p.expanded {
+            max-height: 700px;
+        }
+
+        .read-more-btn {
+            background-color: transparent; 
+            color: var(--secondary-color); 
+            border: 1px solid var(--secondary-color); 
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            font-weight: 600; 
+            border-radius: 20px; 
+            cursor: pointer;
+            transition: background-color var(--transition-speed-fast), color var(--transition-speed-fast), transform var(--transition-speed-fast);
+            margin-top: 15px; 
+            display: inline-flex; 
+            align-items: center;
+            gap: 5px; 
+        }
+
+        .read-more-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+            transform: translateY(-2px);
+        }
+        
+        .read-more-btn .arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            font-size: 0.8em; 
+        }
+        .read-more-btn[aria-expanded="true"] .arrow {
+            transform: rotate(180deg);
+        }
+
 
         /* Offerte CTA Section */
         #offerte-cta {
-            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%); /* Omgekeerde gradient */
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%); 
             color: var(--light-text-color);
             text-align: center;
             position: relative;
             overflow: hidden;
         }
-        #offerte-cta::before { /* Subtiel patroon */
+        #offerte-cta::before { 
             content: '';
             position: absolute;
             top: 0; left: 0;
@@ -405,14 +501,15 @@
 
         #offerte-cta h2 {
             color: var(--light-text-color);
+            /* font-size en line-height erven van section h2, wat goed is hier */
         }
 
         #offerte-cta h2::after { 
-            background-color: var(--accent-color);
+            background-color: var(--accent-color); /* ::after van section h2 is al goed */
         }
 
         #offerte-cta p {
-            font-size: 1.2rem; /* Iets groter */
+            font-size: 1.15rem; /* AANGEPAST: Iets compacter */
             max-width: 750px;
             margin: 0 auto 35px auto;
             opacity: 0.95;
@@ -422,17 +519,17 @@
             display: inline-block;
             background-color: var(--accent-color);
             color: var(--primary-color);
-            padding: 20px 45px; /* Royaler */
+            padding: 20px 45px; 
             text-decoration: none;
-            font-size: 1.3rem; /* Groter */
+            font-size: 1.3rem; 
             font-weight: 700;
             border-radius: var(--border-radius);
             transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            position: relative; /* Voor animatie */
+            position: relative; 
             overflow: hidden;
         }
-        .cta-button-main::before { /* Shine effect */
+        .cta-button-main::before { 
             content: "";
             position: absolute;
             top: 0;
@@ -444,10 +541,10 @@
         }
 
         .cta-button-main:hover {
-            background-color: #e6b840;
-            color: var(--primary-color);
-            transform: translateY(-6px) scale(1.05); /* Meer effect */
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            background-color: var(--secondary-color); 
+            color: var(--light-text-color);
+            transform: translateY(-6px) scale(1.05); 
+            box-shadow: 0 8px 20px rgba(25, 30, 78 ,0.3); 
         }
         .cta-button-main:hover::before {
             left: 100%;
@@ -463,6 +560,8 @@
         #contact {
             text-align: center;
         }
+        #contact h2 { /* Erft algemene section h2 stijl */ }
+
         #contact p {
             font-size: 1.15rem;
             margin-bottom: 0.8rem;
@@ -473,10 +572,10 @@
 
         /* Footer */
         footer {
-            background-color: #232F3E; /* Iets ander donkerblauw/grijs */
+            background-color: #232F3E; 
             color: var(--light-gray-color);
             text-align: center;
-            padding: 40px 0; /* Meer padding */
+            padding: 40px 0; 
             margin-top: 50px; 
             border-top: 5px solid var(--primary-color);
         }
@@ -502,27 +601,23 @@
         /* Reveal on Scroll Animations */
         .reveal {
             opacity: 0;
-            transform: translateY(30px); /* Start iets lager */
-            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Speelse cubic-bezier */
+            transform: translateY(30px); 
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
         }
         .reveal.revealed {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Specifieke delays voor gelaagde animatie (optioneel) */
-        .reveal-delay-1 { transition-delay: 0.2s; }
-        .reveal-delay-2 { transition-delay: 0.4s; }
-        .reveal-delay-3 { transition-delay: 0.6s; }
 
         .menu-toggle {
-            display: none; /* Standaard verborgen op desktop */
+            display: none; 
             background: none;
             border: none;
             cursor: pointer;
             padding: 10px;
-            z-index: 1100; /* Hoger dan de header content, maar lager dan een evt. overlay */
-            margin-left: auto; /* Duwt de knop naar rechts als er ruimte is */
+            z-index: 1100; 
+            margin-left: auto; 
         }
 
         .menu-toggle span {
@@ -538,38 +633,43 @@
 
         /* Responsive Adjustments */
         @media (max-width: 992px) {
-            #hero h1 { font-size: 3rem; }
-            #hero p { font-size: 1.25rem; }
-            section h2 { font-size: 2.4rem; }
-             #informatie .info-content { flex-direction: column; }
-            #informatie .info-illustration { margin-top: 40px; }
-             #informatie .info-illustration svg { width: 70%; max-width: 350px; }
+            #hero h1 { font-size: 2.8rem; } /* Was 3rem */
+            #hero p { font-size: 1.2rem; } /* Was 1.25rem */
+            section h2 { font-size: 2.2rem; } /* Was 2.4rem */
+            #informatie .info-content { 
+                flex-direction: column; 
+                align-items: center; 
+            }
+            #informatie .info-illustration { 
+                margin-top: 40px;
+                width: 70%; 
+                max-width: 400px; 
+            }
         }
 
         @media (max-width: 768px) {
             body { font-size: 15px; }
-            #hero h1 { font-size: 2.5rem; }
-            #hero p { font-size: 1.1rem; }
+            #hero h1 { font-size: 2.3rem; } /* Was 2.5rem */
+            #hero p { font-size: 1.05rem; } /* Was 1.1rem */
             .cta-button { padding: 14px 30px; font-size: 1.05rem; }
-            section h2 { font-size: 2.1rem; }
+            section h2 { font-size: 2rem; } /* Was 2.1rem */
 
             header .container {
-                flex-direction: row; /* Terug naar row voor logo en hamburger naast elkaar */
-                justify-content: space-between; /* Logo links, hamburger rechts */
+                flex-direction: row; 
+                justify-content: space-between; 
                 align-items: center;
-                position: relative; /* Nodig voor positionering van het uitklapmenu */
+                position: relative; 
             }
 
             .logo {
-                margin-bottom: 0; /* Was 15px, niet meer nodig hier */
-                z-index: 1101; /* Zorg dat logo boven uitgeklapt menu blijft als het menu zou overlappen */
+                margin-bottom: 0; 
+                z-index: 1101; 
             }
 
             .menu-toggle {
-                display: block; /* Toon de hamburger knop */
+                display: block; 
             }
 
-            /* Stijlen voor geanimeerde hamburger naar 'X' */
             .menu-toggle.active span:nth-child(1) {
                 transform: translateY(8px) rotate(45deg);
             }
@@ -581,58 +681,59 @@
             }
 
             header nav {
-                position: absolute; /* Positioneer t.o.v. de header .container */
-                top: 100%; /* Start direct onder de header */
+                position: absolute; 
+                top: 100%; 
                 left: 0;
                 width: 100%;
                 background-color: var(--background-color);
                 box-shadow: var(--box-shadow);
-                max-height: 0; /* Initieel verborgen */
-                overflow: hidden; /* Verberg content als max-height 0 is */
+                max-height: 0; 
+                overflow: hidden; 
                 transition: max-height 0.4s ease-out;
-                z-index: 1050; /* Onder de logo/menu-toggle, maar boven de pagina content */
+                z-index: 1050; 
             }
 
             header nav.menu-open {
-                max-height: calc(100vh - 70px); /* Max hoogte, bijv. viewport hoogte minus header hoogte. Pas 70px evt. aan. */
-                overflow-y: auto; /* Scrollbaar als er veel items zijn */
+                max-height: calc(100vh - 70px); 
+                overflow-y: auto; 
             }
 
             header nav ul {
                 flex-direction: column;
-                margin-top: 0; /* Verwijder bestaande margin */
+                margin-top: 0; 
                 width: 100%;
-                padding: 10px 0; /* Padding binnen het geopende menu */
+                padding: 10px 0; 
             }
 
             header nav ul li {
-                margin: 0; /* Reset individuele item margin */
+                margin: 0; 
                 text-align: center;
             }
 
             header nav ul li a {
                 display: block;
-                padding: 15px 20px; /* Grotere klikgebieden */
-                border-bottom: 1px solid var(--light-gray-color); /* Lijn tussen items */
+                padding: 15px 20px; 
+                border-bottom: 1px solid var(--light-gray-color); 
             }
             header nav ul li:last-child a {
-                border-bottom: none; /* Geen lijn voor laatste item */
+                border-bottom: none; 
             }
 
             header nav ul li a::after {
                 left: 50%;
                 transform: translateX(-50%);
-                bottom: 10px; /* Aanpassen aan nieuwe padding */
+                bottom: 10px; 
             }
 
             .diensten-grid { grid-template-columns: 1fr; }
-            #offerte-cta p { font-size: 1.1rem; }
+            #offerte-cta p { font-size: 1.05rem; } /* Was 1.1rem */
             .cta-button-main { padding: 16px 38px; font-size: 1.15rem; }
             
+            #informatie .info-illustration svg { width: 80%; max-width: 300px; } 
+
             .reveal { transform: translateY(20px); } 
         }
 
-        /* Als body.menu-is-open, voorkom scrollen van de pagina achter het menu */
         body.menu-is-open {
             overflow: hidden;
         }
@@ -663,51 +764,62 @@
         <section id="hero">
             <div class="container">
                 <h1>Uw project, onze zekerheid. Kies CAR verzekeringen.</h1>
-                <p>Focus op bouwen, niet op risico's. Met onze CAR-verzekering is uw project van fundering tot oplevering beschermd tegen onvoorziene schade, diefstal en meer. Bouw met een gerust hart.</p>
+                <p>Met onze CAR-verzekering is elk project – van uw particuliere verbouwing tot complexe zakelijke constructies – van start tot oplevering volledig beschermd. We dekken u tegen onvoorziene schade, brand, diefstal en meer. Richt u op de voortgang; wij nemen de risico's voor onze rekening. Zo bouwt u met een gerust hart aan uw toekomst.</p>
                 <a href="#informatie" class="cta-button">Ontdek Meer</a>
             </div>
         </section>
 
         <section id="informatie">
             <div class="container">
-                <h2 class="reveal">Wat Wij Voor U Kunnen Betekenen</h2>
+                <h2 class="reveal">Wat de CAR-verzekering voor u kan betekenen</h2>
                 <div class="info-content">
                     <div class="info-text reveal" data-reveal-delay="100">
-                        <p>Een bouwproject is een waardevolle onderneming, maar kent ook risico's. Bij <strong>[Uw Bedrijfsnaam]</strong> bieden we meer dan een verzekering: een solide fundament voor uw succes. Ontdek hoe wij het verschil maken en uw project <mark>van begin tot eind beschermen</mark>.</p>
-        
-                        <div class="benefit-block" style="padding-bottom: 15px; border-bottom: 1px dashed #ddd; margin-bottom: 20px;">
-                            <h3>  Uw Financiële Schild tegen Tegenslag</h3>
-                            <p>Onze CAR-verzekering is uw robuuste verdediging tegen onverwachte calamiteiten zoals storm, brand, diefstal of constructiefouten. Wij dekken materiële schade aan het bouwwerk én uw bouwmaterialen en hulpmiddelen, vaak al vanaf het transport. Zo blijft uw budget intact en uw visie onaangetast.</p>
+                        <p>Een Construction All Risks (CAR) verzekering is onmisbaar voor iedereen die bouwt, verbouwt of renoveert – of u nu een professional bent of een particulier. Het is de complete bescherming die uw project van begin tot eind dekt. Denk aan schade aan het gebouw in aanbouw, maar ook aan materialen op de bouwplaats. Of het nu gaat om uw droomhuis, een nieuw bedrijfspand of een grote infrastructuur, met een CAR-verzekering kunt u zich richten op het realiseren van uw visie, terwijl wij de risico's afdekken.</p>
+                        
+                        <!-- AANGEPAST: inline style voor border-bottom -->
+                        <div class="benefit-block" style="padding-bottom: 15px; border-bottom: 1px dashed var(--border-color); margin-bottom: 20px;">
+                            <h3>Uw zekerheid bij materiële schade</h3>
+                            <p>Op een bouwplaats kan er veel misgaan, zelfs met de beste planning. Onze CAR-verzekering biedt uitgebreide dekking voor <b> materiële schade </b> aan het werk zelf. Dit omvat bijvoorbeeld schade door brand, storm, diefstal van materialen, vandalisme, maar ook constructiefouten of onoplettendheid tijdens de bouw. Zelfs schade aan hulpconstructies, zoals steigers en bekistingen, is eventueel mee te verzekeren. Met deze zekerheid bent u beschermd tegen onverwachte kosten die de voortgang van uw project kunnen belemmeren.</p>
+                        </div>
+                        
+                        <!-- AANGEPAST: inline style voor border-bottom -->
+                        <div class="benefit-block" style="padding-bottom: 15px; border-bottom: 1px dashed var(--border-color); margin-bottom: 20px;">
+                            <h3>Bescherming bij aansprakelijkheid en meer</h3>
+                            <p> Naast schade aan het werk zelf, dekt een CAR-verzekering ook de aansprakelijkheid die kan ontstaan tijdens het project. Denk aan schade die uw bouwactiviteiten veroorzaken aan eigendommen van derden, zoals de buren of voorbijgangers. Bovendien kan de verzekering uitgebreid worden met dekkingen voor bijvoorbeeld hulpmaterieel zoals gereedschappen, of zelfs schade aan bestaande eigendommen die tijdens de verbouwing beschadigd raken. Deze aanvullende dekkingen zijn optioneel en kunnen worden afgestemd op de specifieke behoeften van uw project.</p>
                         </div>
         
-                        <div class="benefit-block" style="padding-bottom: 15px; border-bottom: 1px dashed #ddd; margin-bottom: 20px;">
-                            <h3>  Bescherming bij Aansprakelijkheid & Zorgeloze Continuïteit</h3>
-                            <p>Mocht er onverhoopt schade aan derden ontstaan of letsel tijdens de bouw, dan dekt onze CAR-verzekering uw aansprakelijkheid en voorkomt kostbare claims. We zorgen voor snelle schadeafhandeling, zodat uw project <mark>continuïteit behoudt</mark> en vertraging minimaal blijft.</p>
-                        </div>
-        
-                        <div class="benefit-block" style="padding-bottom: 15px; margin-bottom: 20px;"> <!-- Laatste blok geen border-bottom -->
-                            <h3>  Focus op Bouwen, Wij Regelen de Rest</h3>
-                            <p>Met de zekerheid van onze CAR-verzekering kunt u met een gerust hart focussen op uw kernactiviteit: bouwen. Wij waken over uw investering. Elk project is uniek; onze experts bieden persoonlijk, vakkundig advies voor een verzekering op maat, perfect afgestemd op uw <mark>specifieke risico's</mark>.</p>
+                        <div class="benefit-block" style="padding-bottom: 15px; margin-bottom: 20px;"> 
+                            <h3>Focus op bouwen, wij regelen de rest</h3>
+                            <p>Met een CAR-verzekering via onze website kiest u voor gemoedsrust. U hoeft zich geen zorgen te maken over de financiële gevolgen van onvoorziene gebeurtenissen. Wij zorgen ervoor dat uw project van fundering tot oplevering beschermd is, zodat u zich volledig kunt concentreren op het realiseren van uw bouwplannen. Van de kleinste particuliere verbouwing tot de meest complexe zakelijke projecten: wij staan voor u klaar met de juiste dekking, zodat u met vertrouwen kunt bouwen.</p>
                         </div>
         
                     </div>
         
                     <div class="info-illustration reveal" data-reveal-delay="300">
                         <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" aria-labelledby="infoIllustrationTitle">
-                            <title id="infoIllustrationTitle">Abstracte illustratie van samenwerking en groei</title>
+                            <title id="infoIllustrationTitle">Abstracte illustratie van zekerheid en bouwproces</title>
                             <defs>
                                 <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:var(--secondary-color);stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:var(--primary-color);stop-opacity:1" />
+                                    <stop offset="0%" style="stop-color:var(--secondary-color);stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:var(--primary-color);stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="gradAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:var(--light-accent-color);stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:var(--accent-color);stop-opacity:1" />
                                 </linearGradient>
                             </defs>
-                            <rect x="0" y="0" width="300" height="220" fill="var(--light-gray-color)" rx="15"/>
-                            <path d="M 30 180 Q 90 120 150 150 T 270 120" stroke="url(#grad1)" stroke-width="12" fill="none" stroke-linecap="round"/>
-                            <circle cx="80" cy="70" r="35" fill="var(--accent-color)"/>
-                            <circle cx="70" cy="65" r="10" fill="var(--light-text-color)"/>
-                            <rect x="150" y="50" width="100" height="25" fill="var(--secondary-color)" rx="5"/>
-                            <rect x="150" y="90" width="80" height="25" fill="var(--secondary-color)" rx="5" opacity="0.7"/>
-                            <path d="M50,120 L80,90 L110,120 Z" fill="var(--primary-color)" opacity="0.8"/>
+                            <rect x="0" y="0" width="300" height="220" fill="var(--light-gray-color)" rx="15" opacity="0.6"/>
+                            <path d="M 20 190 H 280" stroke="var(--primary-color)" stroke-width="8" stroke-linecap="round" opacity="0.7"/>
+                            <rect x="50" y="120" width="30" height="70" fill="url(#grad1)" rx="5" transform="rotate(-5 65 155)"/>
+                            <rect x="135" y="80" width="30" height="110" fill="url(#grad1)" rx="5"/>
+                            <rect x="220" y="100" width="30" height="90" fill="url(#grad1)" rx="5" transform="rotate(5 235 145)"/>
+                            <circle cx="150" cy="60" r="45" fill="none" stroke="var(--accent-color)" stroke-width="7" stroke-dasharray="10 5" opacity="0.9"/>
+                            <circle cx="150" cy="60" r="30" fill="var(--light-accent-color)" opacity="0.7"/>
+                            <path d="M142,55 L150,65 L158,55" fill="none" stroke="var(--primary-color)" stroke-width="3" stroke-linecap="round"/>
+                            <line x1="40" y1="50" x2="110" y2="50" stroke="var(--secondary-color)" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                            <line x1="190" y1="50" x2="260" y2="50" stroke="var(--secondary-color)" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                            <circle cx="30" cy="30" r="8" fill="var(--accent-color)" opacity="0.5"/>
+                            <circle cx="270" cy="180" r="8" fill="var(--accent-color)" opacity="0.5"/>
                         </svg>
                     </div>
                 </div>
@@ -716,11 +828,11 @@
 
         <section id="diensten">
             <div class="container">
-                <h2 class="reveal">Onze Kerndiensten</h2>
+                <h2 class="reveal">Onze Kerndiensten: Uw Partner in Bouwzekerheid</h2>
+                <p class="section-intro-p reveal" data-reveal-delay="100">Bij onlinecarverzekeringen.nl begrijpen we dat een succesvol bouwproject meer vraagt dan alleen een polis. Het vraagt om een partner die uw risico's begrijpt en proactief meedenkt. Onze kerndiensten zijn dan ook ontworpen om u niet alleen te verzekeren, maar ook te ontzorgen.</p>
                 <div class="diensten-grid">
                     <div class="dienst-item reveal" data-reveal-delay="0">
                         <div class="icon-wrapper">
-                            <!-- NIEUW ICOON voor Materiële schade (Hard Hat) -->
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M2 18a1 1 0 0 0 .89.49h18.22a1 1 0 0 0 .89-.49l-1.7-3.4A1 1 0 0 0 18.42 14H5.58a1 1 0 0 0-.89.11L2 18Z"></path>
                                 <path d="M12 2v2"></path>
@@ -730,30 +842,31 @@
                                 <path d="M5 9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-3.5a2.5 2.5 0 0 1-5 0H5Z"></path>
                             </svg>
                         </div>
-                        <h3>Materiële schade</h3>
-                        <p>Dit is de kern van de verzekering. Het dekt schade aan hetgeen gebouwd of gemonteerd wordt, inclusief de gebruikte materialen op de bouwplaats.</p>
+                        <h3>Materiële schade: Snelle en adequate afhandeling</h3>
+                        <p>Bij schade aan uw bouwproject wilt u snel en efficiënt geholpen worden. Wij zorgen voor een vlotte en transparante schadeafhandeling van materiële schade aan het werk en de bouwmaterialen. Ons team staat klaar om u te begeleiden, de nodige expertise in te schakelen en ervoor te zorgen dat uw project met minimale verstoring kan worden voortgezet.</p>
+                        <button class="read-more-btn" aria-expanded="false" style="display: none;">Lees meer <span class="arrow">▼</span></button>
                     </div>
                     <div class="dienst-item reveal" data-reveal-delay="200">
                         <div class="icon-wrapper">
-                            <!-- NIEUW ICOON voor Aansprakelijkheid (Shield) -->
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>
                         </div>
-                        <h3>Aansprakelijkheid </h3>
-                        <p>Dekt de aansprakelijkheid voor schade (zowel materieel als letsel) die aan derden (personen of spullen die niet bij het project betrokken zijn) wordt toegebracht door de bouwwerkzaamheden.</p>
+                        <h3>Aansprakelijkheid: Deskundig advies en bescherming </h3>
+                        <p>Aansprakelijkheidskwesties tijdens bouwprojecten kunnen complex zijn. Wij bieden u niet alleen de noodzakelijke dekking, maar ook deskundig advies en begeleiding bij mogelijke claims door derden. Wij helpen u de risico's te minimaliseren en zorgen ervoor dat u beschermd bent tegen onverwachte financiële gevolgen.</p>
+                        <button class="read-more-btn" aria-expanded="false" style="display: none;">Lees meer <span class="arrow">▼</span></button>
                     </div>
                     <div class="dienst-item reveal" data-reveal-delay="400">
                         <div class="icon-wrapper">
-                            <!-- NIEUW ICOON voor UX/UI Design (Layout) -->
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                                 <line x1="3" y1="9" x2="21" y2="9"></line>
                                 <line x1="9" y1="21" x2="9" y2="9"></line>
                             </svg>
                         </div>
-                        <h3>Financiële dekking</h3>
-                        <p>Wij zorgen ervoor dat de middelen beschikbaar komen om beschadigde onderdelen van het werk te herstellen of te vervangen, zodat het project voortgezet kan worden.</p>
+                        <h3>Financiële dekking: Heldere voorwaarden, maximale continuïteit</h3>
+                        <p>De financiële impact van schade kan groot zijn. Wij garanderen een heldere financiële dekking die erop gericht is de continuïteit van uw project te waarborgen. Door duidelijke polisvoorwaarden en een proactieve benadering zorgen wij ervoor dat de benodigde middelen beschikbaar zijn wanneer u ze nodig heeft, zodat uw bouwproces geen onnodige vertraging oploopt.</p>
+                        <button class="read-more-btn" aria-expanded="false" style="display: none;">Lees meer <span class="arrow">▼</span></button>
                     </div>
                 </div>
             </div>
@@ -761,8 +874,8 @@
 
         <section id="offerte-cta">
             <div class="container reveal">
-                <h2>Klaar om te Starten?</h2>
-                <p>Neem de volgende stap naar succes. Vraag vandaag nog een vrijblijvende offerte aan en ontdek hoe wij u kunnen helpen uw doelen te bereiken. Ons proces is snel, eenvoudig en volledig transparant.</p>
+                <h2>Uw Bouwproject Verdient de Beste Bescherming. Vraag Nu Uw Offerte Aan. </h2>
+                <p>Neem de slimme stap naar onbezorgd bouwen. Ontvang snel en eenvoudig een vrijblijvende offerte voor uw CAR-verzekering. Wij zorgen voor transparantie en een aanbod op maat, zodat u vol vertrouwen aan de slag kunt.</p>
                 <a href="form.html" class="cta-button-main">Vraag Nu Offerte Aan</a>
                 </div>
         </section>
@@ -770,7 +883,9 @@
         <section id="contact">
              <div class="container reveal">
                 <h2>Neem Contact Op</h2>
-                <p>Heeft u vragen, wilt u meer weten over onze diensten, of gewoon eens sparren over uw ideeën? <br>Wij horen graag van u!</p>
+                <p class="section-intro-p">
+                    Heeft u vragen, wilt u meer weten over onze diensten, of gewoon eens sparren over uw ideeën? <br>Wij horen graag van u!
+                </p>
                 <p><strong>Email:</strong> info@uwbedrijfsnaam.com</p>
                 <p><strong>Telefoon:</strong> +31 6 123 456 78</p>
              </div>
@@ -779,7 +894,7 @@
 
     <footer>
         <div class="container">
-            <p>© <span id="currentYear"></span> [Uw Bedrijfsnaam]. Alle rechten voorbehouden.</p>
+            <p>© <span id="currentYear"></span> Uw Bedrijfsnaam. Alle rechten voorbehouden.</p>
             <p>
                 <a href="#privacy">Privacybeleid</a> |
                 <a href="#voorwaarden">Algemene Voorwaarden</a>
@@ -788,107 +903,147 @@
     </footer>
 
     <script>
-            // ... (jouw bestaande JavaScript code) ...
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mainNav = document.querySelector('header nav'); 
 
-    // Mobile Menu Toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mainNav = document.querySelector('header nav'); // Selecteert het <nav> element
-
-    if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', () => {
-            const isOpen = mainNav.classList.toggle('menu-open');
-            menuToggle.classList.toggle('active'); // Voor de X animatie
-            menuToggle.setAttribute('aria-expanded', isOpen);
-            
-            // Voorkom scrollen van de body als menu open is
-            if (isOpen) {
-                document.body.classList.add('menu-is-open');
-            } else {
-                document.body.classList.remove('menu-is-open');
-            }
-        });
-
-        // Sluit menu als op een link wordt geklikt (voor single page navigatie)
-        const navLinksMobile = mainNav.querySelectorAll('a');
-        navLinksMobile.forEach(link => {
-            link.addEventListener('click', () => {
-                if (mainNav.classList.contains('menu-open')) {
-                    mainNav.classList.remove('menu-open');
-                    menuToggle.classList.remove('active');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    document.body.classList.remove('menu-is-open');
-                }
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('menu-open');
+                menuToggle.classList.toggle('active'); 
+                menuToggle.setAttribute('aria-expanded', String(isOpen));
+                document.body.classList.toggle('menu-is-open', isOpen);
             });
-        });
-    }
-        // Update copyright jaar
+
+            const navLinksMobile = mainNav.querySelectorAll('a');
+            navLinksMobile.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mainNav.classList.contains('menu-open')) {
+                        mainNav.classList.remove('menu-open');
+                        menuToggle.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                        document.body.classList.remove('menu-is-open');
+                    }
+                });
+            });
+        }
+
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Header schaduw bij scrollen
         const header = document.getElementById('mainHeader');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) { // 50px scroll
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Reveal on Scroll functionaliteit
+        if (header) {
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+        }
+        
         const revealElements = document.querySelectorAll('.reveal');
-
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Haal de delay op van data-attribuut, of gebruik een standaard delay
-                    const delay = entry.target.dataset.revealDelay || 0;
-                    
-                    setTimeout(() => {
-                        entry.target.classList.add('revealed');
-                    }, parseInt(delay));
-                    
-                    observer.unobserve(entry.target); // Optioneel: animeer maar één keer
-                }
+        if (revealElements.length > 0) {
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = entry.target.dataset.revealDelay || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('revealed');
+                        }, parseInt(delay));
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                root: null, 
+                threshold: 0.1, 
+                rootMargin: "0px 0px -50px 0px" 
             });
-        }, {
-            root: null, // null = viewport
-            threshold: 0.1, // 10% van element moet zichtbaar zijn
-            rootMargin: "0px 0px -50px 0px" // Start animatie iets eerder (50px vanaf onderkant viewport)
-        });
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+        }
 
-        revealElements.forEach(el => {
-            revealObserver.observe(el);
-        });
-
-        // Active menu link (simpele versie gebaseerd op scroll, kan uitgebreider)
-        // Dit is een basisversie. Voor een perfecte "active" state is complexere logica nodig.
         const navLinks = document.querySelectorAll('header nav ul li a');
-        const sections = document.querySelectorAll('main section');
+        const sections = document.querySelectorAll('main section[id]');
+        if (navLinks.length > 0 && sections.length > 0) {
+            const updateActiveNavLink = () => {
+                let currentSectionId = 'hero'; // Default to hero
+                const offset = window.innerHeight / 3; // Activeer sectie als 1/3e in beeld is
 
-        window.addEventListener('scroll', () => {
-            let currentSectionId = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - sectionHeight / 3)) { // Iets eerder activeren
-                    currentSectionId = section.getAttribute('id');
-                }
-            });
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    if (pageYOffset >= sectionTop - offset && pageYOffset < sectionBottom - offset) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const linkHref = link.getAttribute('href');
+                    if (linkHref === `#${currentSectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+            window.addEventListener('scroll', updateActiveNavLink);
+            window.addEventListener('load', updateActiveNavLink); // Initiele check
+        }
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSectionId}`) {
-                    link.classList.add('active');
+
+        const dienstItemsJS = document.querySelectorAll('.dienst-item');
+        // const TARGET_MAX_HEIGHT_PX_DIENSTEN = 75; // Let op: deze wordt nu dynamisch berekend
+
+        dienstItemsJS.forEach(item => {
+            const pElement = item.querySelector('p');
+            const btnElement = item.querySelector('.read-more-btn');
+            const arrowElement = btnElement ? btnElement.querySelector('.arrow') : null;
+
+            if (pElement && btnElement && arrowElement) {
+                let resizeTimerReadMore;
+                let initialMaxHeight = 0;
+
+                function setupReadMore() {
+                    // Reset
+                    pElement.classList.remove('is-truncated', 'expanded');
+                    pElement.style.maxHeight = ''; // Verwijder inline max-height
+                    btnElement.style.display = 'none';
+                    btnElement.setAttribute('aria-expanded', 'false');
+                    arrowElement.textContent = '▼'; 
+
+                    // Bereken max-height voor 3 regels gebaseerd op actuele p stijl
+                    const pStyle = window.getComputedStyle(pElement);
+                    const pLineHeight = parseFloat(pStyle.lineHeight);
+                    const NUM_LINES_TRUNCATED = 3; // We willen ongeveer 3 regels tonen
+                    initialMaxHeight = pLineHeight * NUM_LINES_TRUNCATED;
+
+                    if (pElement.scrollHeight > initialMaxHeight + (pLineHeight / 2) ) { // + halve regel tolerantie
+                        pElement.style.maxHeight = `${initialMaxHeight}px`;
+                        pElement.classList.add('is-truncated');
+                        btnElement.style.display = 'inline-flex'; 
+                    }
                 }
-            });
-            // Zorg dat home altijd actief is als er geen sectie is (bovenaan pagina)
-            if (!currentSectionId && pageYOffset < sections[0].offsetTop - sections[0].clientHeight / 3){
-                 navLinks.forEach(link => link.classList.remove('active'));
-                 document.querySelector('header nav ul li a[href="#hero"]').classList.add('active');
+                
+                 const debouncedSetupReadMore = () => {
+                    clearTimeout(resizeTimerReadMore);
+                    resizeTimerReadMore = setTimeout(setupReadMore, 250);
+                };
+
+                window.addEventListener('load', setupReadMore); // Initial setup on load
+                window.addEventListener('resize', debouncedSetupReadMore); // Re-setup on resize
+                // Fallback voor snelle DOM, maar fonts/images later
+                document.addEventListener('DOMContentLoaded', () => setTimeout(setupReadMore, 150));
+                
+
+                btnElement.addEventListener('click', () => {
+                    const isNowExpanded = pElement.classList.toggle('expanded');
+                    btnElement.setAttribute('aria-expanded', String(isNowExpanded));
+                    arrowElement.textContent = isNowExpanded ? '▲' : '▼';
+                    
+                    if (isNowExpanded) {
+                        pElement.style.maxHeight = pElement.scrollHeight + 'px';
+                    } else {
+                        pElement.style.maxHeight = `${initialMaxHeight}px`;
+                    }
+                });
             }
         });
-
-
     </script>
 </body>
 </html>
