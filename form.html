@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uitgebreid Offerteformulier Tijdelijke CAR-Verzekering (Multi-Step) | [Uw Bedrijfsnaam]</title>
+    <title>Uitgebreid Offerteformulier Tijdelijke CAR-Verzekering (Multi-Step) | OnlineCARverzekeringen.nl</title>
     <style>
         /* ... (ALLE CSS BLIJFT HETZELFDE ALS IN DE VORIGE VERSIE) ... */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -308,8 +308,22 @@
         .next-button:hover { background-color: var(--form-button-hover-bg-color); }
         .prev-button { background-color: var(--form-button-secondary-bg-color); }
         .prev-button:hover { background-color: var(--form-button-secondary-hover-bg-color); }
-        .submit-button { background-color: var(--form-button-bg-color); width: 100%; }
+        .submit-button { background-color: var(--form-button-bg-color); }
         .submit-button:hover { background-color: var(--form-button-hover-bg-color); }
+        
+        /* --- START NIEUWE CSS VOOR OPSLAAN KNOP --- */
+        .save-button {
+            background-color: #6c757d; /* Een neutrale grijze kleur */
+            flex-grow: 0; /* Voorkom dat deze knop meegroeit */
+        }
+        .save-button:hover {
+            background-color: #5a6268;
+        }
+        .save-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+        /* --- EINDE NIEUWE CSS --- */
 
         .ubo-section {
             padding-bottom: 10px; /* Space before buttons or hr */
@@ -529,7 +543,59 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* --- START CSS VOOR CONTACT FOOTER --- */ /* NIEUW / AANGEPAST */
+        /* --- START CSS VOOR DISCLAIMER SECTIE --- */ /* NIEUW */
+        .form-disclaimer {
+            margin-top: 30px; 
+            padding: 20px;
+            border: 1px solid var(--form-border-color); 
+            border-radius: var(--border-radius);
+            background-color: var(--form-section-bg-color); 
+            text-align: left;
+        }
+
+        .form-disclaimer h2 {
+            font-size: 1.4rem; 
+            color: var(--form-text-color);
+            margin-bottom: 15px;
+            text-align: center; 
+        }
+
+        .form-disclaimer h3 {
+            font-size: 1.1rem;
+            color: var(--form-label-color);
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-disclaimer p {
+            font-size: 0.9rem;
+            color: var(--form-text-color); 
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .form-disclaimer ul {
+            list-style-type: disc; 
+            margin-left: 20px; 
+            margin-bottom: 15px;
+        }
+
+        .form-disclaimer ul li {
+            font-size: 0.9rem;
+            color: var(--form-text-color);
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .form-disclaimer ul li strong {
+            font-weight: 600;
+            color: var(--form-label-color);
+        }
+        /* --- EINDE CSS VOOR DISCLAIMER SECTIE --- */
+
+
+        /* --- START CSS VOOR CONTACT FOOTER --- */ 
         .form-contact-footer {
             margin-top: 40px; /* Space above this section */
             padding-top: 25px;
@@ -592,17 +658,31 @@
 
         .menu-toggle {
             display: block; /* Toon de hamburger knop op mobiel */
+            /* Styles for hamburger icon (three bars) */
+            width: 30px; height: 22px; position: relative; cursor: pointer;
+            background: none; border: none;
+            padding: 0;
         }
+        .menu-toggle span {
+            display: block; position: absolute; height: 3px; width: 100%;
+            background: var(--primary-color); border-radius: 3px;
+            opacity: 1; left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+        .menu-toggle span:nth-child(1) { top: 0px; }
+        .menu-toggle span:nth-child(2) { top: 9px; } /* (22 - 3*3) / 2 = 6.5, aangepast naar 9 en 18 voor spacing */
+        .menu-toggle span:nth-child(3) { top: 18px; } /* 18 ipv 22-3=19 */
 
         /* Stijlen voor geanimeerde hamburger naar 'X' */
         .menu-toggle.active span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+            transform: translateY(8px) rotate(45deg); /* Aangepast van 8px */
         }
         .menu-toggle.active span:nth-child(2) {
             opacity: 0;
         }
         .menu-toggle.active span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+            transform: translateY(-8px) rotate(-45deg); /* Aangepast van -8px */
         }
 
         /* Navigatie menu zelf op mobiel */
@@ -664,7 +744,7 @@
 <body>
     <header id="mainHeader">
         <div class="container">
-            <a href="index.html#hero" class="logo">[Uw Bedrijfsnaam]</a>
+            <a href="car_site.html#hero" class="logo">OnlineCARverzekeringen.nl</a>
             <button class="menu-toggle" aria-label="Menu openen/sluiten" aria-expanded="false" aria-controls="mainNavMenuForm">
                 <span></span>
                 <span></span>
@@ -672,11 +752,11 @@
             </button>
             <nav id="mainNavMenuForm">
                 <ul>
-                    <li><a href="index.html#hero">Home</a></li>
-                    <li><a href="index.html#informatie">Informatie</a></li>
-                    <li><a href="index.html#diensten">Diensten</a></li>
-                    <li><a href="index.html#offerte-cta" class="active">Offerte</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="car_site.html#hero">Home</a></li>
+                    <li><a href="car_site.html#informatie">Informatie</a></li>
+                    <li><a href="car_site.html#diensten">Diensten</a></li>
+                    <li><a href="car_site.html#offerte-cta" class="active">Offerte</a></li>
+                    <li><a href="car_site.html#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -693,7 +773,7 @@
         <h1>Offerte Tijdelijke CAR-Verzekering</h1>
         <p class="form-intro">Volg de stappen om uw offerte aan te vragen. Velden met een <span class="asterisk">*</span> zijn verplicht.</p>
 
-        <form id="carOfferteForm" action="#" method="POST">
+        <form id="carOfferteForm" action="https://formsubmit.co/robotninja100@gmail.com" method="POST">
 
             <!-- Stap 1: Aanvragergegevens -->
             <fieldset class="form-step active" data-step-name="Aanvrager">
@@ -718,10 +798,10 @@
                     <div class="form-group">
                         <label for="kvkNummer">KVK-nummer<span class="asterisk">*</span>
                             <span class="help-tip">
-                                <p>Vul hier uw Kamer van Koophandel nummer in. Dit nummer bestaat uit 8 cijfers.</p>
+                                <p>Vul hier uw Kamer van Koophandel nummer in. Dit nummer bestaat uit 9 cijfers.</p>
                             </span>
                         </label>
-                        <input type="text" id="kvkNummer" name="kvkNummer">
+                        <input type="text" id="kvkNummer" name="kvkNummer" maxlength="9" pattern="\d{8}" title="Vul een geldig KVK-nummer in (8 cijfers)">
                     </div>
                     <div class="form-group">
                         <label for="bedrijfsnaamZakelijk">Bedrijfsnaam<span class="asterisk">*</span></label>
@@ -805,17 +885,28 @@
                     <!-- Einde UBO Sectie in Stap 1 -->
 
                     <div class="form-group">
-                        <label for="postadresZakelijk">Vestigingsadres<span class="asterisk">*</span></label>
-                        <input type="text" id="postadresZakelijk" name="postadresZakelijk" placeholder="Straatnaam Huisnr, Postcode Plaats">
+                        <label for="straatHuisnrZakelijk">Straat en huisnummer:</label>
+                        <input type="text" id="straatHuisnrZakelijk" name="straatHuisnrZakelijk" placeholder="Voorbeeldstraat 123" required>
+                        <br>
+
+                        <label for="postcodeZakelijkApart">Postcode:</label>
+                        <input type="text" id="postcodeZakelijkApart" name="postcodeZakelijkApart" placeholder="1234 AB"
+                                pattern="^\d{4}\s?[a-zA-Z]{2}$"
+                                title="Voer een geldige Nederlandse postcode in (bijv. 1234 AB)." required>
+                        <br>
+
+                        <label for="plaatsZakelijk">Plaats:</label>
+                        <input type="text" id="plaatsZakelijk" name="plaatsZakelijk" placeholder="Amsterdam" required>
+                        <br>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="telefoonnummerZakelijk">Telefoonnummer<span class="asterisk">*</span></label>
-                            <input type="tel" id="telefoonnummerZakelijk" name="telefoonnummerZakelijk">
+                            <input type="tel" id="telefoonnummerZakelijk" name="telefoonnummerZakelijk" maxlength="10" title="Vul een geldig telefoonnummer in (minimaal 7 cijfers)">
                         </div>
                         <div class="form-group">
                             <label for="emailadresZakelijk">E-mailadres<span class="asterisk">*</span></label>
-                            <input type="email" id="emailadresZakelijk" name="emailadresZakelijk">
+                            <input type="email" id="emailadresZakelijk" name="emailadresZakelijk" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="Vul een geldig e-mailadres in">
                         </div>
                     </div>
                 </div>
@@ -854,7 +945,8 @@
                 </div>
                 
                 <div class="form-navigation-buttons">
-                    <span></span> 
+                    <button type="button" class="nav-button prev-button" style="visibility: hidden;">Vorige</button>
+                    <button type="button" class="nav-button save-button" onclick="handleSaveButtonClick(this)">Voortgang Opslaan</button>
                     <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
                 </div>
             </fieldset>
@@ -986,6 +1078,7 @@
 
                 <div class="form-navigation-buttons">
                     <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
+                    <button type="button" class="nav-button save-button" onclick="handleSaveButtonClick(this)">Voortgang Opslaan</button>
                     <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
                 </div>
             </fieldset>
@@ -1079,6 +1172,7 @@
 
                 <div class="form-navigation-buttons">
                     <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
+                    <button type="button" class="nav-button save-button" onclick="handleSaveButtonClick(this)">Voortgang Opslaan</button>
                     <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
                 </div>
             </fieldset>
@@ -1252,6 +1346,7 @@
 
                 <div class="form-navigation-buttons">
                     <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
+                    <button type="button" class="nav-button save-button" onclick="handleSaveButtonClick(this)">Voortgang Opslaan</button>
                     <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
                 </div>
             </fieldset>
@@ -1348,6 +1443,7 @@
 
                 <div class="form-navigation-buttons">
                     <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
+                    <button type="button" class="nav-button save-button" onclick="handleSaveButtonClick(this)">Voortgang Opslaan</button>
                     <button type="button" class="nav-button next-button" onclick="nextStep()">Volgende</button>
                 </div>
             </fieldset>
@@ -1387,18 +1483,38 @@
                 </div>
                 <div class="form-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" name="verklaring_wijziging_ubo" required>
-                        Ik verklaar wijzigingen ten aanzien van de UBO's (indien van toepassing) direct te melden.<span class="asterisk">*</span>
+                        <input type="checkbox" name="verklaring_contact_andere_verzekeringen" required>
+                        Neem me contact met me op voor andere verzekeringen<span class="asterisk">*</span>
                     </label>
                 </div>
 
                 <div class="form-navigation-buttons">
                     <button type="button" class="nav-button prev-button" onclick="prevStep()">Vorige</button>
+                    <button type="button" class="nav-button save-button" onclick="handleSaveButtonClick(this)">Voortgang Opslaan</button>
                     <button type="submit" class="nav-button submit-button">Offerte Aanvragen</button>
                 </div>
             </fieldset>
         </form>
-        <!-- NIEUW / AANGEPAST: Contactinformatie sectie -->
+        
+        <!-- START DISCLAIMER SECTIE TOEGEVOEGD -->
+        <div class="form-disclaimer">
+            <h2>Belangrijke informatie over onze dienstverlening</h2>
+            <p>OnlineCARverzekeringen.nl is een dienst van Van den Brink & Schuiteman. Wij zijn geen verzekeraar, maar treden op als onafhankelijk verzekeringsadviseur en tussenpersoon. Dit betekent dat wij zelf geen verzekeringen aanbieden, maar gespecialiseerd zijn in het zoeken naar de meest geschikte CAR-verzekering voor uw specifieke project.</p>
+            
+            <h3>Onze werkwijze:</h3>
+            <p>Op basis van de informatie die u via ons aanvraagformulier aanlevert, zoeken wij voor u de best passende verzekering bij diverse verzekeraars. Wij streven ernaar u een aanbod te presenteren dat optimaal aansluit bij uw behoeften en de kenmerken van uw bouwproject.</p>
+            
+            <h3>Aandachtspunten:</h3>
+            <ul>
+                <li><strong>Doorlooptijden verzekeraars:</strong> De acceptatie van een aanvraag en de verdere afhandeling (zoals het opstellen van de polis) liggen bij de verzekeraars zelf. Wij hebben geen invloed op hun interne doorlooptijden. Wij zullen u uiteraard zo goed mogelijk informeren over de status van uw aanvraag.</li>
+                <li><strong>Verantwoordelijkheid ingevulde gegevens:</strong> De kwaliteit van ons advies en de geldigheid van uw verzekering zijn direct afhankelijk van de juistheid en volledigheid van de gegevens die u aanlevert. U bent zelf verantwoordelijk voor het correct invullen van alle gevraagde informatie. OnlineCARverzekeringen.nl en Van den Brink & Schuiteman kunnen niet aansprakelijk worden gehouden voor schade of gevolgen die voortvloeien uit onjuist of onvolledig door u ingevulde gegevens.</li>
+            </ul>
+            
+            <p>Heeft u vragen over deze disclaimer of onze werkwijze? Neem dan gerust contact met ons op via het contactformulier of de contactgegevens op onze website.</p>
+        </div>
+        <!-- EINDE DISCLAIMER SECTIE TOEGEVOEGD -->
+
+        <!-- Contactinformatie sectie -->
         <div class="form-contact-footer">
             <h2>Heeft u vragen?</h2>
             <p>Indien u vragen heeft over dit formulier of uw aanvraag, neem dan gerust contact met ons op:</p>
@@ -1413,7 +1529,7 @@
         </div>
     </div>
 
-    <script>
+        <script>
 
             // ... (Jouw bestaande JavaScript code voor het formulier, progress bar, etc.) ...
 
@@ -1465,8 +1581,27 @@
             const selectedType = document.querySelector('input[name="aanvragerType"]:checked');
             if (selectedType) {
                 toggleBtwField(selectedType.value);
+            } else {
+                const btwField = document.getElementById('btwField');
+                if(btwField) btwField.style.display = 'block'; // Default to show if no selection made initially
             }
         });
+
+        function toggleBtwField(aanvragerType) {
+            const btwField = document.getElementById('btwField');
+            if (btwField) {
+                if (aanvragerType === 'zakelijk') {
+                    btwField.style.display = 'block';
+                } else if (aanvragerType === 'particulier') {
+                    btwField.style.display = 'none';
+                    // Optioneel: reset BTW selectie
+                    document.querySelectorAll('input[name="btw"]').forEach(rb => rb.checked = false);
+                } else {
+                    btwField.style.display = 'block'; // Default to show
+                }
+            }
+        }
+
 
     document.getElementById('duurBouwMaanden').addEventListener('input', function () {
             const waarschuwing = document.querySelector('.duurBouwWaarschuwing'); // Corrected selector
@@ -1506,7 +1641,8 @@
                 setFieldsRequired(particulierFieldsQuery, false);
                 setFieldsRequiredForUBOSectie(false);
             }
-            saveFormData(); 
+            toggleBtwField(type); // Call to show/hide BTW field
+            // saveFormData(); // VERWIJDERD VOOR HANDMATIG OPSLAAN
         }
 
         function checkRechtsvormForUbo() {
@@ -1529,7 +1665,7 @@
                 uboSectieStap1.style.display = 'none';
                 setFieldsRequiredForUBOSectie(false);
             }
-            saveFormData();
+            // saveFormData(); // VERWIJDERD VOOR HANDMATIG OPSLAAN
         }
 
         function setFieldsRequired(fields, required) {
@@ -1549,24 +1685,27 @@
 
                 if (required && isMarkedAsRequired) {
                     field.required = true;
-                    field.disabled = false;
+                    // field.disabled = false; // Wordt hieronder afgehandeld
                 } else {
                     field.required = false;
-                    // field.disabled = true; // Keep disabled if parent is hidden, enable if parent shown but not required
                 }
-                 // Ensure field is enabled if it's part of a visible container, even if not required
-                if (required) field.disabled = false;
-                else { // not required
-                    // Disable only if its main container (zakelijk/particulier) is hidden
-                    const zakelijkContainer = document.getElementById('zakelijkFieldsContainer');
-                    const particulierContainer = document.getElementById('particulierFieldsContainer');
-                    
-                    const zakelijkVisible = zakelijkContainer && zakelijkContainer.style.display === 'block';
-                    const particulierVisible = particulierContainer && particulierContainer.style.display === 'block';
+                 // Enable/disable logic based on container visibility primarily
+                const zakelijkContainer = document.getElementById('zakelijkFieldsContainer');
+                const particulierContainer = document.getElementById('particulierFieldsContainer');
+                
+                const zakelijkVisible = zakelijkContainer && zakelijkContainer.style.display === 'block';
+                const particulierVisible = particulierContainer && particulierContainer.style.display === 'block';
 
-                    if (field.closest('#zakelijkFieldsContainer') && !zakelijkVisible) field.disabled = true;
-                    else if (field.closest('#particulierFieldsContainer') && !particulierVisible) field.disabled = true;
-                    else field.disabled = false; // Enable if in visible section, even if not required.
+                if (field.closest('#zakelijkFieldsContainer')) {
+                    field.disabled = !zakelijkVisible;
+                } else if (field.closest('#particulierFieldsContainer')) {
+                    field.disabled = !particulierVisible;
+                } else { // Fields not in zakelijk/particulier containers (should not happen for these queries)
+                    field.disabled = !required; // Fallback: disable if not broadly required
+                }
+                // If a field is required (because its section is active AND it's marked with an asterisk), ensure it's enabled.
+                if (field.required) {
+                    field.disabled = false;
                 }
             });
         }
@@ -1578,16 +1717,13 @@
 
             const uboVelden = uboContainer.querySelectorAll('input, select, textarea');
             uboVelden.forEach(field => {
-                // Bepaal of het veld standaard 'required' is binnen een UBO sectie
-                // Dit is simpeler: alle UBO velden met een asterisk in het label zijn verplicht als de sectie actief is.
                 let isMarkedAsRequired = false;
                 const label = field.closest('.form-group, .form-row')?.querySelector(`label[for="${field.id}"]`);
                 if (label && label.querySelector('.asterisk')) {
                     isMarkedAsRequired = true;
                 }
-                 // Voor radio groepen binnen UBO
                 if (field.type === 'radio' && field.name.startsWith('ubo') && field.name.endsWith('_type')) {
-                     isMarkedAsRequired = true; // Type UBO is altijd verplicht in een actieve UBO sectie
+                     isMarkedAsRequired = true; 
                 }
 
 
@@ -1596,14 +1732,14 @@
                     field.disabled = false;
                 } else {
                     field.required = false;
-                    field.disabled = !makeRequired; // disable if not makeRequired, enable if makeRequired but not marked
-                    if (!makeRequired) { // If section is hidden, clear values
+                    field.disabled = !makeRequired; 
+                    if (!makeRequired) { 
                         if (field.type === 'radio' || field.type === 'checkbox') field.checked = false;
                         else if (field.tagName === 'SELECT') field.selectedIndex = 0;
                         else if (field.type !== 'button') field.value = '';
                     }
                 }
-                 if (makeRequired && !isMarkedAsRequired) { // If UBO section is visible, but field is optional
+                 if (makeRequired && !isMarkedAsRequired) { 
                     field.disabled = false;
                  }
             });
@@ -1612,7 +1748,6 @@
         function UBOtoevoegen() {
             const uboSectieStap1 = document.getElementById('uboSectieStap1');
             if (!uboSectieStap1 || uboSectieStap1.style.display === 'none') {
-                // console.log("UBO sectie is niet zichtbaar, toevoegen niet mogelijk.");
                 return;
             }
 
@@ -1673,26 +1808,26 @@
             `;
     
             const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = templateHtml.trim(); // No need to replace IDs, template uses nextUboNumber
+            tempDiv.innerHTML = templateHtml.trim(); 
             const newUboElement = tempDiv.firstElementChild;
     
             if (nextUboNumber > 1) { 
                 const hrSeparator = document.createElement('hr');
                 hrSeparator.style.margin = '25px 0';
-                hrSeparator.style.borderColor = '#eee'; // var(--form-border-color) might be better
+                hrSeparator.style.borderColor = '#eee'; 
                 hrSeparator.classList.add('ubo-separator');
                 uboContainer.appendChild(hrSeparator);
             }
     
             uboContainer.appendChild(newUboElement);
-            setFieldsRequiredForUBOSectie(true); // Zorg dat nieuwe velden correct ge(de)activeerd zijn
+            setFieldsRequiredForUBOSectie(true); 
     
             newUboElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             const firstInput = newUboElement.querySelector('input[type="text"], input[type="date"]');
             if (firstInput) {
                  firstInput.focus();
             }
-            saveFormData();
+            // saveFormData(); // VERWIJDERD VOOR HANDMATIG OPSLAAN
         }
     
         function verwijderUBO(buttonElement) {
@@ -1705,7 +1840,7 @@
                         prevElement.remove();
                     }
                     hernummerUbos();
-                    saveFormData();
+                    // saveFormData(); // VERWIJDERD VOOR HANDMATIG OPSLAAN
                 }
             }
         }
@@ -1717,17 +1852,16 @@
             
             existingUbos.forEach((uboElement, index) => {
                 const currentNumber = index + 1;
-                uboElement.dataset.uboIndex = currentNumber; // Update data-ubo-index
+                uboElement.dataset.uboIndex = currentNumber; 
 
                 const h4 = uboElement.querySelector('h4');
                 if (h4) {
                     h4.textContent = `UBO ${currentNumber} / Statutair Bestuurder ${currentNumber}`;
                 }
 
-                // Hernummeren van IDs, names, fors
                 const fields = uboElement.querySelectorAll('[id*="ubo"], [name*="ubo"], [for*="ubo"]');
                 const oldPrefixRegex = new RegExp(`ubo\\d+_`, 'g');
-                const oldIdNumRegex = new RegExp(`ubo\\d+(_type_eigendom|_type_zeggenschap|_type_statutair)`, 'g'); // voor radio ids
+                const oldIdNumRegex = new RegExp(`ubo\\d+(_type_eigendom|_type_zeggenschap|_type_statutair)`, 'g'); 
                 const newPrefix = `ubo${currentNumber}_`;
 
                 fields.forEach(field => {
@@ -1741,7 +1875,6 @@
                      removeButton.textContent = `Verwijder UBO ${currentNumber}`;
                 }
             });
-             // Zorg dat de required status correct is na hernummeren (indien nodig, maar setFieldsRequiredForUBOSectie zou dit al moeten afvangen)
             const uboSectieStap1 = document.getElementById('uboSectieStap1');
             if (uboSectieStap1 && uboSectieStap1.style.display === 'block') {
                  setFieldsRequiredForUBOSectie(true);
@@ -1846,7 +1979,7 @@
             const firstInput = newSection.querySelector('input, select, textarea');
             if (firstInput) firstInput.focus();
             newSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            saveFormData();
+            // saveFormData(); // VERWIJDERD VOOR HANDMATIG OPSLAAN
         }
 
         function verwijderAannemer(buttonElement) {
@@ -1854,7 +1987,7 @@
             if (sectionToRemove) {
                 sectionToRemove.remove();
                 hernummerAannemers();
-                saveFormData();
+                // saveFormData(); // VERWIJDERD VOOR HANDMATIG OPSLAAN
             }
         }
 
@@ -1900,6 +2033,12 @@
                 const label = sectionElement.querySelector(`label[for="${input.id}"]`);
                 let isMarkedAsRequired = label && label.querySelector('.asterisk');
 
+                // Handle AVB radio group specifically, as it's always required if the aannemer section is active
+                if (input.name.endsWith('_avb') && (input.closest('.aannemer-section')?.style.display !== 'none' && document.getElementById('aannemerDetailsContainer')?.style.display === 'block')) {
+                    isMarkedAsRequired = true; 
+                }
+
+
                 if (isMarkedAsRequired) {
                     if (required) {
                         input.setAttribute('required', '');
@@ -1908,16 +2047,15 @@
                         input.removeAttribute('required');
                         input.disabled = true;
                     }
-                } else { // Not marked as required (e.g. phone, conditional AVB fields)
-                     input.disabled = !required; // Disable if main aannemer section not required, enable if it is
+                } else { 
+                     input.disabled = !required; 
+                }
+                 // Ensure AVB radio specific required attribute is set/removed
+                if (input.name.endsWith('_avb')) {
+                    if (required && isMarkedAsRequired) input.setAttribute('required', '');
+                    else input.removeAttribute('required');
                 }
             });
-            const avbRadios = sectionElement.querySelectorAll(`input[name$="_avb"]`); 
-            if (required) {
-                 avbRadios.forEach(r => { r.setAttribute('required',''); r.disabled = false; });
-            } else {
-                 avbRadios.forEach(r => { r.removeAttribute('required'); r.disabled = true; });
-            }
         }
     
         function initializeProgressBar() {
@@ -1971,95 +2109,162 @@
             }
             updateProgressBar();
         }
+
+        function isFieldEffectivelyVisible(field) {
+            if (field.disabled) return false;
+
+            // Check specific conditional containers that control visibility of field groups
+            const conditionalParentIds = [
+                'zakelijkFieldsContainer', 'particulierFieldsContainer', 'uboSectieStap1',
+                'aannemerDetailsContainer', // Main container for all aannemers
+                // IDs of conditional sections are handled by .closest('.conditional-section') below
+            ];
+            for (const id of conditionalParentIds) {
+                const container = document.getElementById(id);
+                if (container && container.contains(field) && window.getComputedStyle(container).display === 'none') {
+                    return false;
+                }
+            }
+            
+            const conditionalSection = field.closest('.conditional-section');
+            if (conditionalSection && window.getComputedStyle(conditionalSection).display === 'none') {
+                return false;
+            }
+
+            // For fields within an individual aannemer-section, ensure its parent #aannemerDetailsContainer is also visible
+            const aannemerSection = field.closest('.aannemer-section');
+            if (aannemerSection) { // No direct display:none check on aannemerSection itself as it's always block if present
+                const aannemerContainer = document.getElementById('aannemerDetailsContainer');
+                if(aannemerContainer && window.getComputedStyle(aannemerContainer).display === 'none'){
+                    return false;
+                }
+            }
+            
+            // For inline text inputs like "Anders, namelijk:"
+            if (field.classList.contains('inline-text-input') && !field.classList.contains('visible')) {
+                return false;
+            }
+            // For 'anders' input groups tied to select dropdowns
+            const parentInputGroup = field.parentElement;
+            if (parentInputGroup && parentInputGroup.classList.contains('input-group') && parentInputGroup.id && parentInputGroup.id.startsWith('anders_') && parentInputGroup.id.endsWith('_input')) {
+                if (window.getComputedStyle(parentInputGroup).display === 'none') {
+                    return false;
+                }
+            }
+
+            // General visibility check: walk up the DOM tree until the current form-step
+            // If any parent up to (but not including) the form-step is display:none, field is not visible.
+            let currentElementForDomWalk = field.parentElement;
+            while (currentElementForDomWalk && !currentElementForDomWalk.classList.contains('form-step')) {
+                if (window.getComputedStyle(currentElementForDomWalk).display === 'none') {
+                    return false;
+                }
+                currentElementForDomWalk = currentElementForDomWalk.parentElement;
+            }
+            
+            // Finally, ensure the form-step itself is the active one
+            const fieldStep = field.closest('.form-step');
+            if (fieldStep && !fieldStep.classList.contains('active')) {
+                 return false;
+            }
+
+            return true; // Default to visible if no hiding conditions met
+        }
     
         function validateCurrentStep() {
-            const currentStepFields = steps[currentStep].querySelectorAll('[required]:not(:disabled)');
+            const currentFieldsInStep = steps[currentStep].querySelectorAll('input:not([type="button"]):not([type="submit"]), select, textarea');
             let allValid = true;
-            currentStepFields.forEach(field => {
-                let isVisible = false; 
-                let fieldContainer = field.closest('#zakelijkFieldsContainer, #particulierFieldsContainer, #uboSectieStap1, .conditional-section, .aannemer-section');
-                
-                if (fieldContainer) {
-                     // Check if any parent up to the current step fieldset is hidden
-                    let tempParent = fieldContainer;
-                    isVisible = true;
-                    while(tempParent && tempParent !== steps[currentStep] && tempParent !== document.body) {
-                        if (tempParent.style.display === 'none') {
-                            isVisible = false;
-                            break;
-                        }
-                        tempParent = tempParent.parentElement;
-                    }
-                    // Also ensure the field itself is not in a hidden direct parent like an 'anders' input group
-                    if (field.parentElement.style.display === 'none' && field.parentElement.classList.contains('input-group')) {
-                        isVisible = false;
-                    }
-                     if (field.closest('.inline-text-input') && !field.closest('.inline-text-input').classList.contains('visible')) {
-                        isVisible = false;
-                    }
+            let firstInvalidFieldToFocus = null;
 
-
-                } else { // Field is not in a special container, check general visibility up to current step
-                    let tempParent = field;
-                    isVisible = true; 
-                    while(tempParent && tempParent !== steps[currentStep] && tempParent !== document.body) {
-                        if (tempParent.style.display === 'none') {
-                            isVisible = false;
-                            break;
-                        }
-                        tempParent = tempParent.parentElement;
+            currentFieldsInStep.forEach(field => {
+                if (!isFieldEffectivelyVisible(field)) {
+                    // Reset styling if field is not active for validation
+                    field.style.borderColor = 'var(--form-border-color)';
+                    if (document.activeElement !== field || field.disabled) field.style.boxShadow = 'none'; // Keep focus style if focused and valid
+                    
+                    const groupElem = field.closest('.radio-group, .checkbox-group, .form-group');
+                    if (groupElem && groupElem.style.getPropertyValue('border').includes('var(--danger-color)')) {
+                        groupElem.style.border = 'none'; 
+                        groupElem.style.padding = '0';
                     }
+                    return; // Skip validation for non-visible/disabled fields
                 }
-                
-                if (!isVisible) return; // Skip validation for non-visible required fields
-    
-                if ((field.type === 'radio' || field.type === 'checkbox')) {
-                    const name = field.name;
-                    const groupElement = field.closest('.radio-group') || field.closest('.checkbox-group') || field.closest('.form-group');
-                    if (!document.querySelector(`input[name="${name}"]:checked`)) {
-                        allValid = false;
-                        if (groupElement) {
-                            groupElement.style.setProperty('border', '1px solid var(--danger-color)', 'important');
-                            groupElement.style.padding = '5px';
-                            groupElement.style.borderRadius = '4px';
+
+                let currentFieldIsValid = true;
+                const groupElement = field.closest('.radio-group') || field.closest('.checkbox-group') || field.closest('.form-group');
+
+                if ((field.type === 'radio' || field.type === 'checkbox') && field.required) {
+                    if (field.type === 'radio') {
+                        const name = field.name;
+                        if (!document.querySelector(`input[name="${name}"]:checked`)) {
+                            currentFieldIsValid = false;
                         }
-                    } else {
-                        if (groupElement) {
-                            groupElement.style.border = 'none';
-                            groupElement.style.padding = '0';
+                    } else { // checkbox
+                        if (!field.checked) {
+                            currentFieldIsValid = false;
                         }
                     }
-                } else if (!field.value.trim()) {
-                    allValid = false;
-                    field.style.borderColor = 'var(--danger-color)';
-                    field.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.25)';
                 } else {
-                     field.style.borderColor = 'var(--form-border-color)';
-                     if (document.activeElement === field) {
-                        field.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.25)';
-                     } else {
-                        field.style.boxShadow = 'none';
-                     }
+                    // field.checkValidity() checks required, pattern, type, min, max etc. for other elements
+                    currentFieldIsValid = field.checkValidity();
+                }
+
+                // Apply styling based on validity
+                if (!currentFieldIsValid) {
+                    allValid = false;
+                    if (!firstInvalidFieldToFocus) {
+                        firstInvalidFieldToFocus = field;
+                    }
+                    // Style group for radio/checkbox if the group itself is effectively required
+                    if (groupElement && (field.type === 'radio' || field.type === 'checkbox') && field.required) { 
+                        groupElement.style.setProperty('border', '1px solid var(--danger-color)', 'important');
+                        groupElement.style.padding = '5px';
+                        groupElement.style.borderRadius = '4px';
+                    } 
+                    // Style individual field (non-radio/checkbox) if invalid
+                    else if (field.type !== 'radio' && field.type !== 'checkbox') { 
+                        field.style.borderColor = 'var(--danger-color)';
+                        field.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.25)';
+                    }
+                } else {
+                    // Reset styling for valid fields
+                    if (groupElement && (field.type === 'radio' || field.type === 'checkbox') && field.required) {
+                        // Only remove border if this specific check makes the group valid or if it was already valid
+                        // A more robust check would be to re-validate the whole group.
+                        // For now, if a radio in a required group is checked, the group's error style is removed.
+                        let groupConsideredValidNow = false;
+                        if(field.type === 'radio' && document.querySelector(`input[name="${field.name}"]:checked`)) groupConsideredValidNow = true;
+                        if(field.type === 'checkbox' && field.checked) groupConsideredValidNow = true;
+                        
+                        if(groupConsideredValidNow){
+                           groupElement.style.border = 'none';
+                           groupElement.style.padding = '0';
+                        }
+                    } 
+                    else if (field.type !== 'radio' && field.type !== 'checkbox') {
+                        field.style.borderColor = 'var(--form-border-color)';
+                        if (document.activeElement === field) { // Keep focus style if element is focused
+                           field.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.25)';
+                        } else {
+                           field.style.boxShadow = 'none';
+                        }
+                    }
                 }
             });
+
+            if (!allValid && firstInvalidFieldToFocus) {
+                let focusTarget = firstInvalidFieldToFocus;
+                // For radio/checkbox, generally focusing the element itself is fine as it's part of the group.
+                focusTarget.focus({ preventScroll: true }); // preventScroll to let scrollIntoView handle it smoothly
+                focusTarget.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+            }
             return allValid;
         }
     
     
         function nextStep() {
-            if (!validateCurrentStep()) {
-                 alert('Vul alstublieft alle verplichte velden (*) correct in om door te gaan.');
-                const firstInvalid = steps[currentStep].querySelector('[required]:not(:disabled):invalid, [style*="border-color: var(--danger-color)"]');
-                if (firstInvalid) {
-                    let focusTarget = firstInvalid;
-                    // If it's a radio, focus its group or the first radio itself
-                    if (firstInvalid.type === 'radio') {
-                        const group = firstInvalid.closest('.radio-group') || firstInvalid.closest('.form-group');
-                        if (group) focusTarget = group;
-                    }
-                    focusTarget.focus();
-                    focusTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
+            if (!validateCurrentStep()) { 
+                 alert('Vul alstublieft alle verplichte velden (*) correct in en zorg dat de waarden het juiste formaat hebben.');
                 return;
             }
             if (currentStep < steps.length - 1) {
@@ -2070,10 +2275,15 @@
     
         function prevStep() {
             if (currentStep > 0) {
-                const currentStepErrorFields = steps[currentStep].querySelectorAll('[style*="border-color: var(--danger-color)"]');
+                // Clear current step's error styling before moving back
+                const currentStepErrorFields = steps[currentStep].querySelectorAll('[style*="border-color: var(--danger-color)"], [style*="box-shadow: rgb(220, 38, 38)"]');
                 currentStepErrorFields.forEach(field => {
                     field.style.borderColor = 'var(--form-border-color)';
-                    field.style.boxShadow = 'none';
+                     if (document.activeElement === field) {
+                        field.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.25)';
+                     } else {
+                        field.style.boxShadow = 'none';
+                     }
                 });
                 const currentStepErrorGroups = steps[currentStep].querySelectorAll('.form-group[style*="border: 1px solid var(--danger-color)"], .radio-group[style*="border: 1px solid var(--danger-color)"], .checkbox-group[style*="border: 1px solid var(--danger-color)"]');
                  currentStepErrorGroups.forEach(group => {
@@ -2090,7 +2300,7 @@
             const element = document.getElementById(elementId);
             if(element) {
                 element.classList.add('visible');
-                element.required = true; // Make linked text input required when shown
+                element.required = true; 
                 element.disabled = false;
             }
         }
@@ -2099,7 +2309,7 @@
             if(element) {
                 element.classList.remove('visible');
                 element.value = '';
-                element.required = false; // Make linked text input not required when hidden
+                element.required = false; 
                 element.disabled = true;
             }
         }
@@ -2116,13 +2326,21 @@
                      if (label && label.querySelector('.asterisk')) {
                         isMarkedAsRequired = true;
                     }
-                    // For radio groups in conditional sections
                     if (input.type === 'radio') {
                         const groupLabel = input.closest('.form-group')?.querySelector('label:not(.radio-label):not(.checkbox-label)');
                         if (groupLabel && groupLabel.querySelector('.asterisk')) isMarkedAsRequired = true;
                     }
+                    // Special case for aannemer AVB radio group if its parent aannemer-section is visible
+                    if (input.name && input.name.includes('_avb') && input.closest('.aannemer-section')) {
+                         const aannemerSec = input.closest('.aannemer-section');
+                         const aannemerContainer = document.getElementById('aannemerDetailsContainer');
+                         if(aannemerSec && aannemerContainer && aannemerContainer.style.display === 'block') {
+                            isMarkedAsRequired = true; // AVB radios are required if aannemer section is active
+                         }
+                    }
 
-                    if (!show) { // Hiding the conditional section
+
+                    if (!show) { 
                         if (input.type === 'radio' || input.type === 'checkbox') {
                              input.checked = false;
                         } else if (input.tagName === 'SELECT') {
@@ -2153,7 +2371,6 @@
                         input.required = false;
                         input.disabled = true;
     
-                        // Recursively hide/deactivate nested conditionals or linked texts
                         const onclickAttr = input.getAttribute('onclick');
                         if (onclickAttr) {
                             if (onclickAttr.includes('toggleConditional')) {
@@ -2175,12 +2392,17 @@
                         if (isMarkedAsRequired) {
                             input.required = true;
                         }
+                        // If a radio inside this now-shown section was already checked (e.g. from saved data),
+                        // ensure its own conditional logic is triggered.
                         if (input.checked && input.getAttribute('onclick')) {
                             const onclickAttr = input.getAttribute('onclick');
                              if (onclickAttr.includes('toggleConditional')) {
                                 const match = onclickAttr.match(/toggleConditional\s*\(\s*['"]([^'"]+)['"]\s*,\s*(true|false)\s*\)/);
                                 if (match && match[1] && match[2]) {
-                                    toggleConditional(match[1], match[2] === 'true'); 
+                                    // Check if the target of this sub-conditional is NOT the current elementId to prevent recursion on self
+                                    if(match[1] !== elementId) {
+                                      toggleConditional(match[1], match[2] === 'true'); 
+                                    }
                                 }
                             }
                             if (onclickAttr.includes('showLinkedText')) {
@@ -2211,6 +2433,7 @@
         if (!gekozenDatumString || !gekozenDatumwerkzaamhedenString) { 
             redenContainer.style.display = 'none';
             redenTextarea.required = false;
+            redenTextarea.disabled = true;
             return;
         }
 
@@ -2224,9 +2447,11 @@
         if (datumWerkzaamheden < gekozenDatum) { 
             redenContainer.style.display = 'block';
             redenTextarea.required = true; 
+            redenTextarea.disabled = false;
         } else {
             redenContainer.style.display = 'none';
             redenTextarea.required = false;
+            redenTextarea.disabled = true;
             redenTextarea.value = ''; 
         }
     }
@@ -2278,6 +2503,27 @@
             localStorage.setItem(FORM_STORAGE_KEY, JSON.stringify(data));
         }
 
+        // --- START NIEUWE FUNCTIE ---
+        function handleSaveButtonClick(buttonElement) {
+            saveFormData(); // Roep de bestaande opslagfunctie aan
+
+            // Geef duidelijke feedback aan de gebruiker
+            const originalText = buttonElement.textContent;
+            buttonElement.disabled = true;
+            buttonElement.textContent = 'Opgeslagen!';
+            buttonElement.style.backgroundColor = '#28a745'; // Groene succeskleur
+
+            alert('Uw voortgang is opgeslagen in uw browser. U kunt dit venster sluiten en later op hetzelfde apparaat terugkeren om verder te gaan.');
+
+            // Zet de knop na een paar seconden terug naar de originele staat
+            setTimeout(() => {
+                buttonElement.textContent = originalText;
+                buttonElement.disabled = false;
+                buttonElement.style.backgroundColor = ''; // Verwijdert de inline stijl, CSS pakt het weer op
+            }, 3000);
+        }
+        // --- EINDE NIEUWE FUNCTIE ---
+
         function loadFormData() {
             const savedData = localStorage.getItem(FORM_STORAGE_KEY);
             if (!savedData) return;
@@ -2295,9 +2541,9 @@
             
              const aanvragerTypeChecked = document.querySelector('input[name="aanvragerType"]:checked');
              if (aanvragerTypeChecked) {
-                toggleAanvragerType(aanvragerTypeChecked.value);
+                toggleAanvragerType(aanvragerTypeChecked.value); 
              } else {
-                toggleAanvragerType(null); 
+                toggleAanvragerType(null);
              }
 
 
@@ -2340,10 +2586,10 @@
                                 });
                              }
                         }
-                        else {
+                        else { // Handles text, select-one, textarea, etc.
                             elements.value = data[key];
                         }
-                    } else {
+                    } else { // For checkbox groups like 'werkSoort[]' or 'aanneemsomInclusief[]'
                         const checkboxGroup = formElement.querySelectorAll(`input[name="${key}[]"]`);
                         if (checkboxGroup.length > 0 && Array.isArray(data[key])) {
                             checkboxGroup.forEach(checkbox => {
@@ -2390,7 +2636,14 @@
                 }
 
                 setupInitialConditionals('onderhoudstermijnOvereen', 'onderhoudstermijnOvereenDetails', 'onderhoudstermijnMeeVerzekeren', 'onderhoudstermijnDuurDetails');
-                setupInitialConditionals('werk_anders', 'werkAndersSpecificatieContainer'); 
+                
+                // For 'werk_anders_ja' checkbox
+                const werkAndersCheckbox = document.getElementById('werk_anders_ja');
+                if(werkAndersCheckbox) {
+                    toggleConditional('werkAndersSpecificatieContainer', werkAndersCheckbox.checked && !werkAndersCheckbox.disabled);
+                }
+
+
                 setupInitialConditionals('bedrijfsschade_meeverzekeren', 'bedrijfsschadeDetails');
                 setupInitialConditionals('sloopwerk', 'sloopwerkDetails');
                 setupInitialConditionals('bemaling', 'bemalingDetails');
@@ -2399,10 +2652,7 @@
         
                 const paalfunderingDetails = document.getElementById('paalfunderingDetails');
                 if (paalfunderingDetails && paalfunderingDetails.style.display === 'block') {
-                    const bouwwerkenRadios = document.getElementsByName('bouwwerkenBinnen15m');
-                    let bouwwerkenCheckedValue = null;
-                    bouwwerkenRadios.forEach(r => { if(r.checked && !r.disabled) bouwwerkenCheckedValue = r.value; });
-                    toggleConditional('bouwwerkenBinnen15mDetails', bouwwerkenCheckedValue === 'ja');
+                    setupInitialConditionals('bouwwerkenBinnen15m', 'bouwwerkenBinnen15mDetails');
         
                     const bouwwerkenBinnen15mDetails = document.getElementById('bouwwerkenBinnen15mDetails');
                     if (bouwwerkenBinnen15mDetails && bouwwerkenBinnen15mDetails.style.display === 'block') {
@@ -2464,20 +2714,28 @@
         
                 document.querySelectorAll('.inline-text-input').forEach(textField => {
                     if (textField.disabled && textField.id !== 'aardGebouwAndersText' && textField.id !== 'andereFunderingswijze') return; 
-                    const radioId = textField.id.replace('Text', 'Radio');
+                    const radioId = textField.id.replace('Text', 'Radio'); // e.g., aardGebouwAndersText -> aardGebouwAndersRadio
                     const linkedRadio = document.getElementById(radioId);
                     if (linkedRadio && linkedRadio.checked && !linkedRadio.disabled) {
                         textField.classList.add('visible');
                         textField.disabled = false;
                         textField.required = true; 
                     } else {
-                        if (textField.id !== 'andereFunderingswijze') { 
-                             textField.classList.remove('visible');
-                        }
+                        // For 'aardGebouwAndersText', ensure it's hidden if its radio is not checked
                         if (textField.id === 'aardGebouwAndersText' && (!linkedRadio || !linkedRadio.checked) ) {
                              textField.classList.remove('visible');
                              textField.required = false;
                              textField.disabled = true;
+                        }
+                        // For 'andereFunderingswijze', its visibility is handled by 'ookOpPalen_nee' logic more directly.
+                        // Only ensure it's not required/disabled if its controlling radio makes it hidden.
+                        if (textField.id === 'andereFunderingswijze') {
+                            const ookOpPalenNee = document.getElementById('ookOpPalen_nee');
+                            if (!ookOpPalenNee || !ookOpPalenNee.checked || ookOpPalenNee.disabled) {
+                                textField.classList.remove('visible'); // It might not have 'visible' but this ensures consistency
+                                textField.required = false;
+                                textField.disabled = true;
+                            }
                         }
                     }
                 });
@@ -2490,7 +2748,7 @@
                     }
                 });
                 const duurBouwInput = document.getElementById('duurBouwMaanden');
-                if (duurBouwInput) {
+                if (duurBouwInput && !duurBouwInput.disabled) { // Check disabled state
                     const event = new Event('input', { bubbles: true });
                     duurBouwInput.dispatchEvent(event);
                 }
@@ -2498,8 +2756,9 @@
 
             reapplyInitialConditionals(); 
 
-            formElement.addEventListener('input', saveFormData);
-            formElement.addEventListener('change', saveFormData); 
+            // VERWIJDERD:
+            // formElement.addEventListener('input', saveFormData);
+            // formElement.addEventListener('change', saveFormData); 
         });
     
         function toonAndersVeld(selectElement, targetInputElementId, targetMessageElementId) {
@@ -2510,7 +2769,7 @@
             if (targetInputElement && targetMessageElement) { 
                 const inputInside = targetInputElement.querySelector('input[type="number"], input[type="text"]');
                 if (selectedValue && selectedValue.toLowerCase() === 'anders') {
-                    targetInputElement.style.display = 'flex';
+                    targetInputElement.style.display = 'flex'; // For input-group
                     targetMessageElement.style.display = 'block'; 
                     if (inputInside) {
                         inputInside.disabled = false;
@@ -2528,14 +2787,23 @@
             }
         }
         
-        function setupInitialConditionals(radioName, detailsId, subRadioName, subDetailsId) {
-            const radioChecked = document.querySelector(`input[name="${radioName}"]:checked:not(:disabled)`);
-            if (radioChecked) {
-                toggleConditional(detailsId, radioChecked.value === 'ja');
-                if (subRadioName && subDetailsId && radioChecked.value === 'ja') {
-                    const subRadioChecked = document.querySelector(`input[name="${subRadioName}"]:checked:not(:disabled)`);
-                    if (subRadioChecked) {
-                        toggleConditional(subDetailsId, subRadioChecked.value === 'ja');
+        function setupInitialConditionals(radioOrCheckboxName, detailsId, subRadioName, subDetailsId) {
+            const mainControl = document.querySelector(`input[name="${radioOrCheckboxName}"]:checked:not(:disabled)`) || document.getElementById(radioOrCheckboxName + '_ja'); // for checkbox case
+            
+            if (mainControl) {
+                let showMainDetails = false;
+                if (mainControl.type === 'radio') {
+                    showMainDetails = mainControl.value === 'ja';
+                } else if (mainControl.type === 'checkbox') {
+                    showMainDetails = mainControl.checked; // e.g. werk_anders_ja
+                }
+
+                toggleConditional(detailsId, showMainDetails);
+
+                if (subRadioName && subDetailsId && showMainDetails) {
+                    const subControl = document.querySelector(`input[name="${subRadioName}"]:checked:not(:disabled)`);
+                    if (subControl) {
+                        toggleConditional(subDetailsId, subControl.value === 'ja');
                     } else {
                         toggleConditional(subDetailsId, false); 
                     }
@@ -2579,40 +2847,45 @@
                     document.getElementById('ubo1_adres').value = 'Ubolaan 10, 9876 UB Ubostad';
                 }
                 
-                document.getElementById('postadresZakelijk').value = 'Testlaan 100, 1234 AB Testdorp';
+                document.getElementById('straatHuisnrZakelijk').value = 'Testlaan 100';
+                document.getElementById('postcodeZakelijkApart').value = '1234AB'; // Correct pattern
+                document.getElementById('plaatsZakelijk').value = 'Testdorp';
+
                 document.getElementById('telefoonnummerZakelijk').value = '0612345678';
                 document.getElementById('emailadresZakelijk').value = 'info@autofillsolutions.test';
         
                 // --- Stap 2: Werkdetails ---
-                document.getElementById('startWerkzaamheden').value = new Date(new Date().setDate(new Date().getDate() + 10)).toISOString().split('T')[0];
-                const eergisteren = new Date();
-                eergisteren.setDate(eergisteren.getDate() - 2);
-                document.getElementById('ingangsdatumVerzekering').value = eergisteren.toISOString().split('T')[0];
+                const vandaag = new Date();
+                const startWerkzaamhedenDatum = new Date(vandaag);
+                startWerkzaamhedenDatum.setDate(vandaag.getDate() - 2); // Werkzaamheden 2 dagen geleden gestart
+                document.getElementById('startWerkzaamheden').value = startWerkzaamhedenDatum.toISOString().split('T')[0];
+
+                const ingangsdatumVerzekeringDatum = new Date(vandaag); // Verzekering vandaag ingaand
+                document.getElementById('ingangsdatumVerzekering').value = ingangsdatumVerzekeringDatum.toISOString().split('T')[0];
                 
+                // Trigger change/input events for date fields to update conditional logic
                 ['startWerkzaamheden', 'ingangsdatumVerzekering'].forEach(id => {
                     const el = document.getElementById(id);
                     if(el) {
-                        el.dispatchEvent(new Event('input', { bubbles: true }));
-                        el.dispatchEvent(new Event('change', { bubbles: true }));
+                        el.dispatchEvent(new Event('input', { bubbles: true })); // For setupRedenLateStartToggle
+                        el.dispatchEvent(new Event('change', { bubbles: true }));// For setupRedenLateStartToggle
                     }
                 });
 
+                // Fill redenLateStart if visible (it should be, based on above dates)
                 const redenLateStartContainer = document.getElementById('redenLateStartContainer');
                 if (redenLateStartContainer && redenLateStartContainer.style.display === 'block') {
-                    document.getElementById('redenLateStart').value = 'Autofill test: late start reden.';
+                    document.getElementById('redenLateStart').value = 'Autofill test: werkzaamheden reeds gestart.';
                 }
+
                 document.getElementById('duurBouwMaanden').value = '13'; 
                 document.getElementById('duurBouwMaanden').dispatchEvent(new Event('input', { bubbles: true }));
 
 
                 document.getElementById('werk_nieuwbouw_woning_ja').checked = true;
-                // document.getElementById('werk_verbouw_woning_nee').checked = true; // This logic is wrong, these are checkboxes
-                // document.getElementById('werk_nieuwbouw_bedrijf_nee').checked = true;
                 document.getElementById('werk_verbouw_bedrijf_ja').checked = true;
-                // document.getElementById('werk_installatie_nee').checked = true;
-                // document.getElementById('werk_gww_nee').checked = true;
                 document.getElementById('werk_anders_ja').checked = true; 
-                _toggleConditional('werkAndersSpecificatieContainer', true); // Manually call after checking
+                _toggleConditional('werkAndersSpecificatieContainer', true); 
                 if(document.getElementById('werk_anders_specificatie')) document.getElementById('werk_anders_specificatie').value = "Speciale testwerkzaamheden";
 
         
@@ -2703,11 +2976,16 @@
                 document.getElementById('elders_ondergebracht_ja').checked = true; _toggleConditional('eldersOndergebrachtDetails', true);
                 if(document.getElementById('vorige_maatschappij')) document.getElementById('vorige_maatschappij').value = "Oude Polis NV";
                 if(document.getElementById('vorige_polisnummer')) document.getElementById('vorige_polisnummer').value = "OP-12345";
-                if(document.getElementById('vorige_afloopdatum')) document.getElementById('vorige_afloopdatum').value = new Date(new Date().setDate(new Date().getDate() - 30)).toISOString().split('T')[0];
+                if(document.getElementById('vorige_afloopdatum')) {
+                    const afloopDatum = new Date();
+                    afloopDatum.setDate(afloopDatum.getDate() - 30);
+                    document.getElementById('vorige_afloopdatum').value = afloopDatum.toISOString().split('T')[0];
+                }
         
                 if (typeof saveFormData === "function") {
                     saveFormData();
                 }
+                // Call reapplyInitialConditionals AFTER all values are set to ensure correct state
                 if (typeof reapplyInitialConditionals === "function") { 
                     reapplyInitialConditionals();
                 }
