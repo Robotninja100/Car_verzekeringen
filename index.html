@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamische Diensten | CAR verzekering</title>
+    <title>Dynamische diensten | CAR-verzekering</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -300,51 +300,56 @@
         /* Informatie Section */
         #informatie .info-content {
             display: flex;
-            align-items: flex-start; 
-            gap: 50px; 
+            flex-direction: column; /* Stapelt de rijen verticaal */
+            gap: 70px; /* Ruimte tussen de rijen */
         }
 
-        #informatie .info-text {
-            flex: 1.2; 
-            font-size: 1.05rem; /* AANGEPAST: Iets compacter voor lange teksten */
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 50px;
         }
-        #informatie .info-text p {
-            margin-bottom: 1.5rem; /* AANGEPAST: Iets minder witruimte */
+
+        .info-row.reverse {
+            flex-direction: row-reverse;
         }
-        #informatie .info-text strong {
+        
+        .info-text-block {
+            flex: 1.2;
+            font-size: 1.05rem;
+        }
+
+        .info-text-block p {
+            margin-bottom: 1.5rem;
+        }
+        .info-text-block strong {
             color: var(--secondary-color);
             font-weight: 600;
         }
         
-        /* AANGEPAST: Styling voor H3 binnen benefit-block */
-        #informatie .benefit-block h3 {
+        .info-text-block h3 {
             font-size: 1.25rem; 
             color: var(--primary-color);
             font-weight: 600;
             margin-bottom: 0.75rem;
             line-height: 1.4;
         }
-
-
-        #informatie .info-illustration {
+        
+        .info-image-block {
             flex: 0.8;
             display: flex;
             justify-content: center;
-            align-items: flex-start; 
-            margin-top: 10px; 
+            align-items: center;
         }
 
-        #informatie .info-illustration svg {
-            max-width: 100%;
+        .info-image-block img {
+            width: 100%;
             height: auto;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow-strong); 
             transition: transform var(--transition-speed) ease;
         }
-        #informatie .info-illustration svg:hover {
+        .info-image-block img:hover {
             transform: scale(1.03);
         }
-
 
         /* Diensten Section */
         #diensten .diensten-grid {
@@ -558,6 +563,7 @@
         
         /* Contact Section */
         #contact {
+            background-color: var(--background-color);
             text-align: center;
         }
         #contact h2 { /* Erft algemene section h2 stijl */ }
@@ -570,13 +576,28 @@
             color: var(--secondary-color);
         }
 
+        /* --- NIEUW: Team Section --- */
+        #team-section {
+            padding-top: 40px; 
+            padding-bottom: 80px;
+            background-color: var(--light-gray-color);
+        }
+        .team-image-container {
+            margin-top: 40px;
+        }
+        .team-image-container img {
+            width: 100%;
+            height: auto;
+        }
+
+
         /* Footer */
         footer {
             background-color: #232F3E; 
             color: var(--light-gray-color);
             text-align: center;
             padding: 40px 0; 
-            margin-top: 50px; 
+            margin-top: 0; /* Aangepast omdat de nieuwe sectie erboven al padding heeft */
             border-top: 5px solid var(--primary-color);
         }
 
@@ -633,26 +654,28 @@
 
         /* Responsive Adjustments */
         @media (max-width: 992px) {
-            #hero h1 { font-size: 2.8rem; } /* Was 3rem */
-            #hero p { font-size: 1.2rem; } /* Was 1.25rem */
-            section h2 { font-size: 2.2rem; } /* Was 2.4rem */
-            #informatie .info-content { 
+            #hero h1 { font-size: 2.8rem; }
+            #hero p { font-size: 1.2rem; }
+            section h2 { font-size: 2.2rem; }
+            
+            /* --- AANGEPAST: Responsive #informatie sectie --- */
+            .info-row, .info-row.reverse { 
                 flex-direction: column; 
-                align-items: center; 
+                gap: 30px;
             }
-            #informatie .info-illustration { 
-                margin-top: 40px;
-                width: 70%; 
-                max-width: 400px; 
+            .info-image-block {
+                margin-top: 20px;
+                width: 80%;
+                max-width: 400px;
             }
         }
 
         @media (max-width: 768px) {
             body { font-size: 15px; }
-            #hero h1 { font-size: 2.3rem; } /* Was 2.5rem */
-            #hero p { font-size: 1.05rem; } /* Was 1.1rem */
+            #hero h1 { font-size: 2.3rem; }
+            #hero p { font-size: 1.05rem; }
             .cta-button { padding: 14px 30px; font-size: 1.05rem; }
-            section h2 { font-size: 2rem; } /* Was 2.1rem */
+            section h2 { font-size: 2rem; }
 
             header .container {
                 flex-direction: row; 
@@ -726,11 +749,9 @@
             }
 
             .diensten-grid { grid-template-columns: 1fr; }
-            #offerte-cta p { font-size: 1.05rem; } /* Was 1.1rem */
+            #offerte-cta p { font-size: 1.05rem; }
             .cta-button-main { padding: 16px 38px; font-size: 1.15rem; }
             
-            #informatie .info-illustration svg { width: 80%; max-width: 300px; } 
-
             .reveal { transform: translateY(20px); } 
         }
 
@@ -742,7 +763,7 @@
 <body>
     <header id="mainHeader">
         <div class="container">
-            <a href="#hero" class="logo">CAR Verzekering</a>
+            <a href="#hero" class="logo">OnlineCARverzekeringen.nl</a>
             <button class="menu-toggle" aria-label="Menu openen/sluiten" aria-expanded="false" aria-controls="mainNavMenu">
                 <span></span>
                 <span></span>
@@ -763,72 +784,54 @@
     <main>
         <section id="hero">
             <div class="container">
-                <h1>Uw project, onze zekerheid. Kies CAR verzekeringen.</h1>
+                <h1>Uw project, onze zekerheid. Kies CAR-verzekeringen.</h1>
                 <p>Met onze CAR-verzekering is elk project – van uw particuliere verbouwing tot complexe zakelijke constructies – van start tot oplevering volledig beschermd. We dekken u tegen onvoorziene schade, brand, diefstal en meer. Richt u op de voortgang; wij nemen de risico's voor onze rekening. Zo bouwt u met een gerust hart aan uw toekomst.</p>
-                <a href="#informatie" class="cta-button">Ontdek Meer</a>
+                <a href="#informatie" class="cta-button">Ontdek meer</a>
             </div>
         </section>
 
         <section id="informatie">
             <div class="container">
                 <h2 class="reveal">Wat de CAR-verzekering voor u kan betekenen</h2>
+                
+                <!-- === NIEUWE STRUCTUUR VOOR INFORMATIE SECTIE === -->
                 <div class="info-content">
-                    <div class="info-text reveal" data-reveal-delay="100">
-                        <p>Een Construction All Risks (CAR) verzekering is onmisbaar voor iedereen die bouwt, verbouwt of renoveert – of u nu een professional bent of een particulier. Het is de complete bescherming die uw project van begin tot eind dekt. Denk aan schade aan het gebouw in aanbouw, maar ook aan materialen op de bouwplaats. Of het nu gaat om uw droomhuis, een nieuw bedrijfspand of een grote infrastructuur, met een CAR-verzekering kunt u zich richten op het realiseren van uw visie, terwijl wij de risico's afdekken.</p>
-                        
-                        <!-- AANGEPAST: inline style voor border-bottom -->
-                        <div class="benefit-block" style="padding-bottom: 15px; border-bottom: 1px dashed var(--border-color); margin-bottom: 20px;">
+                    
+                    <!-- Rij 1: Tekst links, Afbeelding rechts -->
+                    <div class="info-row reveal" data-reveal-delay="100">
+                        <div class="info-text-block">
+                            <p>Een Construction All Risks (CAR) verzekering is onmisbaar voor iedereen die bouwt, verbouwt of renoveert – of u nu een professional bent of een particulier. Het is de complete bescherming die uw project van begin tot eind dekt. Denk aan schade aan het gebouw in aanbouw, maar ook aan materialen op de bouwplaats. </p>
                             <h3>Uw zekerheid bij materiële schade</h3>
-                            <p>Op een bouwplaats kan er veel misgaan, zelfs met de beste planning. Onze CAR-verzekering biedt uitgebreide dekking voor <b> materiële schade </b> aan het werk zelf. Dit omvat bijvoorbeeld schade door brand, storm, diefstal van materialen, vandalisme, maar ook constructiefouten of onoplettendheid tijdens de bouw. Zelfs schade aan hulpconstructies, zoals steigers en bekistingen, is eventueel mee te verzekeren. Met deze zekerheid bent u beschermd tegen onverwachte kosten die de voortgang van uw project kunnen belemmeren.</p>
+                            <p>Op een bouwplaats kan er veel misgaan, zelfs met de beste planning. Onze CAR-verzekering biedt uitgebreide dekking voor <b>materiële schade</b> aan het werk zelf. Dit omvat bijvoorbeeld schade door brand, storm, diefstal van materialen, vandalisme, maar ook constructiefouten of onoplettendheid tijdens de bouw. Met deze zekerheid bent u beschermd tegen onverwachte kosten die de voortgang van uw project kunnen belemmeren.</p>
                         </div>
-                        
-                        <!-- AANGEPAST: inline style voor border-bottom -->
-                        <div class="benefit-block" style="padding-bottom: 15px; border-bottom: 1px dashed var(--border-color); margin-bottom: 20px;">
-                            <h3>Bescherming bij aansprakelijkheid en meer</h3>
-                            <p> Naast schade aan het werk zelf, dekt een CAR-verzekering ook de aansprakelijkheid die kan ontstaan tijdens het project. Denk aan schade die uw bouwactiviteiten veroorzaken aan eigendommen van derden, zoals de buren of voorbijgangers. Bovendien kan de verzekering uitgebreid worden met dekkingen voor bijvoorbeeld hulpmaterieel zoals gereedschappen, of zelfs schade aan bestaande eigendommen die tijdens de verbouwing beschadigd raken. Deze aanvullende dekkingen zijn optioneel en kunnen worden afgestemd op de specifieke behoeften van uw project.</p>
+                        <div class="info-image-block">
+                            <!-- Vervang de placeholder met uw eigen afbeelding -->
+                            <img src="Construction1.png" alt="Visualisatie van een bouwproject met materiële schade dekking">
                         </div>
-        
-                        <div class="benefit-block" style="padding-bottom: 15px; margin-bottom: 20px;"> 
+                    </div>
+
+                    <!-- Rij 2: Afbeelding links, Tekst rechts -->
+                    <div class="info-row reverse reveal" data-reveal-delay="100">
+                        <div class="info-text-block">
+                             <h3>Bescherming bij aansprakelijkheid en meer</h3>
+                            <p>Naast schade aan het werk zelf, dekt een CAR-verzekering ook de aansprakelijkheid die kan ontstaan tijdens het project. Denk aan schade die uw bouwactiviteiten veroorzaken aan eigendommen van derden, zoals de buren of voorbijgangers. Deze aanvullende dekkingen zijn optioneel en kunnen worden afgestemd op de specifieke behoeften van uw project.</p>
                             <h3>Focus op bouwen, wij regelen de rest</h3>
-                            <p>Met een CAR-verzekering via onze website kiest u voor gemoedsrust. U hoeft zich geen zorgen te maken over de financiële gevolgen van onvoorziene gebeurtenissen. Wij zorgen ervoor dat uw project van fundering tot oplevering beschermd is, zodat u zich volledig kunt concentreren op het realiseren van uw bouwplannen. Van de kleinste particuliere verbouwing tot de meest complexe zakelijke projecten: wij staan voor u klaar met de juiste dekking, zodat u met vertrouwen kunt bouwen.</p>
+                            <p>Met een CAR-verzekering kiest u voor gemoedsrust. U hoeft zich geen zorgen te maken over de financiële gevolgen van onvoorziene gebeurtenissen. Wij zorgen ervoor dat uw project van fundering tot oplevering beschermd is, zodat u zich volledig kunt concentreren op het realiseren van uw bouwplannen.</p>
                         </div>
-        
+                        <div class="info-image-block">
+                             <!-- Vervang de placeholder met uw eigen afbeelding -->
+                            <img src="construction3.png" alt="Visualisatie van bescherming bij aansprakelijkheid">
+                        </div>
                     </div>
-        
-                    <div class="info-illustration reveal" data-reveal-delay="300">
-                        <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" aria-labelledby="infoIllustrationTitle">
-                            <title id="infoIllustrationTitle">Abstracte illustratie van zekerheid en bouwproces</title>
-                            <defs>
-                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:var(--secondary-color);stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:var(--primary-color);stop-opacity:1" />
-                                </linearGradient>
-                                <linearGradient id="gradAccent" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:var(--light-accent-color);stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:var(--accent-color);stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect x="0" y="0" width="300" height="220" fill="var(--light-gray-color)" rx="15" opacity="0.6"/>
-                            <path d="M 20 190 H 280" stroke="var(--primary-color)" stroke-width="8" stroke-linecap="round" opacity="0.7"/>
-                            <rect x="50" y="120" width="30" height="70" fill="url(#grad1)" rx="5" transform="rotate(-5 65 155)"/>
-                            <rect x="135" y="80" width="30" height="110" fill="url(#grad1)" rx="5"/>
-                            <rect x="220" y="100" width="30" height="90" fill="url(#grad1)" rx="5" transform="rotate(5 235 145)"/>
-                            <circle cx="150" cy="60" r="45" fill="none" stroke="var(--accent-color)" stroke-width="7" stroke-dasharray="10 5" opacity="0.9"/>
-                            <circle cx="150" cy="60" r="30" fill="var(--light-accent-color)" opacity="0.7"/>
-                            <path d="M142,55 L150,65 L158,55" fill="none" stroke="var(--primary-color)" stroke-width="3" stroke-linecap="round"/>
-                            <line x1="40" y1="50" x2="110" y2="50" stroke="var(--secondary-color)" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
-                            <line x1="190" y1="50" x2="260" y2="50" stroke="var(--secondary-color)" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
-                            <circle cx="30" cy="30" r="8" fill="var(--accent-color)" opacity="0.5"/>
-                            <circle cx="270" cy="180" r="8" fill="var(--accent-color)" opacity="0.5"/>
-                        </svg>
-                    </div>
+
                 </div>
+                 <!-- === EINDE NIEUWE STRUCTUUR === -->
             </div>
         </section>
 
         <section id="diensten">
             <div class="container">
-                <h2 class="reveal">Onze Kerndiensten: Uw Partner in Bouwzekerheid</h2>
+                <h2 class="reveal">Onze kerndiensten: uw partner in bouwzekerheid</h2>
                 <p class="section-intro-p reveal" data-reveal-delay="100">Bij onlinecarverzekeringen.nl begrijpen we dat een succesvol bouwproject meer vraagt dan alleen een polis. Het vraagt om een partner die uw risico's begrijpt en proactief meedenkt. Onze kerndiensten zijn dan ook ontworpen om u niet alleen te verzekeren, maar ook te ontzorgen.</p>
                 <div class="diensten-grid">
                     <div class="dienst-item reveal" data-reveal-delay="0">
@@ -842,7 +845,7 @@
                                 <path d="M5 9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-3.5a2.5 2.5 0 0 1-5 0H5Z"></path>
                             </svg>
                         </div>
-                        <h3>Materiële schade: Snelle en adequate afhandeling</h3>
+                        <h3>Materiële schade: snelle en adequate afhandeling</h3>
                         <p>Bij schade aan uw bouwproject wilt u snel en efficiënt geholpen worden. Wij zorgen voor een vlotte en transparante schadeafhandeling van materiële schade aan het werk en de bouwmaterialen. Ons team staat klaar om u te begeleiden, de nodige expertise in te schakelen en ervoor te zorgen dat uw project met minimale verstoring kan worden voortgezet.</p>
                         <button class="read-more-btn" aria-expanded="false" style="display: none;">Lees meer <span class="arrow">▼</span></button>
                     </div>
@@ -852,7 +855,7 @@
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>
                         </div>
-                        <h3>Aansprakelijkheid: Deskundig advies en bescherming </h3>
+                        <h3>Aansprakelijkheid: deskundig advies en bescherming</h3>
                         <p>Aansprakelijkheidskwesties tijdens bouwprojecten kunnen complex zijn. Wij bieden u niet alleen de noodzakelijke dekking, maar ook deskundig advies en begeleiding bij mogelijke claims door derden. Wij helpen u de risico's te minimaliseren en zorgen ervoor dat u beschermd bent tegen onverwachte financiële gevolgen.</p>
                         <button class="read-more-btn" aria-expanded="false" style="display: none;">Lees meer <span class="arrow">▼</span></button>
                     </div>
@@ -864,7 +867,7 @@
                                 <line x1="9" y1="21" x2="9" y2="9"></line>
                             </svg>
                         </div>
-                        <h3>Financiële dekking: Heldere voorwaarden, maximale continuïteit</h3>
+                        <h3>Financiële dekking: heldere voorwaarden, maximale continuïteit</h3>
                         <p>De financiële impact van schade kan groot zijn. Wij garanderen een heldere financiële dekking die erop gericht is de continuïteit van uw project te waarborgen. Door duidelijke polisvoorwaarden en een proactieve benadering zorgen wij ervoor dat de benodigde middelen beschikbaar zijn wanneer u ze nodig heeft, zodat uw bouwproces geen onnodige vertraging oploopt.</p>
                         <button class="read-more-btn" aria-expanded="false" style="display: none;">Lees meer <span class="arrow">▼</span></button>
                     </div>
@@ -874,30 +877,47 @@
 
         <section id="offerte-cta">
             <div class="container reveal">
-                <h2>Uw Bouwproject Verdient de Beste Bescherming. Vraag Nu Uw Offerte Aan. </h2>
+                <h2>Uw bouwproject verdient de beste bescherming. Vraag nu uw offerte aan.</h2>
                 <p>Neem de slimme stap naar onbezorgd bouwen. Ontvang snel en eenvoudig een vrijblijvende offerte voor uw CAR-verzekering. Wij zorgen voor transparantie en een aanbod op maat, zodat u vol vertrouwen aan de slag kunt.</p>
-                <a href="form.html" class="cta-button-main">Vraag Nu Offerte Aan</a>
+                <a href="form.html" class="cta-button-main">Vraag nu een offerte aan</a>
                 </div>
         </section>
 
+                <!-- === NIEUWE SECTIE VOOR TEAM AFBEELDING === -->
+        <section id="team-section">
+            <div class="container reveal">
+                <h2>Maak kennis met ons deskundige team</h2>
+                <p class="section-intro-p">
+                    Achter elke succesvolle verzekering staat een team van experts. Wij zijn toegewijd aan het beschermen van uw project en staan persoonlijk voor u klaar met raad en daad.
+                </p>
+                <div class="team-image-container">
+                    <!-- Vervang de placeholder met uw eigen teamfoto -->
+                    <img src="Personen_vdbs.png" alt="Het team van experts van CAR Verzekering">
+                </div>
+            </div>
+        </section>
+        <!-- === EINDE NIEUWE SECTIE === -->
+
+
         <section id="contact">
              <div class="container reveal">
-                <h2>Neem Contact Op</h2>
+                <h2>Neem contact op</h2>
                 <p class="section-intro-p">
-                    Heeft u vragen, wilt u meer weten over onze diensten, of gewoon eens sparren over uw ideeën? <br>Wij horen graag van u!
+                    Heeft u vragen, wilt u meer weten over onze diensten, of gewoon eens sparren over uw ideeën?<br>Wij horen graag van u!
                 </p>
-                <p><strong>Email:</strong> info@uwbedrijfsnaam.com</p>
-                <p><strong>Telefoon:</strong> +31 6 123 456 78</p>
+                <p><strong>E-mail:</strong> info@vdbs.nl</p>
+                <p><strong>Telefoon:</strong> +0341 353854</p>
              </div>
         </section>
+        
     </main>
 
     <footer>
         <div class="container">
             <p>© <span id="currentYear"></span> Uw Bedrijfsnaam. Alle rechten voorbehouden.</p>
             <p>
-                <a href="#privacy">Privacybeleid</a> |
-                <a href="#voorwaarden">Algemene Voorwaarden</a>
+                <a href="privacybeleid.html">Privacybeleid</a> |
+                <a href="Disclaimer.html">Disclaimer</a>
             </p>
         </div>
     </footer>
@@ -988,8 +1008,6 @@
 
 
         const dienstItemsJS = document.querySelectorAll('.dienst-item');
-        // const TARGET_MAX_HEIGHT_PX_DIENSTEN = 75; // Let op: deze wordt nu dynamisch berekend
-
         dienstItemsJS.forEach(item => {
             const pElement = item.querySelector('p');
             const btnElement = item.querySelector('.read-more-btn');
@@ -1000,20 +1018,18 @@
                 let initialMaxHeight = 0;
 
                 function setupReadMore() {
-                    // Reset
                     pElement.classList.remove('is-truncated', 'expanded');
-                    pElement.style.maxHeight = ''; // Verwijder inline max-height
+                    pElement.style.maxHeight = ''; 
                     btnElement.style.display = 'none';
                     btnElement.setAttribute('aria-expanded', 'false');
                     arrowElement.textContent = '▼'; 
 
-                    // Bereken max-height voor 3 regels gebaseerd op actuele p stijl
                     const pStyle = window.getComputedStyle(pElement);
                     const pLineHeight = parseFloat(pStyle.lineHeight);
-                    const NUM_LINES_TRUNCATED = 3; // We willen ongeveer 3 regels tonen
+                    const NUM_LINES_TRUNCATED = 3; 
                     initialMaxHeight = pLineHeight * NUM_LINES_TRUNCATED;
 
-                    if (pElement.scrollHeight > initialMaxHeight + (pLineHeight / 2) ) { // + halve regel tolerantie
+                    if (pElement.scrollHeight > initialMaxHeight + (pLineHeight / 2) ) {
                         pElement.style.maxHeight = `${initialMaxHeight}px`;
                         pElement.classList.add('is-truncated');
                         btnElement.style.display = 'inline-flex'; 
@@ -1025,9 +1041,8 @@
                     resizeTimerReadMore = setTimeout(setupReadMore, 250);
                 };
 
-                window.addEventListener('load', setupReadMore); // Initial setup on load
-                window.addEventListener('resize', debouncedSetupReadMore); // Re-setup on resize
-                // Fallback voor snelle DOM, maar fonts/images later
+                window.addEventListener('load', setupReadMore);
+                window.addEventListener('resize', debouncedSetupReadMore);
                 document.addEventListener('DOMContentLoaded', () => setTimeout(setupReadMore, 150));
                 
 
