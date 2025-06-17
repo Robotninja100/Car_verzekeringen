@@ -731,8 +731,6 @@
             transform: translateX(-50%);
             bottom: 10px; /* Aanpassen aan nieuwe padding */
         }
-
-        /* ... (de rest van je bestaande mobiele stijlen voor het formulier) ... */
     }
 
     /* Als body.menu-is-open, voorkom scrollen van de pagina achter het menu */
@@ -1219,7 +1217,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Vindt er bemaling plaats?</label>
+                    <label>Vindt er bemaling plaats?
+                    <span class="help-tip">
+                        <p>bemaling is het proces waarbij men opzettelijk water (meestal grondwater) onttrekt uit een bepaald gebied om de waterstand te verlagen. Dit gebeurt met behulp van pompen of gemalen.</p>
+                    </span>
+                    </label>
                      <div class="radio-group">
                         <div><input type="radio" id="bemaling_ja" name="bemaling" value="ja" onclick="toggleConditional('bemalingDetails', true)"><label for="bemaling_ja" class="radio-label">Ja</label></div>
                         <div><input type="radio" id="bemaling_nee" name="bemaling" value="nee" checked onclick="toggleConditional('bemalingDetails', false)"><label for="bemaling_nee" class="radio-label">Nee</label></div>
@@ -1503,10 +1505,10 @@
             <p>Indien u vragen heeft over dit formulier of uw aanvraag, neem dan gerust contact met ons op:</p>
             <div class="contact-details">
                 <p class="contact-item">
-                    E-mail: <a href="mailto:info@uwbedrijfsnaam.nl">info@uwbedrijfsnaam.nl</a>
+                    E-mail: <a href="mailto:info@vdbs.nl">info@vdbs.nl</a>
                 </p>
                 <p class="contact-item">
-                    Telefoon: <a href="tel:+31123456789">012 - 345 67 89</a>
+                    Telefoon: <a href="tel:+0341353854">+0341 353854</a>
                 </p>
             </div>
         </div>

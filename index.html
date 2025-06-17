@@ -4,8 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamische diensten | CAR-verzekering</title>
+    
+    <!-- FIX: Preconnect naar Google Fonts servers voor snellere verbinding -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- FIX: Preload de kritieke achtergrondafbeelding voor de hero sectie -->
+    <link rel="preload" as="image" href="image/construction.png">
+
+    <meta name="description" content="Professionele CAR-verzekeringen voor elk bouwproject. Duidelijke dekking, snel geregeld. Vraag vandaag nog een vrijblijvende offerte aan.">
+    <link rel="canonical" href="https://www.onlinecarverzekeringen.nl/">
+    
+    <!-- FIX: Laad Google Fonts CSS asynchroon om render-blocking te voorkomen -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    
+    <!-- Fallback voor browsers zonder JavaScript -->
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    </noscript>
+
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+        "@type": "Organization",
+        "name": "Van den Brink & Schuiteman",
+        "url": "https://www.onlinecarverzekeringen.nl",
+        "logo": "https://www.onlinecarverzekeringen.nl/image/logo.png",
+        "description": "Van den Brink & Schuiteman is een onafhankelijk verzekeringsadviseur en tussenpersoon.",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+31-341-353854",
+            "contactType": "customer service",
+            "areaServed": "NL",
+            "availableLanguage": ["nl", "en"]
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/van-den-brink-&-&-schuiteman-assurantien-b.v.-te-putten/"
+
+        ]
+        },
+        {
+        "@type": "Service",
+        "serviceType": "Bemiddeling in CAR-verzekeringen",
+        "provider": {
+            "@type": "Organization",
+            "name": "Van den Brink & Schuiteman"
+        },
+        "areaServed": "NL",
+        "description": "Onafhankelijk advies en bemiddeling bij Construction All Risk (CAR) verzekeringen voor bouwprojecten van particulieren en bedrijven.",
+        "termsOfService": "https://www.onlinecarverzekeringen.nl/privacybeleid/privacybeleid.html"
+        }
+    ]
+    }
+    </script>
+
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        /* FIX: De @import regel is verwijderd en vervangen door een <link> in de <head> */
 
         :root {
             --primary-color: #191E4E; 
@@ -184,25 +241,23 @@
         }
 
         #hero h1 {
-            font-size: 3.2rem; /* AANGEPAST: Iets kleiner voor lange titels */
-            line-height: 1.25; /* AANGEPAST: Betere regelhoogte voor titels */
+            font-size: 3.2rem;
+            line-height: 1.25;
             margin-bottom: 1.2rem;
             font-weight: 700;
             letter-spacing: -1px;
-            animation: fadeInDownCustom 1s ease-out 0.2s;
-            animation-fill-mode: backwards;
+            /* FIX: Animatie verwijderd voor directe weergave */
         }
 
         #hero p {
-            font-size: 1.3rem; /* AANGEPAST: Iets kleiner voor balans met H1 */
+            font-size: 1.3rem;
             margin-bottom: 2.5rem;
             max-width: 750px;
             margin-left: auto;
             margin-right: auto;
             font-weight: 300;
             opacity: 0.9;
-            animation: fadeInUpCustom 1s ease-out 0.5s;
-            animation-fill-mode: backwards;
+            /* FIX: Animatie verwijderd van LCP-element */
         }
 
         .cta-button {
@@ -216,10 +271,9 @@
             border-radius: var(--border-radius);
             transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
             box-shadow: var(--box-shadow);
-            animation: fadeInUpCustom 1s ease-out 0.8s;
-            animation-fill-mode: backwards;
             position: relative;
             overflow: hidden;
+            /* FIX: Animatie verwijderd voor directe weergave */
         }
         .cta-button::before { 
             content: "";
@@ -243,16 +297,6 @@
         }
 
 
-        @keyframes fadeInDownCustom {
-            from { opacity: 0; transform: translateY(-40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUpCustom {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         /* Section Base Styling */
         section {
             padding: 80px 0; 
@@ -262,25 +306,25 @@
             background-color: var(--light-gray-color);
         }
 
-        section h2 { /* AANGEPAST */
+        section h2 {
             text-align: center;
-            font-size: 2.5rem; /* Was 2.8rem */
-            line-height: 1.3;  /* Voor betere afbreking */
+            font-size: 2.5rem;
+            line-height: 1.3;
             color: var(--primary-color);
-            margin-bottom: 50px; /* Was 60px, iets compacter */
+            margin-bottom: 50px;
             position: relative;
-            padding-bottom: 15px; /* Was 20px */
+            padding-bottom: 15px;
             font-weight: 700;
         }
 
-        section h2::after { /* AANGEPAST */
+        section h2::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 70px; /* Was 90px */
-            height: 4px; /* Was 5px */
+            width: 70px;
+            height: 4px;
             background-color: var(--accent-color);
             border-radius: 3px;
         }
@@ -300,8 +344,8 @@
         /* Informatie Section */
         #informatie .info-content {
             display: flex;
-            flex-direction: column; /* Stapelt de rijen verticaal */
-            gap: 70px; /* Ruimte tussen de rijen */
+            flex-direction: column;
+            gap: 70px;
         }
 
         .info-row {
@@ -415,9 +459,9 @@
              color: var(--primary-color); 
         }
 
-        .dienst-item h3 { /* AANGEPAST */
-            font-size: 1.4rem; /* Was 1.5rem */
-            line-height: 1.35;  /* Betere regelhoogte */
+        .dienst-item h3 {
+            font-size: 1.4rem;
+            line-height: 1.35;
             color: var(--primary-color);
             margin-bottom: 12px;
             font-weight: 600;
@@ -506,15 +550,14 @@
 
         #offerte-cta h2 {
             color: var(--light-text-color);
-            /* font-size en line-height erven van section h2, wat goed is hier */
         }
 
         #offerte-cta h2::after { 
-            background-color: var(--accent-color); /* ::after van section h2 is al goed */
+            background-color: var(--accent-color);
         }
 
         #offerte-cta p {
-            font-size: 1.15rem; /* AANGEPAST: Iets compacter */
+            font-size: 1.15rem;
             max-width: 750px;
             margin: 0 auto 35px auto;
             opacity: 0.95;
@@ -566,7 +609,6 @@
             background-color: var(--background-color);
             text-align: center;
         }
-        #contact h2 { /* Erft algemene section h2 stijl */ }
 
         #contact p {
             font-size: 1.15rem;
@@ -576,7 +618,7 @@
             color: var(--secondary-color);
         }
 
-        /* --- NIEUW: Team Section --- */
+        /* --- Team Section --- */
         #team-section {
             padding-top: 40px; 
             padding-bottom: 80px;
@@ -597,7 +639,7 @@
             color: var(--light-gray-color);
             text-align: center;
             padding: 40px 0; 
-            margin-top: 0; /* Aangepast omdat de nieuwe sectie erboven al padding heeft */
+            margin-top: 0;
             border-top: 5px solid var(--primary-color);
         }
 
@@ -658,7 +700,6 @@
             #hero p { font-size: 1.2rem; }
             section h2 { font-size: 2.2rem; }
             
-            /* --- AANGEPAST: Responsive #informatie sectie --- */
             .info-row, .info-row.reverse { 
                 flex-direction: column; 
                 gap: 30px;
@@ -794,10 +835,8 @@
             <div class="container">
                 <h2 class="reveal">Wat de CAR-verzekering voor u kan betekenen</h2>
                 
-                <!-- === NIEUWE STRUCTUUR VOOR INFORMATIE SECTIE === -->
                 <div class="info-content">
                     
-                    <!-- Rij 1: Tekst links, Afbeelding rechts -->
                     <div class="info-row reveal" data-reveal-delay="100">
                         <div class="info-text-block">
                             <p>Een Construction All Risks (CAR) verzekering is onmisbaar voor iedereen die bouwt, verbouwt of renoveert – of u nu een professional bent of een particulier. Het is de complete bescherming die uw project van begin tot eind dekt. Denk aan schade aan het gebouw in aanbouw, maar ook aan materialen op de bouwplaats. </p>
@@ -805,12 +844,11 @@
                             <p>Op een bouwplaats kan er veel misgaan, zelfs met de beste planning. Onze CAR-verzekering biedt uitgebreide dekking voor <b>materiële schade</b> aan het werk zelf. Dit omvat bijvoorbeeld schade door brand, storm, diefstal van materialen, vandalisme, maar ook constructiefouten of onoplettendheid tijdens de bouw. Met deze zekerheid bent u beschermd tegen onverwachte kosten die de voortgang van uw project kunnen belemmeren.</p>
                         </div>
                         <div class="info-image-block">
-                            <!-- Vervang de placeholder met uw eigen afbeelding -->
-                            <img src="image/Construction1.png" alt="Visualisatie van een bouwproject met materiële schade dekking">
+                            <!-- FIX: Lazy-load voor afbeeldingen onder de vouw -->
+                            <img src="image/Construction1.png" alt="Visualisatie van een bouwproject met materiële schade dekking" loading="lazy" decoding="async">
                         </div>
                     </div>
 
-                    <!-- Rij 2: Afbeelding links, Tekst rechts -->
                     <div class="info-row reverse reveal" data-reveal-delay="100">
                         <div class="info-text-block">
                              <h3>Bescherming bij aansprakelijkheid en meer</h3>
@@ -819,13 +857,12 @@
                             <p>Met een CAR-verzekering kiest u voor gemoedsrust. U hoeft zich geen zorgen te maken over de financiële gevolgen van onvoorziene gebeurtenissen. Wij zorgen ervoor dat uw project van fundering tot oplevering beschermd is, zodat u zich volledig kunt concentreren op het realiseren van uw bouwplannen.</p>
                         </div>
                         <div class="info-image-block">
-                             <!-- Vervang de placeholder met uw eigen afbeelding -->
-                            <img src="image/construction3.png" alt="Visualisatie van bescherming bij aansprakelijkheid">
+                             <!-- FIX: Lazy-load voor afbeeldingen onder de vouw -->
+                            <img src="image/construction3.png" alt="Visualisatie van bescherming bij aansprakelijkheid" loading="lazy" decoding="async">
                         </div>
                     </div>
 
                 </div>
-                 <!-- === EINDE NIEUWE STRUCTUUR === -->
             </div>
         </section>
 
@@ -890,8 +927,8 @@
                     Achter elke succesvolle verzekering staat een team van experts. Wij zijn toegewijd aan het beschermen van uw project en staan persoonlijk voor u klaar met raad en daad.
                 </p>
                 <div class="team-image-container">
-                    <!-- Vervang de placeholder met uw eigen teamfoto -->
-                    <img src="image/Personen_vdbs.png" alt="Het team van experts van CAR Verzekering">
+                    <!-- FIX: Lazy-load voor afbeeldingen onder de vouw -->
+                    <img src="image/Personen_vdbs.png" alt="Het team van experts van CAR Verzekering" loading="lazy" decoding="async">
                 </div>
             </div>
         </section>
@@ -920,6 +957,7 @@
     </footer>
 
     <script>
+        // Er zijn geen wijzigingen in de JavaScript nodig.
         // Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const mainNav = document.querySelector('header nav'); 
